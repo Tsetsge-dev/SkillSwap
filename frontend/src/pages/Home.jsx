@@ -123,7 +123,7 @@ const Home = () => {
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo-700">Товч танилцуулга</p>
             <h2 id="about-skillswap-title" className="mt-1 text-xl font-black tracking-tight text-slate-950">SkillSwap гэж юу вэ?</h2>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">SkillSwap бол суралцагчид ур чадвараа харилцан зааж, шинэ зүйлээ хамтдаа дадлагажуулан сурдаг платформ юм.</p>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">SkillSwap нь хүмүүс мэддэг зүйлээ бусдад зааж, өөрсдөө сурахыг хүссэн зүйлээ бусдаас сурах боломжтой платформ юм.</p>
           </div>
           <Link to="/explore" className="inline-flex min-h-10 shrink-0 items-center gap-2 self-start rounded-xl bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-800 transition hover:bg-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700 sm:self-center">
             Хүмүүсийг харах <ArrowRight className="h-4 w-4" aria-hidden="true" />
