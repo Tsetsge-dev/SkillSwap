@@ -8,7 +8,7 @@ import { getAuthErrorMessage, passwordChecks, validateRegistration } from '../se
 const Register = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ full_name: '', email: '', password: '', confirmPassword: '' });
+  const [form, setForm] = useState({ last_name: '', first_name: '', email: '', password: '', confirmPassword: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [error, setError] = useState('');
@@ -34,7 +34,11 @@ const Register = () => {
     setLoading(true);
     setError('');
     try {
-      await register({ full_name: form.full_name.trim(), email: form.email.trim(), password: form.password });
+      await register({
+        full_name: `${form.last_name.trim()} ${form.first_name.trim()}`,
+        email: form.email.trim(),
+        password: form.password,
+      });
       navigate('/profile', { replace: true, state: { welcome: true } });
     } catch (authError) {
       setError(getAuthErrorMessage(authError, 'register'));
@@ -55,8 +59,12 @@ const Register = () => {
       <form className="auth-form" onSubmit={handleSubmit} noValidate>
         {error && <div className="auth-alert auth-alert-error" role="alert">{error}</div>}
         <div className="auth-field">
-          <label htmlFor="register-name">Таны бүтэн нэр</label>
-          <div className="auth-input-wrap"><UserRound size={17} aria-hidden="true" /><input id="register-name" type="text" name="full_name" value={form.full_name} onChange={handleChange} placeholder="Нэрээ оруулна уу" autoComplete="name" maxLength={120} required /></div>
+          <label htmlFor="register-last-name">Овог</label>
+          <div className="auth-input-wrap"><UserRound size={17} aria-hidden="true" /><input id="register-last-name" type="text" name="last_name" value={form.last_name} onChange={handleChange} placeholder="Овгоо оруулна уу" autoComplete="family-name" maxLength={60} required /></div>
+        </div>
+        <div className="auth-field">
+          <label htmlFor="register-first-name">Нэр</label>
+          <div className="auth-input-wrap"><UserRound size={17} aria-hidden="true" /><input id="register-first-name" type="text" name="first_name" value={form.first_name} onChange={handleChange} placeholder="Нэрээ оруулна уу" autoComplete="given-name" maxLength={60} required /></div>
         </div>
         <div className="auth-field">
           <label htmlFor="register-email">Имэйл хаяг</label>

@@ -6,8 +6,9 @@ export const passwordChecks = (password) => [
   { label: 'Тоо эсвэл тусгай тэмдэгт нэмэх', valid: /[0-9]|[^a-zA-Z]/.test(password) },
 ];
 
-export const validateRegistration = ({ full_name, email, password, confirmPassword }) => {
-  if (!full_name.trim()) return 'Нэрээ оруулна уу.';
+export const validateRegistration = ({ last_name, first_name, email, password, confirmPassword }) => {
+  if (!last_name?.trim()) return 'Овгоо оруулна уу.';
+  if (!first_name?.trim()) return 'Нэрээ оруулна уу.';
   if (!validateEmail(email)) return 'Зөв имэйл хаяг оруулна уу.';
   if (password.length < 6) return 'Нууц үг 6-аас доошгүй тэмдэгт байна.';
   if (new TextEncoder().encode(password).length > 72) return 'Нууц үг 72 байтаас хэтрэхгүй байна.';

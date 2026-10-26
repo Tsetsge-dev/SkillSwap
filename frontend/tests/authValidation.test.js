@@ -9,9 +9,10 @@ test('email validation accepts valid addresses and rejects malformed input', () 
 });
 
 test('registration validation enforces the backend password limit and matching fields', () => {
-  const base = { full_name: 'Сурагч', email: 'student@example.mn', password: 'Strong1!', confirmPassword: 'Strong1!' };
+  const base = { last_name: 'Бат', first_name: 'Сурагч', email: 'student@example.mn', password: 'Strong1!', confirmPassword: 'Strong1!' };
   assert.equal(validateRegistration(base), '');
-  assert.match(validateRegistration({ ...base, full_name: '  ' }), /Нэрээ/);
+  assert.match(validateRegistration({ ...base, last_name: '  ' }), /Овгоо/);
+  assert.match(validateRegistration({ ...base, first_name: '  ' }), /Нэрээ/);
   assert.match(validateRegistration({ ...base, email: 'bad-email' }), /имэйл/);
   assert.match(validateRegistration({ ...base, password: 'short', confirmPassword: 'short' }), /6-аас/);
   assert.match(validateRegistration({ ...base, password: 'Strong1!', confirmPassword: 'Other1!' }), /таарахгүй/);
