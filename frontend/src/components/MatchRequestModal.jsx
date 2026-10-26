@@ -241,7 +241,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
               onClick={handleSend}
               type="button"
               disabled={sending}
-              className="w-full py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-md transition-all"
+              className="w-full py-2.5 glass-accent  text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-md transition-all"
             >
               <Send className="w-3.5 h-3.5" /> {sending ? 'Илгээж байна...' : 'Холбогдох хүсэлт илгээх'}
             </button>

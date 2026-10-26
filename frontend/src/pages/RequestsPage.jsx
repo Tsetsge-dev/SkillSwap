@@ -112,7 +112,7 @@ const RequestsPage = () => {
                 <button
                   onClick={() => handleRespond(req.id, 'accept')}
                   disabled={actionLoading === req.id}
-                  className="px-3.5 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md disabled:opacity-50 transition-all"
+                  className="px-3.5 py-2 glass-accent  text-white font-bold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md disabled:opacity-50 transition-all"
                 >
                   <Check className="w-3.5 h-3.5" /> {actionLoading === req.id ? 'Түр хүлээнэ үү...' : 'Зөвшөөрөх'}
                 </button>
@@ -225,7 +225,7 @@ const RequestsPage = () => {
             </div>
             <Link
               to={`/chat/${friend.id}`}
-              className="px-4 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all shrink-0"
+              className="px-4 py-2 glass-accent  text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all shrink-0"
             >
               <MessageSquare className="w-3.5 h-3.5" /> Зурвас бичих
             </Link>
@@ -256,7 +256,7 @@ const RequestsPage = () => {
               onClick={() => setActiveTab(tab.key)}
               className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 isActive
-                  ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-sm'
+                  ? 'glass-accent text-white shadow-sm'
                   : 'text-slate-600 hover:text-violet-700 hover:bg-violet-50'
               }`}
             >

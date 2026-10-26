@@ -55,7 +55,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav aria-label="Үндсэн цэс" className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 shadow-sm shadow-slate-900/[0.03] backdrop-blur-xl">
+    <nav aria-label="Үндсэн цэс" className="site-nav sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 shadow-sm shadow-slate-900/[0.03] backdrop-blur-xl">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           

@@ -69,7 +69,7 @@ const UserProfileDetail = () => {
   if (!isAuthenticated) {
     return (
       <div className="max-w-md mx-auto px-4 py-16 text-center space-y-5 animate-fade-in">
-        <div className="w-16 h-16 rounded-3xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 text-white flex items-center justify-center mx-auto shadow-xl shadow-violet-500/30">
+        <div className="w-16 h-16 rounded-3xl glass-accent text-white flex items-center justify-center mx-auto shadow-xl shadow-violet-500/30">
           <Lock className="w-8 h-8" />
         </div>
         <div className="space-y-2">
@@ -82,7 +82,7 @@ const UserProfileDetail = () => {
         <div className="grid grid-cols-2 gap-3 pt-2">
           <Link
             to="/login"
-            className="py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md"
+            className="py-3 glass-accent  text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md"
           >
             <LogIn className="w-4 h-4" /> Нэвтрэх
           </Link>
@@ -227,7 +227,7 @@ const UserProfileDetail = () => {
                 }
                 setShowSwapModal(true);
               }}
-              className="flex-1 py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all"
+              className="flex-1 py-2.5 glass-accent  text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all"
             >
               <ArrowRightLeft className="w-4 h-4" /> Чадвар солилцох санал илгээх
             </button>

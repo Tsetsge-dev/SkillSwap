@@ -237,7 +237,7 @@ const ChatPage = () => {
         <div
           className={`max-w-[80%] sm:max-w-[70%] p-3.5 rounded-2xl text-xs leading-relaxed shadow-sm ${
             isMine
-              ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-br-none'
+              ? 'glass-accent text-white rounded-br-none'
               : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none'
           }`}
         >
@@ -459,7 +459,7 @@ const ChatPage = () => {
                 <button
                   type="submit"
                   disabled={!input.trim() || sending}
-                  className="p-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white rounded-xl disabled:opacity-40 cursor-pointer shadow-md transition-all shrink-0"
+                  className="p-2.5 glass-accent  text-white rounded-xl disabled:opacity-40 cursor-pointer shadow-md transition-all shrink-0"
                 >
                   <Send className="w-4 h-4" />
                 </button>

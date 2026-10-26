@@ -36,7 +36,7 @@ const AuthPromptModal = ({ isOpen, onClose, message }) => {
         </button>
 
         <div className="text-center space-y-2 pt-2">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 text-white flex items-center justify-center mx-auto shadow-lg shadow-violet-500/30">
+          <div className="w-12 h-12 rounded-2xl glass-accent text-white flex items-center justify-center mx-auto shadow-lg shadow-violet-500/30">
             <Lock className="w-6 h-6" />
           </div>
           <h3 className="text-lg font-extrabold text-slate-800">SkillSwap-д нэвтэрнэ үү</h3>
@@ -50,7 +50,7 @@ const AuthPromptModal = ({ isOpen, onClose, message }) => {
           <Link
             to="/login"
             onClick={onClose}
-            className="py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md"
+            className="py-2.5 glass-accent  text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md"
           >
             <LogIn className="w-3.5 h-3.5" /> Нэвтрэх
           </Link>

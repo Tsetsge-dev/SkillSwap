@@ -94,7 +94,7 @@ const ChatBotWidget = () => {
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-label={isOpen ? 'AI туслах хаах' : 'AI туслах нээх'}
-        className={`fixed bottom-5 right-5 z-40 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold p-3.5 rounded-full shadow-xl shadow-violet-500/30 transition-transform hover:scale-105 flex items-center gap-2 cursor-pointer ${
+        className={`fixed bottom-5 right-5 z-40 glass-accent  text-white font-bold p-3.5 rounded-full shadow-xl shadow-violet-500/30 transition-transform hover:scale-105 flex items-center gap-2 cursor-pointer ${
           !isOpen ? 'animate-bounce' : ''
         }`}
         title="AI Туслах"
@@ -107,7 +107,7 @@ const ChatBotWidget = () => {
       {isOpen && (
         <div className="fixed bottom-20 right-4 sm:right-5 z-40 w-[92vw] max-w-[390px] h-[min(540px,calc(100dvh-6rem))] bg-white border border-slate-200 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-fade-in" role="dialog" aria-label="AI чадвар солилцооны туслах">
           {/* Header */}
-          <div className="p-3.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white flex items-center justify-between shadow-sm">
+          <div className="p-3.5 glass-accent text-white flex items-center justify-between shadow-sm">
             <div className="flex items-center gap-2">
               <Bot className="w-4 h-4 text-white" />
               <h4 className="text-xs font-bold">AI Чадвар Солилцооны Туслах</h4>
@@ -131,7 +131,7 @@ const ChatBotWidget = () => {
                 <div
                   className={`p-3 rounded-2xl text-xs max-w-[88%] leading-relaxed ${
                     m.sender === 'user'
-                      ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-medium rounded-br-none shadow-md'
+                      ? 'glass-accent text-white font-medium rounded-br-none shadow-md'
                       : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none shadow-2xs'
                   }`}
                 >
@@ -162,7 +162,7 @@ const ChatBotWidget = () => {
                           </div>
                           <button
                             onClick={() => isAuthenticated ? setSelectedUserForSwap(rec) : setShowAuthPrompt(true)}
-                            className="px-2.5 py-1 rounded-lg bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-[10px] shrink-0 cursor-pointer shadow-sm"
+                            className="px-2.5 py-1 rounded-lg glass-accent  text-white font-bold text-[10px] shrink-0 cursor-pointer shadow-sm"
                           >
                             Холбогдох хүсэлт илгээх
                           </button>
@@ -221,7 +221,7 @@ const ChatBotWidget = () => {
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="p-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white rounded-xl disabled:opacity-40 cursor-pointer shadow-sm"
+              className="p-2 glass-accent  text-white rounded-xl disabled:opacity-40 cursor-pointer shadow-sm"
             >
               <Send className="w-3.5 h-3.5" />
             </button>

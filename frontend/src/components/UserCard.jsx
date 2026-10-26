@@ -159,7 +159,7 @@ const UserCard = ({ user, onRequestSwap, isConnected = false }) => {
 
           <button
             onClick={handleSwapClick}
-            className="flex-1 py-2 text-center text-xs font-bold rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
+            className="flex-1 py-2 text-center text-xs font-bold rounded-xl glass-accent  text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
           >
             <ArrowRightLeft className="w-3 h-3" />
             <span>Хүсэлт илгээх</span>
