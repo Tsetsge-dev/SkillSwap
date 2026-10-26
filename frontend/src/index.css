@@ -577,3 +577,185 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   50% { transform: translateY(-12px) scale(1.03); }
 }
 .animate-gentle-bob { animation: gentle-bob 6s ease-in-out infinite; }
+
+/* Reference-matched liquid glass finish, shared across every route. */
+:root {
+  --liquid-blue: #1557d6;
+  --liquid-indigo: #554be8;
+  --liquid-edge: rgba(255, 255, 255, .78);
+  --liquid-shadow: 0 22px 65px -34px rgba(27, 56, 124, .42);
+}
+
+html { background-color: #eaf2ff; }
+
+body {
+  background-color: #edf4ff;
+  background-image:
+    radial-gradient(ellipse at 4% 4%, rgba(87, 153, 255, .27), transparent 34%),
+    radial-gradient(ellipse at 96% 2%, rgba(122, 124, 255, .22), transparent 30%),
+    radial-gradient(ellipse at 50% 100%, rgba(103, 190, 255, .2), transparent 38%),
+    linear-gradient(135deg, #eaf2ff 0%, #f5f7ff 46%, #e9f2ff 100%);
+}
+
+body::before {
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 16% 48%, rgba(255,255,255,.54), transparent 25%),
+    radial-gradient(ellipse at 82% 65%, rgba(255,255,255,.4), transparent 24%),
+    repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 1px, transparent 1px 5px);
+}
+
+/* Frost existing card and toolbar surfaces without changing their behavior. */
+body .bg-white,
+body [class*="bg-white/"] {
+  border-color: rgba(255,255,255,.78);
+  background-color: rgba(247, 250, 255, .57);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.82), 0 12px 34px -26px rgba(33,61,122,.34);
+  -webkit-backdrop-filter: blur(26px) saturate(165%);
+  backdrop-filter: blur(26px) saturate(165%);
+}
+
+body .bg-slate-50,
+body .bg-slate-100,
+body [class*="bg-slate-50/"],
+body [class*="bg-slate-100/"] {
+  background-color: rgba(230, 239, 255, .46);
+  -webkit-backdrop-filter: blur(22px) saturate(155%);
+  backdrop-filter: blur(22px) saturate(155%);
+}
+
+body .bg-indigo-50,
+body [class*="bg-indigo-50/"],
+body .bg-violet-50,
+body .bg-sky-50 {
+  background-color: rgba(224, 232, 255, .52);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+}
+
+body [class*="rounded-"][class*="bg-white"] {
+  border-color: rgba(255,255,255,.76);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.84), 0 16px 38px -30px rgba(33,61,122,.38);
+}
+
+body .glass-panel,
+body .glass-panel-hover,
+body .auth-layout,
+body .auth-story-note {
+  border-color: rgba(255,255,255,.76);
+  box-shadow: var(--liquid-shadow), inset 0 1px 0 rgba(255,255,255,.86);
+  -webkit-backdrop-filter: blur(30px) saturate(170%);
+  backdrop-filter: blur(30px) saturate(170%);
+}
+
+body .glass-panel {
+  background: linear-gradient(145deg, rgba(255,255,255,.69), rgba(232,241,255,.42));
+}
+
+body .glass-panel-hover:hover {
+  border-color: rgba(255,255,255,.96);
+  background: linear-gradient(145deg, rgba(255,255,255,.82), rgba(231,240,255,.57));
+  box-shadow: 0 26px 70px -34px rgba(27,56,124,.48), inset 0 1px 0 rgba(255,255,255,.94);
+}
+
+body .glass-hero {
+  border: 1px solid rgba(255,255,255,.48);
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(126,183,255,.34), transparent 48%),
+    linear-gradient(145deg, rgba(20,55,139,.88), rgba(44,72,177,.76) 55%, rgba(61,111,193,.68));
+  box-shadow: 0 32px 90px -42px rgba(20,49,117,.74), inset 0 1px 0 rgba(255,255,255,.42), inset 0 -1px 0 rgba(255,255,255,.12);
+  -webkit-backdrop-filter: blur(36px) saturate(175%);
+  backdrop-filter: blur(36px) saturate(175%);
+}
+
+body .glass-hero::before {
+  z-index: 0;
+  background:
+    linear-gradient(118deg, rgba(255,255,255,.27), transparent 33%, transparent 68%, rgba(183,220,255,.18)),
+    radial-gradient(ellipse at 80% 100%, rgba(72,156,255,.28), transparent 46%);
+}
+
+body nav[aria-label="Үндсэн цэс"] {
+  border-bottom-color: rgba(255,255,255,.82);
+  background: rgba(239,246,255,.63);
+  box-shadow: 0 10px 34px -26px rgba(30,60,126,.4), inset 0 1px 0 rgba(255,255,255,.84);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  backdrop-filter: blur(30px) saturate(180%);
+}
+
+body footer {
+  border-top-color: rgba(255,255,255,.8);
+  background: rgba(239,246,255,.5);
+  box-shadow: 0 -14px 42px -38px rgba(30,60,126,.36), inset 0 1px 0 rgba(255,255,255,.72);
+  -webkit-backdrop-filter: blur(28px) saturate(165%);
+  backdrop-filter: blur(28px) saturate(165%);
+}
+
+body input:not([type="checkbox"]):not([type="radio"]),
+body textarea,
+body select,
+body .auth-input-wrap {
+  border-color: rgba(255,255,255,.82);
+  background-color: rgba(250,252,255,.59);
+  box-shadow: inset 0 1px 2px rgba(52,78,137,.04), 0 8px 22px -20px rgba(32,60,124,.35);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+}
+
+body input:focus,
+body textarea:focus,
+body select:focus,
+body .auth-input-wrap:focus-within {
+  border-color: rgba(73,112,226,.7);
+  background-color: rgba(255,255,255,.78);
+  box-shadow: 0 0 0 4px rgba(73,112,226,.13), inset 0 1px 2px rgba(52,78,137,.04), 0 10px 28px -20px rgba(32,60,124,.42);
+}
+
+body button:not(.auth-visibility) {
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+}
+
+body button:not(:disabled):hover { filter: saturate(1.06); }
+body a { transition: color .16s ease, background-color .16s ease, border-color .16s ease; }
+
+body .auth-page {
+  background:
+    radial-gradient(ellipse at 8% 6%, rgba(111,162,255,.27), transparent 38%),
+    radial-gradient(ellipse at 94% 84%, rgba(133,142,255,.2), transparent 34%),
+    rgba(235,243,255,.52);
+}
+
+body .auth-layout {
+  border: 1px solid rgba(255,255,255,.84);
+  background: rgba(247,250,255,.58);
+}
+
+body .auth-story {
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(112,166,255,.38), transparent 44%),
+    linear-gradient(145deg, rgba(20,48,122,.88), rgba(44,68,156,.78) 58%, rgba(57,104,179,.72));
+  box-shadow: inset 1px 0 0 rgba(255,255,255,.34), inset 0 1px 0 rgba(255,255,255,.28);
+  -webkit-backdrop-filter: blur(34px) saturate(175%);
+  backdrop-filter: blur(34px) saturate(175%);
+}
+
+body .auth-heading-icon,
+body .auth-note-icon {
+  border-color: rgba(255,255,255,.78);
+  background: linear-gradient(145deg, rgba(255,255,255,.75), rgba(218,231,255,.5));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 8px 24px -18px rgba(46,76,152,.55);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+body .auth-submit {
+  border: 1px solid rgba(255,255,255,.32);
+  background: linear-gradient(115deg, rgba(31,83,190,.94), rgba(76,83,212,.9) 57%, rgba(93,110,224,.88));
+  box-shadow: 0 12px 30px -14px rgba(42,74,177,.68), inset 0 1px 0 rgba(255,255,255,.32);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body button, body a { transition: none; }
+}
