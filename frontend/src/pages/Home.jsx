@@ -44,7 +44,7 @@ const Home = () => {
   const registerOrProfilePath = isAuthenticated ? "/profile" : "/register";
 
   return (
-    <main className="overflow-hidden bg-[radial-gradient(ellipse_at_top,_#eef2ff_0%,_#f8fafc_44%,_#ffffff_78%)] pb-16">
+    <main className="overflow-hidden bg-transparent pb-16">
       <section className="mx-auto max-w-6xl px-4 pb-10 pt-8 sm:px-6 sm:pb-14 sm:pt-12">
         <div className="grid items-center gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:gap-12">
           <div className="relative z-10">
@@ -56,8 +56,7 @@ const Home = () => {
               Мэдлэгээ хуваалц. <span className="text-indigo-700">Шинэ зүйл сур.</span>
             </h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-              SkillSwap дээр сурахыг хүссэн зүйлээ зааж чадах хүнээ олж, мэдлэг, чадвараа бусадтай хуваалцаарай.
-              Хамтдаа сурах энгийн эхлэл эндээс.
+              Мэддэг зүйлээ бусадтай хуваалцаж, сурахыг хүссэн чадвараа заадаг хүнээ олоорой.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -65,7 +64,7 @@ const Home = () => {
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-indigo-700 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-700/20 transition hover:-translate-y-0.5 hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700"
               >
                 <Search className="h-4 w-4" aria-hidden="true" />
-                Суралцагч хайх
+                Тохирох хүн хайх
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
@@ -73,7 +72,7 @@ const Home = () => {
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 shadow-sm transition hover:border-indigo-200 hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700"
               >
                 <Compass className="h-4 w-4 text-indigo-700" aria-hidden="true" />
-                Чиглэлээ сонгох
+                Сонирхлоо тодорхойлох
               </Link>
             </div>
             <p className="mt-4 text-xs text-slate-500">
@@ -87,7 +86,7 @@ const Home = () => {
 
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
             <div aria-hidden="true" className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-indigo-200/60 via-blue-100/35 to-transparent blur-2xl" />
-            <div className="relative overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-indigo-950 via-indigo-900 to-blue-800 p-6 shadow-[0_28px_80px_-35px_rgba(30,64,175,0.55)] sm:rounded-[2rem] sm:p-8">
+            <div className="glass-hero relative overflow-hidden rounded-[1.75rem] p-6 sm:rounded-[2rem] sm:p-8">
               <div aria-hidden="true" className="absolute -right-16 -top-20 h-48 w-48 rounded-full border border-white/10 shadow-[0_0_0_24px_rgba(255,255,255,.035),0_0_0_48px_rgba(255,255,255,.025)]" />
               <div className="relative z-10">
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-bold text-indigo-100">
@@ -123,10 +122,10 @@ const Home = () => {
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo-700">Товч танилцуулга</p>
             <h2 id="about-skillswap-title" className="mt-1 text-xl font-black tracking-tight text-slate-950">SkillSwap гэж юу вэ?</h2>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">SkillSwap нь хүмүүс мэддэг зүйлээ бусдад зааж, өөрсдөө сурахыг хүссэн зүйлээ бусдаас сурах боломжтой платформ юм.</p>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">SkillSwap нь мэддэг зүйлээ бусадтай хуваалцаж, тэднээс шинэ чадвар сурах боломж олгодог платформ юм.</p>
           </div>
           <Link to="/explore" className="inline-flex min-h-10 shrink-0 items-center gap-2 self-start rounded-xl bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-800 transition hover:bg-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700 sm:self-center">
-            Хүмүүсийг харах <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Хүмүүс хайх <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
       </section>

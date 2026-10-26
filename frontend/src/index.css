@@ -64,309 +64,185 @@
 @media(max-width:420px){.auth-page{padding:12px 10px}.auth-layout{border-radius:19px}.auth-story{padding:15px 18px}.auth-story-copy{padding:18px 0 12px}.auth-story-copy h2{font-size:23px}.auth-card{padding:24px 20px 20px}.auth-card-register{padding-top:21px}.auth-heading h1{font-size:19px}.auth-footer{padding:11px 0 2px}}
 @media(prefers-reduced-motion:reduce){.auth-layout{animation:none}.auth-submit,.auth-input-wrap,.auth-strength-bars span{transition:none}.auth-spinner{animation-duration:1.5s}}
 
-@layer base {
-  :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8faff;
-    --bg-card: rgba(255, 255, 255, 0.9);
-    --border-color: rgba(99, 102, 241, 0.2);
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --accent: #7c3aed;
-    --accent-hover: #6d28d9;
-    --warning: #f59e0b;
-    --error: #ef4444;
-    --success: #10b981;
-  }
-
-  body {
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.92)),
-      radial-gradient(circle at 8% 12%, rgba(14, 165, 233, 0.12), transparent 30%),
-      radial-gradient(circle at 90% 8%, rgba(16, 185, 129, 0.12), transparent 28%),
-      radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.10), transparent 35%);
-    background-attachment: fixed;
-    color: var(--text-primary);
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    overflow-x: hidden;
-    min-height: 100vh;
-    letter-spacing: 0;
-  }
+/* Unified liquid-glass visual system */
+:root {
+  color-scheme: light;
+  --glass-line: rgba(255, 255, 255, 0.72);
+  --glass-edge: rgba(128, 146, 190, 0.22);
+  --glass-shadow: 0 18px 56px -32px rgba(50, 69, 130, 0.42);
+  --ink-strong: #202846;
 }
 
-/* Minimalist Clean Glass Panel - lightweight white card */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(124, 58, 237, 0.16);
-  box-shadow: 0 10px 30px -12px rgba(99, 102, 241, 0.25);
-  border-radius: 18px;
+html {
+  min-height: 100%;
+  background: #edf1fb;
 }
 
-.glass-panel-hover {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-panel-hover:hover {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: rgba(124, 58, 237, 0.35);
-  box-shadow: 0 16px 40px -12px rgba(99, 102, 241, 0.35);
-  transform: translateY(-6px) rotate(0.6deg);
-}
-
-.glow-emerald {
-  box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.35);
-}
-
-.glow-accent {
-  box-shadow: 0 0 24px -6px rgba(124, 58, 237, 0.5);
-}
-
-/* Light scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(124, 58, 237, 0.25);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 58, 237, 0.4);
-}
-
-@keyframes online-pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.8;
-  }
-}
-
-.animate-online-pulse {
-  animation: online-pulse 2s infinite ease-in-out;
-}
-
-/* ========== UI/UX ENHANCEMENTS ========== */
-
-/* Bounce animation for engagement */
-@keyframes bounce-slow {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.animate-bounce-slow {
-  animation: bounce-slow 3s infinite ease-in-out;
-}
-
-/* Pulse glow */
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s infinite ease-in-out;
-}
-
-/* Sparkle entrance */
-@keyframes sparkle-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.animate-sparkle-in {
-  animation: sparkle-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Shimmer effect */
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-.animate-shimmer {
-  animation: shimmer 2s infinite ease-out;
-}
-
-/* Float animation */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-.animate-float {
-  animation: float 4s infinite ease-in-out;
-}
-
-/* Wave animation background */
-@keyframes wave {
-  0% {
-    transform: translateX(0) scale(1);
-  }
-  100% {
-    transform: translateX(-20px) scale(1.05);
-  }
-}
-
-.animate-wave {
-  animation: wave 3s linear infinite;
-}
-
-/* Text fade-in */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Stagger children animation */
-@keyframes stagger-children {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.stagger-children > * {
-  animation: stagger-children 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.stagger-children > *:nth-child(1) { animation-delay: 0s; }
-.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
-.stagger-children > *:nth-child(3) { animation-delay: 0.2s; }
-.stagger-children > *:nth-child(4) { animation-delay: 0.3s; }
-.stagger-children > *:nth-child(5) { animation-delay: 0.4s; }
-.stagger-children > *:nth-child(6) { animation-delay: 0.5s; }
-
-/* Orbiting floating skill icons (hero constellation) */
-@keyframes float-orbit {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(6px, -8px) rotate(90deg); }
-  50% { transform: translate(-4px, -14px) rotate(180deg); }
-  75% { transform: translate(8px, 6px) rotate(270deg); }
-  100% { transform: translate(0, 0) rotate(360deg); }
-}
-.animate-float-orbit { animation: float-orbit 16s ease-in-out infinite; }
-
-/* Slow full spin for orbiting rings */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-.animate-spin-slow { animation: spin-slow 40s linear infinite; }
-
-/* Gentle drift up/down for floating emojis */
-@keyframes drift-float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-22px) rotate(6deg); }
-}
-.animate-drift-float { animation: drift-float 5s ease-in-out infinite; }
-
-/* Wiggle for skill badges on hover */
-@keyframes wiggle {
-  0%, 100% { transform: rotate(0deg); }
-  20% { transform: rotate(-6deg); }
-  40% { transform: rotate(5deg); }
-  60% { transform: rotate(-3deg); }
-  80% { transform: rotate(2deg); }
-}
-.animate-wiggle { animation: wiggle 0.6s ease-in-out; }
-
-/* Soft pulse for status dots */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.3); }
-}
-.animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
-
-/* Gentle entrance fade for hero badges */
-@keyframes fade-in-shimmer {
-  0% { opacity: 0; transform: translateY(6px) scale(0.95); filter: brightness(0.8); }
-  100% { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1); }
-}
-.animate-fade-in-shimmer { animation: fade-in-shimmer 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-
-/* Idle breathing pulse for call-to-action buttons (e.g. closed AI button) */
-@keyframes breathe {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-}
-.animate-breathe { animation: breathe 3s ease-in-out infinite; }
-
-/* ===== ATTENTION-DRAWING ENHANCEMENTS ===== */
-
-/* Light-sweep shimmer on hover for gradient CTA buttons */
-.btn-shimmer {
+body {
   position: relative;
-  overflow: hidden;
+  isolation: isolate;
+  min-height: 100vh;
+  color: var(--ink-strong);
+  background:
+    radial-gradient(ellipse at 8% 3%, rgba(167, 190, 255, 0.48), transparent 34%),
+    radial-gradient(ellipse at 94% 12%, rgba(202, 182, 255, 0.32), transparent 31%),
+    radial-gradient(ellipse at 51% 92%, rgba(168, 217, 255, 0.3), transparent 38%),
+    linear-gradient(145deg, #eff3ff 0%, #f6f7fc 48%, #edf3ff 100%);
+  background-attachment: fixed;
+  font-family: 'Onest', 'Manrope', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.012em;
 }
-.btn-shimmer::after {
-  content: "";
-  position: absolute;
+
+body::before {
+  position: fixed;
+  z-index: -1;
   inset: 0;
-  background: linear-gradient(110deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 48%, rgba(255,255,255,0) 100%);
-  background-size: 220% 100%;
-  animation: shimmer-sweep 4.5s ease-in-out infinite;
-  opacity: 0;
+  background:
+    radial-gradient(circle at 22% 35%, rgba(255, 255, 255, 0.42), transparent 28%),
+    radial-gradient(circle at 82% 72%, rgba(255, 255, 255, 0.36), transparent 26%);
+  content: '';
   pointer-events: none;
-  border-radius: inherit;
-  transition: opacity .2s ease;
-}
-.btn-shimmer:hover::after { opacity: 1; }
-@keyframes shimmer-sweep {
-  0% { background-position: 220% 0; }
-  100% { background-position: -220% 0; }
 }
 
-/* Slow color-pulsing border for attention-grabbing badges */
-@keyframes border-pulse {
-  0%, 100% { border-color: rgba(147,51,234,.25); }
-  25% { border-color: rgba(236,72,153,.35); }
-  50% { border-color: rgba(147,51,234,.25); }
-  75% { border-color: rgba(236,72,153,.35); }
-}
-.animate-border-pulse { animation: border-pulse 3.5s ease-in-out infinite; }
+#root { min-height: 100vh; }
 
-/* Gentle continuous bob for floating decorative orbs */
-@keyframes gentle-bob {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-12px) scale(1.03); }
+h1, h2, h3, h4, h5 {
+  font-family: 'Onest', 'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: -0.035em;
 }
-.animate-gentle-bob { animation: gentle-bob 6s ease-in-out infinite; }
+
+::selection { background: rgba(101, 120, 220, 0.24); color: #172554; }
+
+/* Translucent utility surfaces turn existing cards into consistent glass. */
+body .bg-white,
+body [class*="bg-white/"] {
+  background-color: rgba(255, 255, 255, 0.58);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  backdrop-filter: blur(22px) saturate(145%);
+}
+
+body .bg-slate-50,
+body [class*="bg-slate-50/"],
+body .bg-slate-100,
+body [class*="bg-slate-100/"] {
+  background-color: rgba(255, 255, 255, 0.34);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(18px) saturate(135%);
+}
+
+body .bg-indigo-50,
+body [class*="bg-indigo-50/"],
+body .bg-violet-50,
+body [class*="bg-violet-50/"],
+body .bg-sky-50,
+body [class*="bg-sky-50/"] {
+  background-color: rgba(232, 237, 255, 0.5);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  backdrop-filter: blur(18px) saturate(145%);
+}
+
+body .border-slate-100,
+body .border-slate-200,
+body [class*="border-slate-200/"],
+body .border-indigo-100,
+body .border-violet-100 {
+  border-color: var(--glass-edge);
+}
+
+.glass-panel {
+  border: 1px solid var(--glass-line);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(26px) saturate(150%);
+  backdrop-filter: blur(26px) saturate(150%);
+}
+
+.glass-panel-hover { transition: transform .22s ease, box-shadow .22s ease, background .22s ease; }
+.glass-panel-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 24px 64px -34px rgba(50, 69, 130, 0.55), inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+.glass-hero {
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(138deg, rgba(36, 49, 111, 0.78), rgba(48, 73, 151, 0.62) 56%, rgba(62, 111, 183, 0.54));
+  box-shadow: 0 32px 90px -44px rgba(37, 54, 126, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.26);
+  -webkit-backdrop-filter: blur(34px) saturate(150%);
+  backdrop-filter: blur(34px) saturate(150%);
+}
+
+.glass-hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(125deg, rgba(255,255,255,.24), transparent 34%, transparent 72%, rgba(173,205,255,.12));
+  content: '';
+  pointer-events: none;
+}
+
+body nav[aria-label="Ò®Ð½Ð´ÑÑÐ½ Ñ†ÑÑ"] {
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(247, 249, 255, 0.62);
+  box-shadow: 0 10px 34px -28px rgba(34, 49, 105, .48);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+}
+
+body footer {
+  border-color: rgba(255, 255, 255, 0.68);
+  background: rgba(247, 249, 255, 0.48);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  backdrop-filter: blur(22px) saturate(145%);
+}
+
+body input:not([type="checkbox"]):not([type="radio"]):not(.auth-input-wrap input),
+body textarea,
+body select {
+  border-color: rgba(128, 146, 190, 0.25);
+  background-color: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+
+.auth-page {
+  background:
+    radial-gradient(ellipse at 12% 12%, rgba(177, 194, 255, .4), transparent 35%),
+    radial-gradient(ellipse at 88% 82%, rgba(197, 182, 255, .28), transparent 35%),
+    rgba(237, 242, 255, .54);
+  font-family: 'Onest', 'Manrope', system-ui, sans-serif;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.auth-layout {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.56);
+  box-shadow: 0 32px 90px -40px rgba(38, 53, 119, .4), inset 0 1px 0 rgba(255,255,255,.9);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  backdrop-filter: blur(30px) saturate(150%);
+}
+
+.auth-story {
+  background: linear-gradient(148deg, rgba(19, 32, 83, .86), rgba(35, 55, 129, .72) 58%, rgba(50, 86, 162, .66));
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  backdrop-filter: blur(24px) saturate(140%);
+}
+
+.auth-input-wrap {
+  border-color: rgba(128, 146, 190, 0.25);
+  background: rgba(255, 255, 255, 0.48);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+
+.auth-input-wrap:focus-within {
+  border-color: rgba(97, 117, 210, .72);
+  background: rgba(255, 255, 255, .72);
+  box-shadow: 0 0 0 4px rgba(86, 108, 202, .12), 0 8px 24px -20px rgba(42, 61, 137, .8);
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, selecxïm¢G§²ÚîÆ­yÝÍ9…µ”ô‰Ü´Ð ´Ðˆ€¼ø(€€€€€€€€€€€€€€€ƒBSBÃFBãBôƒBÇN§BÏBïN§F(€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€ñ1¥¹¬(€€€€€€€€€€€€€€€Ñ¼ôˆ½•áÁ±½É”ˆ(€€€€€€€€€€€€€€€±…ÍÍ9…µ”ô‰¥¹±¥¹”µ™±•à¥Ñ•µÌµ•¹Ñ•È…À´ÈÁà´ÐÁä´È¸ÔÉ½Õ¹‘•µá°‰œµÍ±…Ñ”´äÔÀ¡½Ù•Èé‰œµÍ±…Ñ”´àÀÀÑ•áÐµÝ¡¥Ñ”Ñ•áÐµáÌ™½¹Ðµ‰½±ÑÉ…¹Í¥Ñ¥½¸µ½±½ÉÌˆ(€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€ƒB—BÃBóFƒFFFBÃFƒFJ¿BôƒFBÃBçF(€€€€€€€€€€€€€€€€ñÉÉ½ÝI¥¡Ð±…ÍÍ9…µ”ô‰Ü´Ð ´Ðˆ€¼ø(€€€€€€€€€€€€€€ð½1¥¹¬ø(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€í•ÉÉ½È€˜˜€ (€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰µÐ´ÐÉ½Õ¹‘•µá°‰œµ…µ‰•È´ÔÀ‰½É‘•È‰½É‘•Èµ…µ‰•È´ÈÀÀÁà´ÌÁä´ÈÑ•áÐµáÌ™½¹Ðµµ•‘¥Õ´Ñ•áÐµ…µ‰•È´àÀÀˆø(€€€€€€€€€€€€€í•ÉÉ½Éô(€€€€€€€€€€€€ð½Àø(€€€€€€€€€€¥ô(€€€€€€€€ð½Í•Ñ¥½¸ø((€€€€€€€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”ô‰É¥É¥µ½±Ì´Ä±œéÉ¥µ½±ÌµlÄ¸Å™É|À¸å™Ét…À´Ôˆø(€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰ÍÁ…”µä´Ðˆø(€€€€€€€€€€€íÉ•ÍÕ±ÑÌ¹µ…À ¡É•Œ°¥¹‘•à¤€ôø€ (€€€€€€€€€€€€€€ñ…ÉÑ¥±”(€€€€€€€€€€€€€€€­•äõíÉ•Œ¹¥‘ô(€€€€€€€€€€€€€€€±…ÍÍ9…µ”ô‰‰œµÝ¡¥Ñ”¼äÐ‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÉ½Õ¹‘•´Éá°À´ÔÍ¡…‘½Üµ±œÍ¡…‘½ÜµÍ±…Ñ”´ÈÀÀ¼ÔÔˆ(€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰™±•à™±•àµ½°Í´é™±•àµÉ½ÜÍ´é¥Ñ•µÌµÍÑ…ÉÐ©ÕÍÑ¥™äµ‰•ÑÝ••¸…À´Ðˆø(€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰ÍÁ…”µä´Èˆø(€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰™±•à™±•àµÝÉ…À¥Ñ•µÌµ•¹Ñ•È…À´Èˆø(€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÍ9…µ”ô‰Áà´È¸ÔÁä´ÄÉ½Õ¹‘•µ±œ‰œµÍ±…Ñ”´ÄÀÀÑ•áÐµÍ±…Ñ”´ØÀÀÑ•áÐµlÄÅÁát™½¹Ðµ‰±…¬ˆø(€€€€€€€€€€€€€€€€€€€€€€€€í¥¹‘•à€¬€Åô(€€€€€€€€€€€€€€€€€€€€€€ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÍ9…µ”ô‰Áà´È¸ÔÁä´ÄÉ½Õ¹‘•µ±œ‰œµ¥¹‘¥¼´ÔÀÑ•áÐµ¥¹‘¥¼´ÜÀÀÑ•áÐµlÄÅÁát™½¹Ðµ‰½±ˆø(€€€€€€€€€€€€€€€€€€€€€€€íÉ•Œ¹…Ñ•½Éåô(€€€€€€€€€€€€€€€€€€€€€€ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÍ9…µ”ô‰Áà´È¸ÔÁä´ÄÉ½Õ¹‘•µ±œ‰œµ•µ•É…±´ÔÀÑ•áÐµ•µ•É…±´ÜÀÀÑ•áÐµlÄÅÁát™½¹Ðµ‰½±ˆø(€€€€€€€€€€€€€€€€€€€€€€€íÉ•Œ¹±•Ù•±ô(€€€€€€€€€€€€€€€€€€€€€€ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€ñ È±…ÍÍ9…µ”ô‰Ñ•áÐµá°Í´éÑ•áÐ´Éá°™½¹Ðµ‰±…¬Ñ•áÐµÍ±…Ñ”´äÔÀˆùíÉ•Œ¹¹…µ•ôð½ Èø(€€€€€€€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰Ñ•áÐµÍ´Ñ•áÐµÍ±…Ñ”´ØÀÀ±•…‘¥¹œµÉ•±…á•ˆùíÉ•Œ¹•áÁ±…¹…Ñ¥½¹ôð½Àø(€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Í¡É¥¹¬´ÀÜ´ÈÐ ´ÈÐÉ½Õ¹‘•´Éá°‰œµÍ±…Ñ”´äÔÀÑ•áÐµÝ¡¥Ñ”É¥Á±…”µ¥Ñ•µÌµ•¹Ñ•ÈÍ¡…‘½Üµ±œˆø(€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Ñ•áÐµ•¹Ñ•Èˆø(€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Ñ•áÐ´Éá°™½¹Ðµ‰±…¬ˆùíÉ•Œ¹Í½É•ô”ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Ñ•áÐµlÄÁÁátÑ•áÐµÍ±…Ñ”´ÌÀÀ™½¹Ðµ‰½±ˆûFBûFBãFBûBøð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€ð½‘¥Øø((€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰µÐ´ÐÉ¥É¥µ½±Ì´ÄµéÉ¥µ½±Ì´È…À´Ðˆø(€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰É½Õ¹‘•µá°‰œµÍ±…Ñ”´ÔÀ‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÀ´Ðˆø(€€€€€€€€€€€€€€€€€€€€ñ Ì±…ÍÍ9…µ”ô‰Ñ•áÐµáÌ™½¹Ðµ‰±…¬Ñ•áÐµÍ±…Ñ”´àÀÀµˆ´ÈˆûB¿BÃBÏBÃBÃBÐƒFBûFBãFFƒBÇBÃBçB÷BÀƒBËF4üð½ Ìø(€€€€€€€€€€€€€€€€€€€€ñÕ°±…ÍÍ9…µ”ô‰ÍÁ…”µä´Èˆø(€€€€€€€€€€€€€€€€€€€€€íÉ•Œ¹É•…Í½¹Ì¹µ…À ¡É•…Í½¸¤€ôø€ (€€€€€€€€€€€€€€€€€€€€€€€€ñ±¤­•äõíÉ•…Í½¹ô±…ÍÍ9…µ”ô‰™±•à…À´ÈÑ•áÐµáÌÑ•áÐµÍ±…Ñ”´ØÀÀ±•…‘¥¹œµÉ•±…á•ˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€ñ¡•¬±…ÍÍ9…µ”ô‰Ü´Ð ´ÐÑ•áÐµ•µ•É…±´ØÀÀÍ¡É¥¹¬´ÀµÐ´À¸Ôˆ€¼ø(€€€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸ùíÉ•…Í½¹ôð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ð½±¤ø(€€€€€€€€€€€€€€€€€€€€€€¤¥ô(€€€€€€€€€€€€€€€€€€€€ð½Õ°ø(€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰É½Õ¹‘•µá°‰œµÍ±…Ñ”´ÔÀ‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÀ´Ðˆø(€€€€€€€€€€€€€€€€€€€€ñ Ì±…ÍÍ9…µ”ô‰Ñ•áÐµáÌ™½¹Ðµ‰±…¬Ñ•áÐµÍ±…Ñ”´àÀÀµˆ´ÈˆûB·FBïF7FƒBÇBûBïBûBóBØð½ Ìø(€€€€€€€€€€€€€€€€€€€€ñ½°±…ÍÍ9…µ”ô‰ÍÁ…”µä´Èˆø(€€€€€€€€€€€€€€€€€€€€€íÉ•Œ¹¹•áÑMÑ•ÁÌ¹µ…À ¡¥Ñ•´°¥‘à¤€ôø€ (€€€€€€€€€€€€€€€€€€€€€€€€ñ±¤­•äõí¥Ñ•µô±…ÍÍ9…µ”ô‰™±•à…À´ÈÑ•áÐµáÌÑ•áÐµÍ±…Ñ”´ØÀÀ±•…‘¥¹œµÉ•±…á•ˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÍ9…µ”ô‰Ü´Ô ´ÔÉ½Õ¹‘•µ™Õ±°‰œµÝ¡¥Ñ”‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÑ•áÐµlÄÁÁát™½¹Ðµ‰±…¬Ñ•áÐµÍ±…Ñ”´ÜÀÀÉ¥Á±…”µ¥Ñ•µÌµ•¹Ñ•ÈÍ¡É¥¹¬´Àˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€€í¥‘à€¬€Åô(€€€€€€€€€€€€€€€€€€€€€€€€€€ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸ùí¥Ñ•µôð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ð½±¤ø(€€€€€€€€€€€€€€€€€€€€€€¤¥ô(€€€€€€€€€€€€€€€€€€€€ð½½°ø(€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€ð½‘¥Øø((€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰µÐ´Ð™±•à™±•àµÝÉ…À…À´Èˆø(€€€€€€€€€€€€€€€€€íÉ•Œ¹Ñ…Ì¹µ…À ¡Ñ…œ¤€ôø€ (€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸­•äõíÑ…ô±…ÍÍ9…µ”ô‰Áà´È¸ÔÁä´ÄÉ½Õ¹‘•µ±œ‰œµÝ¡¥Ñ”‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÑ•áÐµlÄÅÁát™½¹Ðµ‰½±Ñ•áÐµÍ±…Ñ”´ØÀÀˆø(€€€€€€€€€€€€€€€€€€€€€íÑ…ô(€€€€€€€€€€€€€€€€€€€€ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€¤¥ô(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€ð½…ÉÑ¥±”ø(€€€€€€€€€€€€¤¥ô(€€€€€€€€€€ð½‘¥Øø((€€€€€€€€€€ñ…Í¥‘”±…ÍÍ9…µ”ô‰‰œµÝ¡¥Ñ”¼äÐ‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÉ½Õ¹‘•´Éá°À´ÔÍ¡…‘½Üµ±œÍ¡…‘½ÜµÍ±…Ñ”´ÈÀÀ¼ÔÔ µ™¥Ð±œéÍÑ¥­ä±œéÑ½À´ÈÐˆø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰™±•à¥Ñ•µÌµ•¹Ñ•È…À´Èµˆ´Ìˆø(€€€€€€€€€€€€€€ñM¡¥•±‘¡•¬±…ÍÍ9…µ”ô‰Ü´Ô ´ÔÑ•áÐµ•µ•É…±´ØÀÀˆ€¼ø(€€€€€€€€€€€€€€ñ È±…ÍÍ9…µ”ô‰Ñ•áÐµÍ´™½¹Ðµ‰±…¬Ñ•áÐµÍ±…Ñ”´äÔÀˆûBwFFFBïBÃBìƒBÇBÀƒFF7FF7BÏBïF7F4ð½ Èø(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰Ñ•áÐµáÌÑ•áÐµÍ±…Ñ”´ØÀÀ±•…‘¥¹œµÉ•±…á•ˆø(€€€€€€€€€€€€€ƒBCFFFBïBÏF/BôƒFBÃFBãFƒFBÃB÷F,ƒFN§FN§N§FN§BóBØƒBÓF7F7F ƒFBÃBÓBÏBÃBïBÃBÏBÓBÃBØ°ƒBßN§BËBïN§BóBØƒBÏBÃFBÏBÃFBÃBÐƒBìƒBÃF#BãBÏBïBÃBÏBÓBÃB÷BÀ¸ƒBwF7F °ƒBãBóF7BçBì°ƒFFBËBãBçBôƒBóF7BÓF7F7BïF7BìƒF#BÃBÃFBÓBÃFBÏJ¿Bä¸(€€€€€€€€€€€€ð½Àø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰µÐ´ÔÉ½Õ¹‘•µá°‰œµÍ±…Ñ”´äÔÀÑ•áÐµÝ¡¥Ñ”À´Ðˆø(€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰Ñ•áÐµáÌÑ•áÐµÍ±…Ñ”´ÌÀÀˆûBSBÃFBÃBÃBÏBãBçBôƒBÃBïFBÃBðð½Àø(€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰µÐ´ÄÑ•áÐµÍ´™½¹Ðµ‰½±±•…‘¥¹œµÉ•±…á•ˆø(€€€€€€€€€€€€€€€ƒB—BÃBóBÏBãBçBôƒN§B÷BÓN§F ƒBûB÷BûBûFBûBä€ÄƒFBãBÏBïF7BïF7F7F €ÜƒFBûB÷BûBÏBãBçBôƒBÛBãBÛBãBÌƒFFFF#BãBïFƒF7FBïJ¿J¿BïF7F7BÐM­¥±±MÝ…ÀƒBÓF7F7F ƒFBÃBóFFBÃFƒFJ¿BôƒFBÃBçBÏBÃBÃFBÃBä¸(€€€€€€€€€€€€€€ð½Àø(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€ð½…Í¥‘”ø(€€€€€€€€ð½Í•Ñ¥½¸ø((€€€€€€€€ñM­¥±±áÁ±½É•È(€€€€€€€€€…Ñ•½É¥•Ìõí…Ñ•½É¥•Íô(€€€€€€€€€™¥±Ñ•Èõí™¥±Ñ•Éô(€€€€€€€€€Í•Ñ¥±Ñ•ÈõíÍ•Ñ¥±Ñ•Éô(€€€€€€€€€ÅÕ•ÉäõíÅÕ•Éåô(€€€€€€€€€Í•ÑEÕ•ÉäõíÍ•ÑEÕ•Éåô(€€€€€€€€€Ù¥Í¥‰±•M­¥±±ÌõíÙ¥Í¥‰±•M­¥±±Íô(€€€€€€€€¼ø(€€€€€€ð½‘¥Øø(€€€€¤ì(€ô((€É•ÑÕÉ¸€ (€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰µ…àµÜ´Ùá°µàµ…ÕÑ¼Áà´ÐÍ´éÁà´ØÁä´àÍ´éÁä´ÄÀÍÁ…”µä´àˆø(€€€€€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”ô‰É¥É¥µ½±Ì´Ä±œéÉ¥µ½±ÌµlÀ¸å™É|Ä¸Å™Ét…À´Ø¥Ñ•µÌµÍÑÉ•Ñ ˆø(€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰É½Õ¹‘•µlÈáÁát‰œµÍ±…Ñ”´äÔÀÑ•áÐµÝ¡¥Ñ”À´ØÍ´éÀ´àÍ¡…‘½Üµá°½Ù•É™±½Üµ¡¥‘‘•¸É•±…Ñ¥Ù”ˆø(€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰É•±…Ñ¥Ù”è´ÄÀÍÁ…”µä´Øˆø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¥¹±¥¹”µ™±•à¥Ñ•µÌµ•¹Ñ•È…À´ÈÁà´ÌÁä´ÄÉ½Õ¹‘•µ™Õ±°‰œµÝ¡¥Ñ”¼ÄÀ‰½É‘•È‰½É‘•ÈµÝ¡¥Ñ”¼ÄÔÑ•áÐµáÌ™½¹Ðµ‰½±ˆø(€€€€€€€€€€€€€€ñ½µÁ…ÍÌ±…ÍÍ9…µ”ô‰Ü´Ì¸Ô ´Ì¸Ôˆ€¼ø(€€€€€€€€€€€€€M­¥±±MÝ…ÀƒFBãBÏBïF7BìƒFBûBÓBûFFBûBçBïBûBÏF(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€ñ‘¥Øø(€€€€€€€€€€€€€€ñ Ä±…ÍÍ9…µ”ô‰Ñ•áÐ´Íá°Í´éÑ•áÐ´Õá°™½¹Ðµ‰±…¬ÑÉ…­¥¹œµÑ¥¡Ð±•…‘¥¹œµÑ¥¡Ðˆø(€€€€€€€€€€€€€€€ƒN£N§FFƒFBûFBãFBûFƒFF ƒFBÃBÓBËBÃFBÃBÀƒBûBïBûBûFBûBä¸(€€€€€€€€€€€€€€ð½ Äø(€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰µÐ´ÐÑ•áÐµÍ´Í´éÑ•áÐµ‰…Í”Ñ•áÐµÍ±…Ñ”´ÌÀÀ±•…‘¥¹œµÉ•±…á•ˆø(€€€€€€€€€€€€€€€ƒB‡BûB÷BãFFBûBì°ƒBÓBÃBËFFƒFBÃBì°ƒFFFBÃFƒFF7BÈƒBóBÃF?BÌ°ƒBßBûFBãBïBÏBûBÐƒFBÃB÷F0ƒFFBïBÏFFFBïBÃBôƒF7FBïF7FF7BÐƒFBÃBóBÏBãBçBôƒFBûFBãFBûBóBÛFBûBäƒFBãBÏBïF7BïJ¿J¿BÓBãBçBÌƒFBÃB÷BÃBìƒBÇBûBïBÏBûB÷Bø¸(€€€€€€€€€€€€€€ð½Àø(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰É¥É¥µ½±Ì´Ì…À´Ìˆø(€€€€€€€€€€€€€ílˆØƒBÃFFFBïFˆ°€ˆÔƒBßN§BËBïN§BóBØˆ°€‹BwFFFBïBÃBïFBÃBä‰t¹µ…À ¡¥Ñ•´¤€ôø€ (€€€€€€€€€€€€€€€€ñ‘¥Ø­•äõí¥Ñ•µô±…ÍÍ9…µ”ô‰É½Õ¹‘•´Éá°‰œµÝ¡¥Ñ”¼à‰½É‘•È‰½É‘•ÈµÝ¡¥Ñ”¼ÄÀÀ´Ìˆø(€€€€€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰Ñ•áÐµáÌ™½¹Ðµ‰½±Ñ•áÐµÍ±…Ñ”´ÈÀÀˆùí¥Ñ•µôð½Àø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€¤¥ô(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰…‰Í½±ÕÑ”€µÉ¥¡Ð´ÈÀ€µ‰½ÑÑ½´´ÈÀÜ´ØÐ ´ØÐÉ½Õ¹‘•µ™Õ±°‰½É‘•È‰½É‘•ÈµÝ¡¥Ñ”¼ÄÀˆ€¼ø(€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰…‰Í½±ÕÑ”É¥¡Ð´à‰½ÑÑ½´´àÜ´ÈÐ ´ÈÐÉ½Õ¹‘•´Éá°‰œµÝ¡¥Ñ”¼àÉ½Ñ…Ñ”´Øˆ€¼ø(€€€€€€€€ð½‘¥Øø((€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰‰œµÝ¡¥Ñ”¼äÐ‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÉ½Õ¹‘•µlÈáÁátÀ´ÔÍ´éÀ´ÜÍ¡…‘½Üµá°Í¡…‘½ÜµÍ±…Ñ”´ÈÀÀ¼ØÀˆø(€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰™±•à¥Ñ•µÌµ•¹Ñ•È©ÕÍÑ¥™äµ‰•ÑÝ••¸…À´Ðµˆ´Øˆø(€€€€€€€€€€€€ñ‘¥Øø(€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰Ñ•áÐµáÌ™½¹Ðµ‰±…¬Ñ•áÐµ¥¹‘¥¼´ØÀÀˆø(€€€€€€€€€€€€€€€ƒBCFFFBïFíÍÑ•À€¬€Åô€¼í…ÍÍ•ÍÍµ•¹ÑEÕ•ÍÑ¥½¹Ì¹±•¹Ñ¡ô(€€€€€€€€€€€€€€ð½Àø(€€€€€€€€€€€€€€ñ È±…ÍÍ9…µ”ô‰µÐ´ÄÑ•áÐµá°Í´éÑ•áÐ´Éá°™½¹Ðµ‰±…¬Ñ•áÐµÍ±…Ñ”´äÔÀˆùíÕÉÉ•¹Ð¹Ñ¥Ñ±•ôð½ Èø(€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰µÐ´ÈÑ•áÐµáÌÍ´éÑ•áÐµÍ´Ñ•áÐµÍ±…Ñ”´ÔÀÀ±•…‘¥¹œµÉ•±…á•ˆùíÕÉÉ•¹Ð¹¡•±Á•Éôð½Àø(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¡¥‘‘•¸Í´éÉ¥Á±…”µ¥Ñ•µÌµ•¹Ñ•ÈÜ´ÄØ ´ÄØÉ½Õ¹‘•´Éá°‰œµ¥¹‘¥¼´ÔÀÑ•áÐµ¥¹‘¥¼´ÜÀÀ™½¹Ðµ‰±…¬ˆø(€€€€€€€€€€€€€íÁÉ½É•ÍÍô”(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€ð½‘¥Øø((€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰ ´ÈÉ½Õ¹‘•µ™Õ±°‰œµÍ±…Ñ”´ÄÀÀ½Ù•É™±½Üµ¡¥‘‘•¸µˆ´Ôˆø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰ µ™Õ±°É½Õ¹‘•µ™Õ±°‰œµÍ±…Ñ”´äÔÀÑÉ…¹Í¥Ñ¥½¸µ…±°‘ÕÉ…Ñ¥½¸´ÌÀÀˆÍÑå±”õíìÝ¥‘Ñ è€‘íÁÉ½É•ÍÍô•€õô€¼ø(€€€€€€€€€€ð½‘¥Øø((€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰É¥É¥µ½±Ì´ÄÍ´éÉ¥µ½±Ì´È…À´Ìˆø(€€€€€€€€€€€íÕÉÉ•¹Ð¹½ÁÑ¥½¹Ì¹µ…À ¡½ÁÑ¥½¸¤€ôøì(€€€€€€€€€€€€€½¹ÍÐ…Ñ¥Ù”€ôÕÉÉ•¹Ð¹ÑåÁ”€ôôô€‰µÕ±Ñ¤ˆ€üÍ•±•Ñ•¹¥¹±Õ‘•Ì¡½ÁÑ¥½¸¹Ù…±Õ”¤€èÍ•±•Ñ•€ôôô½ÁÑ¥½¸¹Ù…±Õ”ì(€€€€€€€€€€€€€É•ÑÕÉ¸€ (€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€€€­•äõí½ÁÑ¥½¸¹Ù…±Õ•ô(€€€€€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÕÁ‘…Ñ•¹ÍÝ•È¡½ÁÑ¥½¸¹Ù…±Õ”¥ô(€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”õíÑ•áÐµ±•™Ðµ¥¸µ ´ÄØÉ½Õ¹‘•´Éá°‰½É‘•ÈÁà´ÐÁä´ÌÑÉ…¹Í¥Ñ¥½¸µ…±°™½ÕÌé½ÕÑ±¥¹”µ¹½¹”™½ÕÌéÉ¥¹œ´È™½ÕÌéÉ¥¹œµÍ±…Ñ”´äÀÀ€‘ì(€€€€€€€€€€€€€€€€€€€…Ñ¥Ù”(€€€€€€€€€€€€€€€€€€€€€€ü€‰‰œµÍ±…Ñ”´äÔÀ‰½É‘•ÈµÍ±…Ñ”´äÔÀÑ•áÐµÝ¡¥Ñ”Í¡…‘½Üµ±œˆ(€€€€€€€€€€€€€€€€€€€€€€è€‰‰œµÝ¡¥Ñ”¡½Ù•Èé‰œµÍ±…Ñ”´ÔÀ‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÑ•áÐµÍ±…Ñ”´ÜÀÀˆ(€€€€€€€€€€€€€€€€€õô(€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÍ9…µ”ô‰™±•à¥Ñ•µÌµ•¹Ñ•È…À´Ìˆø(€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸(€€€€€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”õíÜ´Ô ´ÔÉ½Õ¹‘•µ™Õ±°‰½É‘•ÈÉ¥Á±…”µ¥Ñ•µÌµ•¹Ñ•ÈÍ¡É¥¹¬´À€‘ì(€€€€€€€€€€€€€€€€€€€€€€€…Ñ¥Ù”€ü€‰‰½É‘•ÈµÝ¡¥Ñ”‰œµÝ¡¥Ñ”Ñ•áÐµÍ±…Ñ”´äÔÀˆ€è€‰‰½É‘•ÈµÍ±…Ñ”´ÌÀÀˆ(€€€€€€€€€€€€€€€€€€€€€õô(€€€€€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€€€€€í…Ñ¥Ù”€˜˜€ñ¡•¬±…ÍÍ9…µ”ô‰Ü´Ì¸Ô ´Ì¸Ôˆ€¼ùô(€€€€€€€€€€€€€€€€€€€€ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÍ9…µ”ô‰Ñ•áÐµÍ´™½¹Ðµ‰½±±•…‘¥¹œµÍ¹Õœˆùí½ÁÑ¥½¸¹±…‰•±ôð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€¤ì(€€€€€€€€€€€ô¥ô(€€€€€€€€€€ð½‘¥Øø((€€€€€€€€€í•ÉÉ½È€˜˜€ (€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰µÐ´ÐÉ½Õ¹‘•µá°‰œµÉ•´ÔÀ‰½É‘•È‰½É‘•ÈµÉ•´ÈÀÀÁà´ÌÁä´ÈÑ•áÐµáÌ™½¹Ðµ‰½±Ñ•áÐµÉ•´ÜÀÀˆø(€€€€€€€€€€€€€í•ÉÉ½Éô(€€€€€€€€€€€€ð½Àø(€€€€€€€€€€¥ô((€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰µÐ´Ø™±•à¥Ñ•µÌµ•¹Ñ•È©ÕÍÑ¥™äµ‰•ÑÝ••¸…À´Ìˆø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•ÑMÑ•À ¡Ù…±Õ”¤€ôø5…Ñ ¹µ…à À°Ù…±Õ”€´€Ä¤¥ô(€€€€€€€€€€€€€‘¥Í…‰±•õíÍÑ•À€ôôô€ÀñðÍÑ…ÑÕÌ€ôôô€‰±½…‘¥¹œ‰ô(€€€€€€€€€€€€€±…ÍÍ9…µ”ô‰¥¹±¥¹”µ™±•à¥Ñ•µÌµ•¹Ñ•È…À´ÈÁà´ÐÁä´È¸ÔÉ½Õ¹‘•µá°‰œµÍ±…Ñ”´ÄÀÀ¡½Ù•Èé‰œµÍ±…Ñ”´ÈÀÀ‘¥Í…‰±•é½Á…¥Ñä´ÐÀÑ•áÐµÍ±…Ñ”´ÜÀÀÑ•áÐµáÌ™½¹Ðµ‰½±ÑÉ…¹Í¥Ñ¥½¸µ½±½ÉÌˆ(€€€€€€€€€€€€ø(€€€€€€€€€€€€€€ñÉÉ½Ý1•™Ð±…ÍÍ9…µ”ô‰Ü´Ð ´Ðˆ€¼ø(€€€€€€€€€€€€€ƒBGFFBÃF(€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€½¹±¥¬õí¡…¹‘±•9•áÑô(€€€€€€€€€€€€€‘¥Í…‰±•õíÍÑ…ÑÕÌ€ôôô€‰±½…‘¥¹œ‰ô(€€€€€€€€€€€€€±…ÍÍ9…µ”ô‰¥¹±¥¹”µ™±•à¥Ñ•µÌµ•¹Ñ•È…À´ÈÁà´ÔÁä´È¸ÔÉ½Õ¹‘•µá°‰œµÍ±…Ñ”´äÔÀ¡½Ù•Èé‰œµÍ±…Ñ”´àÀÀ‘¥Í…‰±•é½Á…¥Ñä´ØÀÑ•áÐµÝ¡¥Ñ”Ñ•áÐµáÌ™½¹Ðµ‰½±ÑÉ…¹Í¥Ñ¥½¸µ½±½ÉÌˆ(€€€€€€€€€€€€ø(€€€€€€€€€€€€€íÍÑ…ÑÕÌ€ôôô€‰±½…‘¥¹œˆ€ü€ (€€€€€€€€€€€€€€€€ðø(€€€€€€€€€€€€€€€€€€ñ1½…‘•ÈÈ±…ÍÍ9…µ”ô‰Ü´Ð ´Ð…¹¥µ…Ñ”µÍÁ¥¸ˆ€¼ø(€€€€€€€€€€€€€€€€€ƒBGBûBïBûBËFFFFBïBØƒBÇBÃBçB÷BÀ¸¸¸(€€€€€€€€€€€€€€€€ð¼ø(€€€€€€€€€€€€€€¤€èÍÑ•À€ôôô…ÍÍ•ÍÍµ•¹ÑEÕ•ÍÑ¥½¹Ì¹±•¹Ñ €´€Ä€ü€ (€€€€€€€€€€€€€€€€ðø(€€€€€€€€€€€€€€€€€ƒB_N§BËBïN§BóBØƒFBÃFBÃF(€€€€€€€€€€€€€€€€€€ñMÁ…É­±•Ì±…ÍÍ9…µ”ô‰Ü´Ð ´Ðˆ€¼ø(€€€€€€€€€€€€€€€€ð¼ø(€€€€€€€€€€€€€€¤€è€ (€€€€€€€€€€€€€€€€ðø(€€€€€€€€€€€€€€€€€ƒBSBÃFBÃBÃF(€€€€€€€€€€€€€€€€€€ñÉÉ½ÝI¥¡Ð±…ÍÍ9…µ”ô‰Ü´Ð ´Ðˆ€¼ø(€€€€€€€€€€€€€€€€ð¼ø(€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€ð½‘¥Øø(€€€€€€€€ð½‘¥Øø(€€€€€€ð½Í•Ñ¥½¸ø((€€€€€€ñM­¥±±áÁ±½É•È(€€€€€€€…Ñ•½É¥•Ìõí…Ñ•½É¥•Íô(€€€€€€€™¥±Ñ•Èõí™¥±Ñ•Éô(€€€€€€€Í•Ñ¥±Ñ•ÈõíÍ•Ñ¥±Ñ•Éô(€€€€€€€ÅÕ•ÉäõíÅÕ•Éåô(€€€€€€€Í•ÑEÕ•ÉäõíÍ•ÑEÕ•Éåô(€€€€€€€Ù¥Í¥‰±•M­¥±±ÌõíÙ¥Í¥‰±•M­¥±±Íô(€€€€€€¼ø(€€€€ð½‘¥Øø(€€¤ì)ôì()½¹ÍÐM­¥±±áÁ±½É•È€ô€¡ì…Ñ•½É¥•Ì°™¥±Ñ•È°Í•Ñ¥±Ñ•È°ÅÕ•Éä°Í•ÑEÕ•Éä°Ù¥Í¥‰±•M­¥±±Ìô¤€ôø€ (€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”ô‰‰œµÝ¡¥Ñ”¼àÀ‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÉ½Õ¹‘•µlÈáÁátÀ´ÔÍ´éÀ´ÜÍ¡…‘½Üµ±œÍ¡…‘½ÜµÍ±…Ñ”´ÈÀÀ¼ÔÀˆø(€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰™±•à™±•àµ½°±œé™±•àµÉ½Ü±œé¥Ñ•µÌµ•¹©ÕÍÑ¥™äµ‰•ÑÝ••¸…À´Ðµˆ´Ôˆø(€€€€€€ñ‘¥Øø(€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰™±•à¥Ñ•µÌµ•¹Ñ•È…À´ÈÑ•áÐµ¥¹‘¥¼´ÜÀÀÑ•áÐµáÌ™½¹Ðµ‰±…¬ˆø(€€€€€€€€€€ñQ…É•Ð±…ÍÍ9…µ”ô‰Ü´Ð ´Ðˆ€¼ø(€€€€€€€€€ƒBF ƒFBÃBÓBËBÃFFFBÐ(€€€€€€€€ð½‘¥Øø(€€€€€€€€ñ È±…ÍÍ9…µ”ô‰µÐ´ÄÑ•áÐµá°Í´éÑ•áÐ´Éá°™½¹Ðµ‰±…¬Ñ•áÐµÍ±…Ñ”´äÔÀˆûB‡BûB÷BãFFBûBØƒJ¿BßF7FƒFBÃBÓBËBÃFFFBÐð½ Èø(€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰µÐ´ÄÑ•áÐµáÌÑ•áÐµÍ±…Ñ”´ÔÀÀˆûB_N§BËBïN§BóBÛN§N§FƒBÏBÃBÓB÷BÀƒBÇFFBÃBÐƒFBÃBÓBËBÃFF/BÌƒFBÃBçBØ°ƒF#J¿J¿BØƒJ¿BßF7F7FF7Bä¸ð½Àø(€€€€€€ð½‘¥Øø(€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰™±•à™±•àµ½°Í´é™±•àµÉ½Ü…À´ÈÜµ™Õ±°±œéÜµ…ÕÑ¼ˆø(€€€€€€€€ñ±…‰•°±…ÍÍ9…µ”ô‰É•±…Ñ¥Ù”™±•à´Ä±œéÜ´ØÐˆø(€€€€€€€€€€ñM•…É ±…ÍÍ9…µ”ô‰Ü´Ð ´ÐÑ•áÐµÍ±…Ñ”´ÐÀÀ…‰Í½±ÕÑ”±•™Ð´ÌÑ½À´Ä¼È€µÑÉ…¹Í±…Ñ”µä´Ä¼Èˆ€¼ø(€€€€€€€€€€ñ¥¹ÁÕÐ(€€€€€€€€€€€Ù…±Õ”õíÅÕ•Éåô(€€€€€€€€€€€½¹¡…¹”õì¡•Ù•¹Ð¤€ôøÍ•ÑEÕ•Éä¡•Ù•¹Ð¹Ñ…É•Ð¹Ù…±Õ”¥ô(€€€€€€€€€€€Á±…•¡½±‘•Èô‹BF ƒFBÃBÓBËBÃF ƒFBÃBçF¸¸¸ˆ(€€€€€€€€€€€±…ÍÍ9…µ”ô‰Üµ™Õ±°É½Õ¹‘•µá°‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀ‰œµÝ¡¥Ñ”Á°´äÁÈ´ÌÁä´È¸ÔÑ•áÐµáÌ™½¹Ðµµ•‘¥Õ´Ñ•áÐµÍ±…Ñ”´ÜÀÀ™½ÕÌé½ÕÑ±¥¹”µ¹½¹”™½ÕÌéÉ¥¹œ´È™½ÕÌéÉ¥¹œµÍ±…Ñ”´äÀÀˆ(€€€€€€€€€€¼ø(€€€€€€€€ð½±…‰•°ø(€€€€€€€€ñ±…‰•°±…ÍÍ9…µ”ô‰É•±…Ñ¥Ù”ˆø(€€€€€€€€€€ñÍ•±•Ð(€€€€€€€€€€€Ù…±Õ”õí™¥±Ñ•Éô(€€€€€€€€€€€½¹¡…¹”õì¡•Ù•¹Ð¤€ôøÍ•Ñ¥±Ñ•È¡•Ù•¹Ð¹Ñ…É•Ð¹Ù…±Õ”¥ô(€€€€€€€€€€€±…ÍÍ9…µ”ô‰…ÁÁ•…É…¹”µ¹½¹”Üµ™Õ±°Í´éÜ´ÐÐÉ½Õ¹‘•µá°‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀ‰œµÝ¡¥Ñ”Áà´ÌÁä´È¸ÔÁÈ´äÑ•áÐµáÌ™½¹Ðµ‰½±Ñ•áÐµÍ±…Ñ”´ÜÀÀ™½ÕÌé½ÕÑ±¥¹”µ¹½¹”™½ÕÌéÉ¥¹œ´È™½ÕÌéÉ¥¹œµÍ±…Ñ”´äÀÀˆ(€€€€€€€€€€ø(€€€€€€€€€€€í…Ñ•½É¥•Ì¹µ…À ¡…Ñ•½Éä¤€ôø€ (€€€€€€€€€€€€€€ñ½ÁÑ¥½¸­•äõí…Ñ•½ÉåôÙ…±Õ”õí…Ñ•½Éåôø(€€€€€€€€€€€€€€€í…Ñ•½Éåô(€€€€€€€€€€€€€€ð½½ÁÑ¥½¸ø(€€€€€€€€€€€€¤¥ô(€€€€€€€€€€ð½Í•±•Ðø(€€€€€€€€€€ñ¡•ÙÉ½¹½Ý¸±…ÍÍ9…µ”ô‰Ü´Ð ´ÐÑ•áÐµÍ±…Ñ”´ÐÀÀ…‰Í½±ÕÑ”É¥¡Ð´ÌÑ½À´Ä¼È€µÑÉ…¹Í±…Ñ”µä´Ä¼ÈÁ½¥¹Ñ•Èµ•Ù•¹ÑÌµ¹½¹”ˆ€¼ø(€€€€€€€€ð½±…‰•°ø(€€€€€€ð½‘¥Øø(€€€€ð½‘¥Øø((€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰É¥É¥µ½±Ì´ÄµéÉ¥µ½±Ì´È±œéÉ¥µ½±Ì´Ð…À´Ìˆø(€€€€€íÙ¥Í¥‰±•M­¥±±Ì¹µ…À ¡Í­¥±°¤€ôø€ (€€€€€€€€ñ…ÉÑ¥±”­•äõíÍ­¥±°¹¥‘ô±…ÍÍ9…µ”ô‰É½Õ¹‘•´Éá°‰œµÝ¡¥Ñ”‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÀ´Ð¡½Ù•ÈèµÑÉ…¹Í±…Ñ”µä´Ä¡½Ù•ÈéÍ¡…‘½Üµ±œÑÉ…¹Í¥Ñ¥½¸µ…±°ˆø(€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰Ñ•áÐµlÄÅÁát™½¹Ðµ‰±…¬Ñ•áÐµ¥¹‘¥¼´ØÀÀˆùíÍ­¥±°¹…Ñ•½Éåôð½Àø(€€€€€€€€€€ñ Ì±…ÍÍ9…µ”ô‰µÐ´ÄÑ•áÐµ‰…Í”™½¹Ðµ‰±…¬Ñ•áÐµÍ±…Ñ”´äÔÀˆùíÍ­¥±°¹¹…µ•ôð½ Ìø(€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰µÐ´ÈÑ•áÐµáÌÑ•áÐµÍ±…Ñ”´ØÀÀ±•…‘¥¹œµÉ•±…á•ˆùíÍ­¥±°¹•áÁ±…¹…Ñ¥½¹ôð½Àø(€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰µÐ´Ì™±•à™±•àµÝÉ…À…À´Ä¸Ôˆø(€€€€€€€€€€€íÍ­¥±°¹Ñ…Ì¹Í±¥” À°€Ì¤¹µ…À ¡Ñ…œ¤€ôø€ (€€€€€€€€€€€€€€ñÍÁ…¸­•äõíÑ…ô±…ÍÍ9…µ”ô‰Áà´ÈÁä´ÄÉ½Õ¹‘•µ±œ‰œµÍ±…Ñ”´ÔÀ‰½É‘•È‰½É‘•ÈµÍ±…Ñ”´ÈÀÀÑ•áÐµlÄÁÁát™½¹Ðµ‰½±Ñ•áÐµÍ±…Ñ”´ØÀÀˆø(€€€€€€€€€€€€€€€íÑ…ô(€€€€€€€€€€€€€€ð½ÍÁ…¸ø(€€€€€€€€€€€€¤¥ô(€€€€€€€€€€ð½‘¥Øø(€€€€€€€€ð½…ÉÑ¥±”ø(€€€€€€¤¥ô(€€€€ð½‘¥Øø(€€ð½Í•Ñ¥½¸ø(¤ì()•áÁ½ÉÐ‘•™…Õ±ÐÍÍ•ÍÍµ•¹Ðì(

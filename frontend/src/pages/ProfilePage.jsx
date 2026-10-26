@@ -92,7 +92,7 @@ const ProfilePage = () => {
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 space-y-5">
-      <h1 className="text-xl font-bold text-slate-800">Миний Профайл</h1>
+      <h1 className="text-xl font-bold text-slate-800">Миний профайл</h1>
 
       {message && (
         <div className={`p-2.5 rounded-xl text-xs font-medium ${message.includes('Амжилт') ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-600' : 'bg-red-500/10 border border-red-500/20 text-red-700'}`}>
@@ -104,13 +104,13 @@ const ProfilePage = () => {
       <div className="glass-panel rounded-2xl p-5 space-y-3">
         <h2 className="text-sm font-bold text-slate-800 flex items-center gap-2"><User className="w-4 h-4 text-emerald-600" /> Ерөнхий мэдээлэл</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Нэр</label>
-            <input type="text" value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} placeholder="Бүтэн нэр" className={inputClass} /></div>
-          <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Гарчиг</label>
-            <input type="text" value={form.headline} onChange={(e) => setForm({...form, headline: e.target.value})} placeholder="ж нь: Python хөгжүүлэгч" className={inputClass} /></div>
+          <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Овог, нэр</label>
+            <input type="text" value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} placeholder="Овог, нэрээ оруулна уу" className={inputClass} /></div>
+          <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Профайлын гарчиг</label>
+            <input type="text" value={form.headline} onChange={(e) => setForm({...form, headline: e.target.value})} placeholder="Жишээ нь: Python хөгжүүлэгч" className={inputClass} /></div>
         </div>
-        <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Танилцуулга</label>
-          <textarea value={form.bio} onChange={(e) => setForm({...form, bio: e.target.value})} placeholder="Өөрийнхөө тухай товч..." rows={3} className={inputClass + " resize-none"} /></div>
+          <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Өөрийн тухай</label>
+          <textarea value={form.bio} onChange={(e) => setForm({...form, bio: e.target.value})} placeholder="Өөрийн туршлага, сонирхлоо товч бичээрэй." rows={3} className={inputClass + " resize-none"} /></div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Байршил</label>
             <input type="text" value={form.location} onChange={(e) => setForm({...form, location: e.target.value})} placeholder="Улаанбаатар" className={inputClass} /></div>
@@ -131,16 +131,16 @@ const ProfilePage = () => {
 
       {/* Skills Offered */}
       <div className="glass-panel rounded-2xl p-5 space-y-3">
-        <h2 className="text-sm font-bold text-emerald-600">Заадаг чадварууд</h2>
+        <h2 className="text-sm font-bold text-emerald-600">Зааж чадах чадварууд</h2>
         <div className="flex flex-wrap gap-1.5">
           {skillsOffered.map((s) => (
             <SkillBadge key={s.id} name={s.skill_name} type="offered" proficiency={s.proficiency_level} onDelete={() => removeOfferedSkill(s.id)} />
           ))}
-          {skillsOffered.length === 0 && <span className="text-xs text-slate-500 italic">Чадвар нэмээгүй</span>}
+          {skillsOffered.length === 0 && <span className="text-xs text-slate-500 italic">Одоогоор чадвар нэмээгүй байна.</span>}
         </div>
         <div className="flex items-center gap-2">
           <input type="text" value={newOffered.skill_name} onChange={(e) => setNewOffered({...newOffered, skill_name: e.target.value})}
-            placeholder="Чадвар нэмэх..." className={inputClass + " flex-1"} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addOfferedSkill())} />
+            placeholder="Зааж чадах чадвараа нэмэх..." className={inputClass + " flex-1"} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addOfferedSkill())} />
           <select value={newOffered.proficiency_level} onChange={(e) => setNewOffered({...newOffered, proficiency_level: e.target.value})}
             className="bg-slate-100 border border-slate-200 rounded-xl px-2 py-2 text-xs text-slate-600 focus:outline-none">
             {PROFICIENCY_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
@@ -151,16 +151,16 @@ const ProfilePage = () => {
 
       {/* Skills Wanted */}
       <div className="glass-panel rounded-2xl p-5 space-y-3">
-        <h2 className="text-sm font-bold text-sky-600">Сурах хүсэлтэй чадварууд</h2>
+        <h2 className="text-sm font-bold text-sky-600">Сурахыг хүссэн чадварууд</h2>
         <div className="flex flex-wrap gap-1.5">
           {skillsWanted.map((s) => (
             <SkillBadge key={s.id} name={s.skill_name} type="wanted" proficiency={s.target_level} onDelete={() => removeWantedSkill(s.id)} />
           ))}
-          {skillsWanted.length === 0 && <span className="text-xs text-slate-500 italic">Чадвар нэмээгүй</span>}
+          {skillsWanted.length === 0 && <span className="text-xs text-slate-500 italic">Одоогоор чадвар нэмээгүй байна.</span>}
         </div>
         <div className="flex items-center gap-2">
           <input type="text" value={newWanted.skill_name} onChange={(e) => setNewWanted({...newWanted, skill_name: e.target.value})}
-            placeholder="Сурах чадвар нэмэх..." className={inputClass + " flex-1"} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addWantedSkill())} />
+            placeholder="Сурахыг хүссэн чадвараа нэмэх..." className={inputClass + " flex-1"} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addWantedSkill())} />
           <select value={newWanted.target_level} onChange={(e) => setNewWanted({...newWanted, target_level: e.target.value})}
             className="bg-slate-100 border border-slate-200 rounded-xl px-2 py-2 text-xs text-slate-600 focus:outline-none">
             {PROFICIENCY_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}

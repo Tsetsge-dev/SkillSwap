@@ -219,7 +219,7 @@ const VideoCallModal = ({ partner, isCaller = false, onClose }) => {
             <img src={avatar} alt="" className="h-9 w-9 rounded-full border border-white/20 object-cover" />
             <div className="min-w-0"><h2 className="truncate text-sm font-bold">{partner?.full_name || 'Хэрэглэгч'}</h2><p className="text-xs text-indigo-200">{callStatus === 'connected' ? `Холбогдсон · ${duration}` : statusMessage}</p></div>
           </div>
-          <span className="hidden rounded-xl border border-white/10 bg-black/50 px-3 py-2 text-xs text-slate-200 sm:block">Хэрэглэгч хоорондын шууд холболт</span>
+          <span className="hidden rounded-xl border border-white/10 bg-black/50 px-3 py-2 text-xs text-slate-200 sm:block">Шууд видео дуудлага</span>
         </header>
         <div className="relative flex h-full items-center justify-center overflow-hidden bg-slate-950">
           <video ref={remoteVideoRef} autoPlay playsInline className="h-full w-full object-cover" aria-label="Нөгөө хэрэглэгчийн дүрс" />

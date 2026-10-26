@@ -5,8 +5,8 @@ import { requestsAPI, usersAPI } from '../services/api';
 
 const TABS = [
   { key: 'incoming', label: 'Ирсэн хүсэлтүүд', icon: UserCheck },
-  { key: 'outgoing', label: 'Илгээсэн', icon: Clock },
-  { key: 'friends', label: 'Найзууд', icon: Users },
+  { key: 'outgoing', label: 'Явуулсан хүсэлт', icon: Clock },
+  { key: 'friends', label: 'Холбоо тогтоосон', icon: Users },
 ];
 
 const RequestsPage = () => {
@@ -68,7 +68,7 @@ const RequestsPage = () => {
     <div className="space-y-3">
       {incoming.length === 0 ? (
         <div className="text-center py-16 text-xs text-slate-500 glass-panel rounded-2xl">
-          Танд одоогоор ирсэн чадвар солилцох хүсэлт байхгүй байна.
+          Одоогоор танд ирсэн чадвар солилцох хүсэлт алга.
         </div>
       ) : (
         incoming.map((req) => {
@@ -93,11 +93,11 @@ const RequestsPage = () => {
                   </Link>
                   <div className="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1.5 flex-wrap">
                     <span className="font-semibold text-violet-700 bg-violet-50 px-2 py-0.5 rounded-md border border-violet-100">
-                      Тэр заана: {req.offered_skill_name}
+                      Заах чадвар: {req.offered_skill_name}
                     </span>
                     <ArrowRightLeft className="w-3 h-3 text-slate-400" />
                     <span className="font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-100">
-                      Тэр сурна: {req.wanted_skill_name}
+                      Сурах чадвар: {req.wanted_skill_name}
                     </span>
                   </div>
                   {req.message && (
@@ -135,7 +135,7 @@ const RequestsPage = () => {
     <div className="space-y-3">
       {outgoing.length === 0 ? (
         <div className="text-center py-16 text-xs text-slate-500 glass-panel rounded-2xl">
-          Та одоогоор хэнд ч санал илгээгээгүй байна. Explore хуудаснаас хүмүүс олж санал илгээгээрэй!
+          Та одоогоор хүсэлт илгээгээгүй байна. Хүмүүс хэсгээс тохирох хүнээ хайгаад хүсэлт илгээгээрэй.
         </div>
       ) : (
         outgoing.map((req) => {
@@ -160,11 +160,11 @@ const RequestsPage = () => {
                   </Link>
                   <div className="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1.5 flex-wrap">
                     <span className="font-semibold text-violet-700 bg-violet-50 px-2 py-0.5 rounded-md border border-violet-100">
-                      Би заана: {req.offered_skill_name}
+                      Таны заах чадвар: {req.offered_skill_name}
                     </span>
                     <ArrowRightLeft className="w-3 h-3 text-slate-400" />
                     <span className="font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-100">
-                      Би сурна: {req.wanted_skill_name}
+                      Таны сурах чадвар: {req.wanted_skill_name}
                     </span>
                   </div>
                   <span className={`text-[10px] font-semibold mt-1 inline-block px-2 py-0.5 rounded-full ${
@@ -199,7 +199,7 @@ const RequestsPage = () => {
     <div className="space-y-3">
       {friends.length === 0 ? (
         <div className="text-center py-16 text-xs text-slate-500 glass-panel rounded-2xl">
-          Холбогдсон найз одоогоор байхгүй байна. Санал илгээж эсвэл ирсэн хүсэлтийг зөвшөөрч найз болоорой!
+          Одоогоор та бусад гишүүнтэй холбогдоогүй байна. Чадвар солилцох хүсэлт илгээх эсвэл ирсэн хүсэлтийг зөвшөөрөөрэй.
         </div>
       ) : (
         friends.map((friend) => (
@@ -220,7 +220,7 @@ const RequestsPage = () => {
                 >
                   {friend.full_name}
                 </Link>
-                <p className="text-[11px] text-slate-500 truncate">{friend.headline || 'SkillSwap талбарын найз'}</p>
+                <p className="text-[11px] text-slate-500 truncate">{friend.headline || 'SkillSwap-ийн гишүүн'}</p>
               </div>
             </div>
             <Link
@@ -237,7 +237,7 @@ const RequestsPage = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 space-y-5 animate-fade-in">
-      <h1 className="text-xl font-bold text-slate-800">Хүсэлтүүд & Найзууд</h1>
+      <h1 className="text-xl font-bold text-slate-800">Хүсэлт ба холбоо тогтоосон хүмүүс</h1>
 
       {/* Tabs */}
       <div className="flex items-center gap-1.5 bg-white p-1 rounded-xl border border-slate-200 shadow-sm">

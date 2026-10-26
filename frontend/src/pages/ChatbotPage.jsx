@@ -8,11 +8,11 @@ import ChatbotText from '../components/ChatbotText';
 import { useAuth } from '../context/AuthContext';
 
 const STARTER_PROMPTS = [
-  '🔍 Надад тохирох найз хайж өг',
-  '🤝 Хамтран суралцах хүн олох (Study Buddy)',
-  '📹 Видео дуудлага яаж хийх вэ?',
-  '🔄 Чадвар солилцох санал яаж илгээх вэ?',
-  '💡 SkillSwap хэрхэн ажилладаг вэ?',
+  '🔍 Надад тохирох хүн хайж өг',
+  '🤝 Хамт суралцах хүн санал болго',
+  '📹 Видео дуудлагыг хэрхэн эхлүүлэх вэ?',
+  '🔄 Чадвар солилцох хүсэлт яаж илгээх вэ?',
+  '💡 SkillSwap гэж юу вэ?',
   'Би Python заана, Япон хэл сурмаар байна',
   'Математик яаж сурах вэ?',
   'Морин хуур сурмаар байна цуг суралцах хүн хайж байна',
@@ -49,7 +49,7 @@ const ChatbotPage = () => {
     {
       id: 1,
       sender: 'bot',
-      text: "👋 Сайн байна уу! Би SkillSwap-ийн AI туслах.\n\n• Тохирох суралцагч хайх\n• Хамтран суралцах хүн олох\n• Чадвар сурах төлөвлөгөө авах\n• Платформ ашиглах талаар асуух\n\nТанд юугаар туслах вэ?",
+      text: "👋 Сайн байна уу! Би SkillSwap-ийн AI туслах.\n\n• Тохирох хүн хайх\n• Хамт суралцах хүн санал болгох\n• Шинэ чадвар сурах төлөвлөгөө гаргах\n• Платформын талаар асуултад хариулах\n\nЮу мэдэхийг хүсэж байна вэ?",
       recommendations: [],
       powered_by: null,
       isIntro: true,
@@ -109,7 +109,7 @@ const ChatbotPage = () => {
         {
           id: Date.now() + 1,
           sender: 'bot',
-          text: "Туслахтай холбогдож чадсангүй. Асуулт тань бичвэрт хэвээр байна. Интернэтээ шалгаад дахин илгээнэ үү.",
+          text: "Туслахтай холбогдож чадсангүй. Интернэтээ шалгаад асуултаа дахин илгээнэ үү.",
           recommendations: [],
           powered_by: null,
           isIntro: true,
@@ -234,8 +234,8 @@ const ChatbotPage = () => {
                         </div>
 
                         <div className="text-[11px] text-slate-600 bg-white/80 p-2 rounded-xl space-y-0.5 mb-2 border border-slate-100">
-                          <div>Заана: <strong className="text-violet-700">{rec.offered_skill}</strong></div>
-                          <div>Сурна: <strong className="text-sky-700">{rec.wanted_skill}</strong></div>
+                          <div>Заах чадвар: <strong className="text-violet-700">{rec.offered_skill}</strong></div>
+                          <div>Сурах чадвар: <strong className="text-sky-700">{rec.wanted_skill}</strong></div>
                         </div>
 
                         {rec.match_reason && (
@@ -257,7 +257,7 @@ const ChatbotPage = () => {
                           className="flex-1 py-1.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-[11px] rounded-xl flex items-center justify-center gap-1 cursor-pointer shadow-sm"
                         >
                           <ArrowRightLeft className="w-3 h-3" />
-                          <span>Санал илгээх</span>
+                          <span>Холбогдох хүсэлт илгээх</span>
                         </button>
                       </div>
                     </div>
@@ -271,7 +271,7 @@ const ChatbotPage = () => {
         {loading && (
           <div className="text-xs text-slate-500 bg-slate-100 border border-slate-200 px-3.5 py-2 rounded-xl w-fit flex items-center gap-2">
             <div className="w-3 h-3 border-2 border-violet-500 border-t-transparent rounded-full animate-spin"></div>
-            <span>AI бодож байна...</span>
+            <span>Хариу бэлдэж байна…</span>
           </div>
         )}
         <div ref={messagesEndRef} />
@@ -302,7 +302,7 @@ const ChatbotPage = () => {
           onChange={(e) => setInput(e.target.value)}
           maxLength={2000}
           aria-label="AI туслахад асуулт бичих"
-          placeholder="Асуух зүйл эсвэл заах/сурах чадвараа бичнэ үү..."
+          placeholder="Асуултаа бичих эсвэл заах, сурах чадвараа оруулна уу..."
           className="flex-1 bg-transparent px-3 py-1.5 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none"
         />
         <button

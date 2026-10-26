@@ -46,8 +46,8 @@ const Login = () => {
       <div className="auth-heading">
         <span className="auth-heading-icon"><LockKeyhole size={21} /></span>
         <span className="auth-eyebrow">ТАВТАЙ МОРИЛ</span>
-        <h1>Дахин уулзсандаа баяртай</h1>
-        <p>Бүртгэлдээ нэвтэрч, суралцах аяллаа үргэлжлүүлээрэй.</p>
+        <h1>SkillSwap-д нэвтрэх</h1>
+        <p>Бүртгэлдээ нэвтэрч, суралцахаа үргэлжлүүлээрэй.</p>
       </div>
       <form className="auth-form" onSubmit={handleSubmit} noValidate>
         {error && <div className="auth-alert auth-alert-error" role="alert">{error}</div>}

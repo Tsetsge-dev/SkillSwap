@@ -61,7 +61,7 @@ const UserProfileDetail = () => {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center space-y-3">
         <div className="w-8 h-8 border-3 border-violet-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-        <p className="text-xs text-slate-500 font-medium">Хэрэглэгчийн мэдээллийг ачааллаж байна...</p>
+        <p className="text-xs text-slate-500 font-medium">Профайлыг ачаалж байна…</p>
       </div>
     );
   }
@@ -73,9 +73,9 @@ const UserProfileDetail = () => {
           <Lock className="w-8 h-8" />
         </div>
         <div className="space-y-2">
-          <h2 className="text-lg font-bold text-slate-800">Хэрэглэгчийн профайл үзэхийн тулд нэвтэрнэ үү</h2>
+          <h2 className="text-lg font-bold text-slate-800">Профайлыг үзэхийн тулд нэвтэрнэ үү</h2>
           <p className="text-xs text-slate-500 leading-relaxed">
-            SkillSwap нь бүртгэлтэй гишүүд хоорондын аюулгүй, итгэлтэй чадвар солилцоог хангадаг тул дэлгэрэнгүй профайл үзэх, холбогдохын тулд системд нэвтэрсэн байна.
+            Дэлгэрэнгүй мэдээлэл үзэх болон чадвар солилцох хүсэлт илгээхийн тулд бүртгэлдээ нэвтэрнэ үү.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ const UserProfileDetail = () => {
         </div>
 
         <div className="pt-4 border-t border-slate-100">
-          <p className="text-[11px] font-semibold text-slate-400 mb-2">⚡ 1 товшилтоор демо хаягаар нэвтрэх:</p>
+          <p className="text-[11px] font-semibold text-slate-400 mb-2">⚡ Туршилтын хаягаар нэвтрэх:</p>
           <button
             onClick={() => login('alex.chen@skillswap.io', 'password123')}
             className="w-full p-2.5 rounded-xl bg-violet-50 hover:bg-violet-100 border border-violet-200 text-xs font-bold text-violet-800 transition-colors cursor-pointer flex items-center justify-center gap-2"
@@ -247,7 +247,7 @@ const UserProfileDetail = () => {
         <div className="glass-panel rounded-2xl p-5 space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-xs font-bold text-violet-700 flex items-center gap-1.5">
-              <GraduationCap className="w-4 h-4 text-violet-600" /> Заах чадварууд (Offered)
+              <GraduationCap className="w-4 h-4 text-violet-600" /> Зааж чадах чадварууд
             </h3>
             <span className="text-[10px] text-slate-400 font-semibold">
               {profile.skills_offered?.length || 0} чадвар
@@ -262,7 +262,7 @@ const UserProfileDetail = () => {
                     <SkillBadge name={s.skill_name} type="offered" proficiency={s.proficiency_level} size="sm" />
                     {s.years_experience && (
                       <span className="text-[11px] text-slate-400 font-medium">
-                        {s.years_experience} жил туршлагатай
+                        {s.years_experience} жилийн туршлагатай
                       </span>
                     )}
                   </div>
@@ -272,7 +272,7 @@ const UserProfileDetail = () => {
                 </div>
               ))
             ) : (
-              <p className="text-xs text-slate-400 italic py-3 text-center">Заах чадвар оруулаагүй байна.</p>
+              <p className="text-xs text-slate-400 italic py-3 text-center">Зааж чадах чадвараа хараахан нэмээгүй байна.</p>
             )}
           </div>
         </div>
@@ -281,7 +281,7 @@ const UserProfileDetail = () => {
         <div className="glass-panel rounded-2xl p-5 space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-xs font-bold text-sky-700 flex items-center gap-1.5">
-              <BookOpen className="w-4 h-4 text-sky-600" /> Сурах хүсэлтэй чадварууд (Wanted)
+              <BookOpen className="w-4 h-4 text-sky-600" /> Сурахыг хүссэн чадварууд
             </h3>
             <span className="text-[10px] text-slate-400 font-semibold">
               {profile.skills_wanted?.length || 0} чадвар
@@ -308,7 +308,7 @@ const UserProfileDetail = () => {
                 </div>
               ))
             ) : (
-              <p className="text-xs text-slate-400 italic py-3 text-center">Сурах чадвар оруулаагүй байна.</p>
+              <p className="text-xs text-slate-400 italic py-3 text-center">Сурахыг хүссэн чадвараа хараахан нэмээгүй байна.</p>
             )}
           </div>
         </div>
@@ -319,7 +319,7 @@ const UserProfileDetail = () => {
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
             <Star className="w-4 h-4 text-amber-500 fill-amber-400" />
-            Хүлээн авсан үнэлгээ & сэтгэгдлүүд
+            Үнэлгээ, сэтгэгдэл
           </h3>
           <span className="text-[11px] text-slate-400 font-medium">
             {reviews.length} сэтгэгдэл

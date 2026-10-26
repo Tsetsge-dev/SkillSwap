@@ -52,9 +52,9 @@ const Register = () => {
     <AuthLayout mode="register">
       <div className="auth-heading">
         <span className="auth-heading-icon"><UserRound size={21} /></span>
-        <span className="auth-eyebrow">ӨӨРИЙН ЭРХЭМ ЗОРИЛГО</span>
+        <span className="auth-eyebrow">ШИНЭЭР НЭГДЭХ</span>
         <h1>Шинэ бүртгэл үүсгэх</h1>
-        <p>Өөрийн мэдлэг, сурах хүсэл хоёрыг нэг дор уулзуул.</p>
+        <p>Мэддэг зүйлээ бусдад зааж, сурахыг хүссэн зүйлээ хамтдаа эзэмшээрэй.</p>
       </div>
       <form className="auth-form" onSubmit={handleSubmit} noValidate>
         {error && <div className="auth-alert auth-alert-error" role="alert">{error}</div>}

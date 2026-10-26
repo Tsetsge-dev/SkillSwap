@@ -63,8 +63,8 @@ const Explore = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-slate-800">Хайх & Тохирох хүмүүс</h1>
-          <p className="text-xs text-slate-500">Өөрийн заах болон сурах чадвараар тохирох хүмүүсээ олоорой</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-800">Тохирох хүмүүсээ хайх</h1>
+          <p className="text-xs text-slate-500">Зааж чадах болон сурахыг хүссэн чадвараараа хүн хайгаарай.</p>
         </div>
       </div>
 
@@ -74,7 +74,7 @@ const Explore = () => {
           <div className="relative">
             <input
               type="text"
-              placeholder="Нэр эсвэл түлхүүр үг..."
+              placeholder="Нэр эсвэл чадвар хайх..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-700 placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:ring-2 focus:ring-violet-100"
@@ -84,7 +84,7 @@ const Explore = () => {
           <div>
             <input
               type="text"
-              placeholder="Заадаг чадвар (ж нь: Python)..."
+              placeholder="Зааж чадах чадвар (жишээ нь: Python)..."
               value={teachSkill}
               onChange={(e) => setTeachSkill(e.target.value)}
               className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-violet-700 placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:ring-2 focus:ring-violet-100"
@@ -94,7 +94,7 @@ const Explore = () => {
           <div className="flex gap-2">
             <input
               type="text"
-              placeholder="Сурмаар байгаа чадвар..."
+              placeholder="Сурахыг хүссэн чадвар..."
               value={learnSkill}
               onChange={(e) => setLearnSkill(e.target.value)}
               className="flex-1 bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-sky-700 placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
@@ -130,7 +130,7 @@ const Explore = () => {
       <div>
         {loading ? (
           <div className="py-16 text-center text-xs text-slate-500">
-            Хайж байна...
+            Хүмүүсийг хайж байна...
           </div>
         ) : users.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
@@ -144,7 +144,7 @@ const Explore = () => {
           </div>
         ) : (
           <div className="text-center py-16 text-xs text-slate-500 glass-panel rounded-2xl">
-            Тохирох хэрэглэгч олдсонгүй. Хайлтын үгээ өөрчлөөд үзнэ үү.
+            Тохирох хүн олдсонгүй. Өөр нэр эсвэл чадвараар хайгаад үзээрэй.
           </div>
         )}
       </div>
@@ -154,7 +154,7 @@ const Explore = () => {
           <div>
             <p className="text-[11px] font-bold uppercase tracking-wide text-indigo-700">Судалгаанд тулгуурласан жишээ</p>
             <h2 id="survey-profile-examples-title" className="mt-1 text-lg font-black text-slate-900">Суралцагчдын жишээ профайл</h2>
-            <p className="mt-1 text-xs text-slate-500">Судалгааны чадварын хариулт дээр үндэслэсэн, санамсаргүй нэртэй жишээнүүд. Эдгээр нь бүртгэлтэй хэрэглэгч биш.</p>
+            <p className="mt-1 text-xs text-slate-500">Судалгааны хариултад тулгуурлан бэлтгэсэн жишээ профайлууд. Эдгээр нь SkillSwap-д бүртгэлтэй хэрэглэгчид биш.</p>
           </div>
           <Link to="/survey-examples" className="inline-flex w-fit items-center gap-1 text-xs font-bold text-indigo-700 hover:text-indigo-900">
             Бүх {surveyProfiles.length} жишээг үзэх <ArrowRight className="h-3.5 w-3.5" />

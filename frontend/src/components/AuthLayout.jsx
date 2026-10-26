@@ -15,17 +15,17 @@ const AuthLayout = ({ children, mode }) => (
         <div className="auth-story-copy">
           <span className="auth-eyebrow"><Sparkles size={14} /> ЧАДВАРАА ХУВААЛЦ</span>
           <h2>Хамтдаа сурч,<br /><span>хамтдаа өсөцгөөе.</span></h2>
-          <p>Өөрийн мэддэг зүйлээ зааж, шинээр сурах чадвараа олоорой. Чиний дараагийн боломж эндээс эхэлнэ.</p>
+          <p>Мэддэг зүйлээ бусдад зааж, өөрөө шинэ чадвар сураарай. Суралцах дараагийн алхмаа эндээс эхлүүлээрэй.</p>
         </div>
         <div className="auth-story-note">
           <div className="auth-note-icon"><BookOpenCheck size={19} /></div>
-          <div><strong>Харилцан суралцах орон зай</strong><span>Чадвар бүр үнэ цэнтэй.</span></div>
+          <div><strong>Харилцан суралцах орчин</strong><span>Хүн бүр бусдад зааж, өөрөө сурах боломжтой.</span></div>
         </div>
         <div className="auth-trust"><ShieldCheck size={15} /> Таны мэдээллийг хамгаална</div>
       </aside>
       <main className={`auth-card auth-card-${mode}`}>
         {children}
-        <p className="auth-card-foot">Үргэлжлүүлснээр SkillSwap-ийн олон нийтийн эерэг орчинд нэгдэнэ.</p>
+        <p className="auth-card-foot">SkillSwap-д нэгдэж, мэдлэг чадвараа бусадтай хуваалцаарай.</p>
       </main>
     </div>
     <footer className="auth-footer">© {new Date().getFullYear()} SkillSwap · Ур чадвараа хуваалцъя</footer>

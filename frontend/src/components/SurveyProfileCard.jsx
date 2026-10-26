@@ -13,13 +13,13 @@ const SurveyProfileCard = ({ profile }) => {
         </div>
         <div className="min-w-0">
           <h3 className="truncate text-sm font-bold text-slate-800">{profile.full_name}</h3>
-          <p className="mt-0.5 text-[10px] font-medium text-indigo-600">Судалгааны жишээ · бүртгэл биш</p>
+          <p className="mt-0.5 text-[10px] font-medium text-indigo-600">Судалгаанд үндэслэсэн жишээ · бүртгэлтэй хэрэглэгч биш</p>
         </div>
       </div>
 
       <div className="mt-5 space-y-3">
         <div>
-          <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-bold text-violet-700"><GraduationCap className="h-3.5 w-3.5" /> Зааж болох чадвар</div>
+          <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-bold text-violet-700"><GraduationCap className="h-3.5 w-3.5" /> Зааж чадах чадвар</div>
           <div className="flex flex-wrap gap-1.5">
             {profile.skills_offered.filter((skill) => skill.skill_name !== 'Байхгүй').map((skill) => <SkillBadge key={skill.skill_name} name={skill.skill_name} proficiency={skill.proficiency_level} size="sm" />)}
           </div>

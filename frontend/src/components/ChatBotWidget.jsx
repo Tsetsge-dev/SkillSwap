@@ -12,7 +12,7 @@ const ChatBotWidget = () => {
     {
       id: 1,
       sender: 'bot',
-      text: "👋 Сайн байна уу! Би SkillSwap-ийн **AI Туслах** байна. Заах болон сурах чадвараа бичээд тохирох найзууд болон хамтран суралцагчдаа (Study Buddy) олоорой!",
+      text: "👋 Сайн байна уу! Би SkillSwap-ийн AI туслах. Зааж чадах болон сурахыг хүссэн чадвараа бичвэл тохирох хүн хайхад тань тусална. Платформын талаар чөлөөтэй асуугаарай.",
       recommendations: [],
       isIntro: true,
     },
@@ -69,7 +69,7 @@ const ChatBotWidget = () => {
         {
           id: Date.now() + 1,
           sender: 'bot',
-          text: "Туслахтай холбогдож чадсангүй. Асуулт тань хэвээр байна. Интернэтээ шалгаад дахин илгээнэ үү.",
+          text: "Туслахтай холбогдож чадсангүй. Интернэтээ шалгаад асуултаа дахин илгээнэ үү.",
           recommendations: [],
           isIntro: true,
         },
@@ -81,9 +81,9 @@ const ChatBotWidget = () => {
   };
 
   const starterPrompts = [
-    '🔍 Найз хайх',
-    '🤝 Хамтран суралцах (Study Buddy)',
-    '📹 Видео дуудлага хэрхэн хийх вэ?',
+    '🔍 Тохирох хүн хайх',
+    '🤝 Хамт суралцах хүн санал болгох',
+    '📹 Видео дуудлагыг хэрхэн эхлүүлэх вэ?',
     '💡 SkillSwap гэж юу вэ?',
   ];
 
@@ -164,12 +164,12 @@ const ChatBotWidget = () => {
                             onClick={() => isAuthenticated ? setSelectedUserForSwap(rec) : setShowAuthPrompt(true)}
                             className="px-2.5 py-1 rounded-lg bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-[10px] shrink-0 cursor-pointer shadow-sm"
                           >
-                            Санал илгээх
+                            Холбогдох хүсэлт илгээх
                           </button>
                         </div>
                         <div className="text-[10px] text-slate-500 bg-slate-50 p-1.5 rounded-lg border border-slate-100 flex justify-between">
-                          <span>Заана: <b>{rec.offered_skill}</b></span>
-                          <span>Сурна: <b>{rec.wanted_skill}</b></span>
+                          <span>Заах чадвар: <b>{rec.offered_skill}</b></span>
+                          <span>Сурах чадвар: <b>{rec.wanted_skill}</b></span>
                         </div>
                       </div>
                     ))}
@@ -181,7 +181,7 @@ const ChatBotWidget = () => {
             {loading && (
               <div className="text-[11px] text-slate-500 bg-white border border-slate-200 px-3 py-1.5 rounded-xl w-fit flex items-center gap-1.5 shadow-2xs">
                 <div className="w-2.5 h-2.5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin"></div>
-                <span>AI хайж байна...</span>
+                <span>Танд тохирох хүн хайж байна…</span>
               </div>
             )}
             <div ref={messagesEndRef} />
@@ -215,7 +215,7 @@ const ChatBotWidget = () => {
               onChange={(e) => setInput(e.target.value)}
               maxLength={2000}
               aria-label="AI туслахад асуулт бичих"
-              placeholder="Асуух эсвэл хайх чадвараа бичнэ үү..."
+              placeholder="Асуултаа бичих эсвэл заах, сурах чадвараа оруулна уу..."
               className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:bg-white"
             />
             <button

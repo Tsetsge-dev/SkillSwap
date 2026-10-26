@@ -81,7 +81,7 @@ const UserCard = ({ user, onRequestSwap, isConnected = false }) => {
                 <p className="text-xs text-slate-500 line-clamp-1">
                   {headline}
                 </p>
-                {isDemoProfile && <span className="mt-1 inline-flex rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-900">Жишээ бүртгэл · хүсэлт туршиж болно</span>}
+                {isDemoProfile && <span className="mt-1 inline-flex rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-900">Жишээ профайл · хүсэлт туршиж болно</span>}
               </div>
             </div>
 
@@ -110,7 +110,7 @@ const UserCard = ({ user, onRequestSwap, isConnected = false }) => {
                     />
                   ))
                 ) : (
-                  <span className="text-xs text-slate-400 italic">Оруулаагүй</span>
+                  <span className="text-xs text-slate-400 italic">Мэдээлэл оруулаагүй</span>
                 )}
               </div>
             </div>
@@ -131,7 +131,7 @@ const UserCard = ({ user, onRequestSwap, isConnected = false }) => {
                     />
                   ))
                 ) : (
-                  <span className="text-xs text-slate-400 italic">Оруулаагүй</span>
+                  <span className="text-xs text-slate-400 italic">Мэдээлэл оруулаагүй</span>
                 )}
               </div>
             </div>
@@ -162,7 +162,7 @@ const UserCard = ({ user, onRequestSwap, isConnected = false }) => {
             className="flex-1 py-2 text-center text-xs font-bold rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
           >
             <ArrowRightLeft className="w-3 h-3" />
-            <span>Санал илгээх</span>
+            <span>Хүсэлт илгээх</span>
           </button>
         </div>
       </div>

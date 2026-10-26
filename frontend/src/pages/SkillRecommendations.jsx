@@ -212,7 +212,7 @@ export default function SkillRecommendations() {
       <main className="mx-auto flex min-h-[60vh] max-w-4xl items-center justify-center px-4">
         <div className="text-center">
           <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-violet-100 border-t-violet-600" />
-          <p className="text-sm font-medium text-slate-600">Survey сонголтуудыг ачаалж байна...</p>
+          <p className="text-sm font-medium text-slate-600">Сонголтуудыг ачаалж байна…</p>
         </div>
       </main>
     );
@@ -239,12 +239,12 @@ export default function SkillRecommendations() {
             <p className="mb-2 inline-flex items-center gap-2 rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700">
               <Sparkles className="h-3.5 w-3.5" />
               {results.dataset_source === 'synthetic_demo'
-                ? 'Синтетик демо өгөгдөл — бодит сурагчийн мэдээлэл агуулаагүй'
-                : 'Нууц runtime судалгааны өгөгдлөөр эрэмбэлэв'}
+                ? 'Жишээ өгөгдөл ашигласан — бодит хэрэглэгчийн мэдээлэл биш'
+                : 'Судалгааны хариултад үндэслэв'}
             </p>
-            <h1 className="text-3xl font-black tracking-tight text-slate-800 sm:text-4xl">Танд санал болгох чадварууд</h1>
+            <h1 className="text-3xl font-black tracking-tight text-slate-800 sm:text-4xl">Танд тохирох чадварын зөвлөмж</h1>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-500">
-              Таны сонголт болон ижил хариулттай оролцогчдын сурах хүсэлд тулгуурлан эрэмбэлэв.
+              Таны сонголт болон ижил төстэй хариулт өгсөн оролцогчдын сурах сонирхолд үндэслэн эрэмбэллээ.
             </p>
           </div>
           <button onClick={resetQuiz} className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-600 transition hover:border-violet-200 hover:text-violet-700">
@@ -285,12 +285,12 @@ export default function SkillRecommendations() {
         <p className="mb-2 inline-flex items-center gap-2 rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700">
           <Sparkles className="h-3.5 w-3.5" />
           {options.dataset_source === 'synthetic_demo'
-            ? 'Синтетик демо өгөгдөл — бодит сурагчийн мэдээлэл агуулаагүй'
-            : 'Нууц runtime судалгааны өгөгдөл'}
+            ? 'Жишээ өгөгдөл ашигласан — бодит хэрэглэгчийн мэдээлэл биш'
+            : 'Судалгааны өгөгдөл ашиглана'}
         </p>
         <h1 className="text-3xl font-black tracking-tight text-slate-800 sm:text-4xl">Танд тохирох чадвараа олоорой</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-500">
-          Хариултуудыг судалгааны хэв маягтай харьцуулж, сонголт бүрийн шалтгааныг тайлбарлана.
+          Таны хариултад тулгуурлан тохирох чадваруудыг санал болгож, сонголтын шалтгааныг тайлбарлана.
         </p>
       </div>
 

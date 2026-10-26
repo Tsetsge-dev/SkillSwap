@@ -39,7 +39,7 @@ const AuthPromptModal = ({ isOpen, onClose, message }) => {
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 text-white flex items-center justify-center mx-auto shadow-lg shadow-violet-500/30">
             <Lock className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-extrabold text-slate-800">Системд нэвтэрнэ үү</h3>
+          <h3 className="text-lg font-extrabold text-slate-800">SkillSwap-д нэвтэрнэ үү</h3>
           <p className="text-xs text-slate-500 leading-relaxed max-w-sm mx-auto">
             {message || 'Хэрэглэгчийн дэлгэрэнгүй профайл үзэх, чадвар солилцох санал илгээх болон чатлахын тулд та системд нэвтэрсэн байх шаардлагатай.'}
           </p>

@@ -74,7 +74,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
         receiver_id: targetUser.id || targetUser.user_id,
         offered_skill_name: offeredSkill.trim(),
         wanted_skill_name: wantedSkill.trim(),
-        message: message.trim() || 'Сайн байна уу! Хамтдаа чадвар солилцож, бие биедээ тусацгаая.',
+        message: message.trim() || 'Сайн байна уу? Тантай чадвар солилцох хүсэлтэй байна.',
       });
       setSent(true);
       setTimeout(() => {
@@ -85,9 +85,9 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
       const backendMessage = typeof detail === 'string' ? detail.toLowerCase() : '';
       if (err.response?.status === 401) setError('Санал илгээхийн тулд эхлээд нэвтэрнэ үү.');
       else if (backendMessage.includes('already connected')) setError('Та энэ хэрэглэгчтэй аль хэдийн холбогдсон байна.');
-      else if (backendMessage.includes('already sent')) setError('Энэ хэрэглэгчид хүлээгдэж буй санал өмнө нь илгээсэн байна.');
-      else if (backendMessage.includes('cannot send') || backendMessage.includes('recipient user not found')) setError('Саналын хэрэглэгч олдсонгүй. Дахин сонгоно уу.');
-      else setError('Санал илгээхэд алдаа гарлаа. Дахин оролдоно уу.');
+      else if (backendMessage.includes('already sent')) setError('Энэ хүнд хүлээгдэж буй хүсэлт аль хэдийн илгээсэн байна.');
+      else if (backendMessage.includes('cannot send') || backendMessage.includes('recipient user not found')) setError('Хэрэглэгч олдсонгүй. Дахин сонгоно уу.');
+      else setError('Хүсэлт илгээж чадсангүй. Дахин оролдоно уу.');
     } finally {
       busy.current = false;
       setSending(false);
@@ -122,8 +122,8 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
         {sent ? (
           <div className="text-center py-6 space-y-2">
             <div className="text-4xl animate-bounce">🎉</div>
-            <p className="text-sm font-bold text-violet-600">Санал амжилттай илгээгдлээ!</p>
-            <p className="text-xs text-slate-400">Хэрэглэгч хүлээн авсны дараа та хоёр холбогдох болно.</p>
+            <p className="text-sm font-bold text-violet-600">Хүсэлт амжилттай илгээгдлээ.</p>
+            <p className="text-xs text-slate-400">Нөгөө хүн хүсэлтийг зөвшөөрвөл та хоёр холбогдох боломжтой.</p>
           </div>
         ) : (
           <>
@@ -138,7 +138,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
                   <label className="text-[11px] font-bold text-violet-700 flex items-center gap-1">
-                    <GraduationCap className="w-3.5 h-3.5 text-violet-500" /> Би заана (Таны заах чадвар):
+                    <GraduationCap className="w-3.5 h-3.5 text-violet-500" /> Таны заах чадвар:
                   </label>
                   {mySkills.length > 0 && (
                     <button
@@ -160,7 +160,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
                     onChange={(e) => setOfferedSkill(e.target.value)}
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-200"
                   >
-                    <option value="">-- Заах чадвараа сонгоно уу --</option>
+                    <option value="">Заах чадвараа сонгоно уу</option>
                     {mySkills.map((s, i) => (
                       <option key={i} value={s.skill_name}>
                         {s.skill_name} ({s.proficiency_level || 'General'})
@@ -172,7 +172,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
                     type="text"
                     value={offeredSkill}
                     onChange={(e) => setOfferedSkill(e.target.value)}
-                    placeholder="ж нь: Python, Graphic Design, Англи хэл..."
+                    placeholder="Жишээ нь: Python, график дизайн, англи хэл..."
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-200"
                   />
                 )}
@@ -182,7 +182,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
                   <label className="text-[11px] font-bold text-sky-700 flex items-center gap-1">
-                    <BookOpen className="w-3.5 h-3.5 text-sky-500" /> Сурах чадвар ({targetUser.full_name}-аас):
+                    <BookOpen className="w-3.5 h-3.5 text-sky-500" /> {targetUser.full_name}-аас сурах чадвар:
                   </label>
                   {theirSkills.length > 0 && (
                     <button
@@ -204,7 +204,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
                     onChange={(e) => setWantedSkill(e.target.value)}
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-200"
                   >
-                    <option value="">-- Сурах чадвараа сонгоно уу --</option>
+                    <option value="">Сурахыг хүссэн чадвараа сонгоно уу</option>
                     {theirSkills.map((s, i) => (
                       <option key={i} value={s.skill_name}>
                         {s.skill_name} {s.proficiency_level ? `(${s.proficiency_level})` : ''}
@@ -216,7 +216,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
                     type="text"
                     value={wantedSkill}
                     onChange={(e) => setWantedSkill(e.target.value)}
-                    placeholder="ж нь: Япон хэл, React, Төгөлдөр хуур..."
+                    placeholder="Жишээ нь: япон хэл, React, төгөлдөр хуур..."
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-200"
                   />
                 )}
@@ -230,7 +230,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Сайн байна уу! Тантай чадвар солилцох сонирхолтой байна..."
+                  placeholder="Нөгөө хүнд илгээх зурвасаа бичээрэй..."
                   rows={2}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 placeholder-slate-400 resize-none focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-200"
                 />
@@ -243,7 +243,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
               disabled={sending}
               className="w-full py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-md transition-all"
             >
-              <Send className="w-3.5 h-3.5" /> {sending ? 'Илгээж байна...' : 'Санал илгээх'}
+              <Send className="w-3.5 h-3.5" /> {sending ? 'Илгээж байна...' : 'Холбогдох хүсэлт илгээх'}
             </button>
           </>
         )}

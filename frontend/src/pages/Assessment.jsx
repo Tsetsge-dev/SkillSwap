@@ -103,7 +103,7 @@ const Assessment = () => {
     } catch {
       setResults(localResults);
       setStatus("done");
-      setError("Backend түр холбогдсонгүй. Түр хугацаанд төхөөрөмж дээрх онооллын хувилбараар үр дүнг харуулж байна.");
+      setError("Сервертэй холбогдож чадсангүй. Таны хариултад тулгуурлан түр зөвлөмж гаргалаа.");
     }
   };
 
@@ -187,7 +187,7 @@ const Assessment = () => {
                   <div className="shrink-0 w-24 h-24 rounded-2xl bg-slate-950 text-white grid place-items-center shadow-lg">
                     <div className="text-center">
                       <div className="text-2xl font-black">{rec.score}%</div>
-                      <div className="text-[10px] text-slate-300 font-bold">нийцэл</div>
+                      <div className="text-[10px] text-slate-300 font-bold">тохироо</div>
                     </div>
                   </div>
                 </div>
@@ -398,8 +398,8 @@ const SkillExplorer = ({ categories, filter, setFilter, query, setQuery, visible
           <Target className="w-4 h-4" />
           Ур чадварууд
         </div>
-        <h2 className="mt-1 text-xl sm:text-2xl font-black text-slate-950">Судалж болох чиглэлүүд</h2>
-        <p className="mt-1 text-xs text-slate-500">Зөвлөмжөөс гадна өөр сонирхолтой салбаруудаа шүүж үзээрэй.</p>
+        <h2 className="mt-1 text-xl sm:text-2xl font-black text-slate-950">Сонирхож үзэх чадварууд</h2>
+        <p className="mt-1 text-xs text-slate-500">Зөвлөмжөөс гадна бусад чадварыг хайж, шүүж үзээрэй.</p>
       </div>
       <div className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
         <label className="relative flex-1 lg:w-64">

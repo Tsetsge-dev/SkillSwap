@@ -32,17 +32,17 @@ const SessionsPage = () => {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 space-y-5">
       <div>
-        <h1 className="text-xl font-bold text-slate-800">Хичээлийн хуваарь</h1>
-        <p className="text-xs text-slate-500">Төлөвлөсөн 1-on-1 хичээлүүд болон үнэлгээ</p>
+        <h1 className="text-xl font-bold text-slate-800">Суралцах уулзалтын хуваарь</h1>
+        <p className="text-xs text-slate-500">Товлосон уулзалтуудаа харах, дууссан уулзалтад үнэлгээ өгөх.</p>
       </div>
 
       {loading ? (
-        <div className="text-center py-16 text-xs text-slate-500">Ачааллаж байна...</div>
+        <div className="text-center py-16 text-xs text-slate-500">Хуваарийг ачаалж байна…</div>
       ) : sessions.length === 0 ? (
         <div className="glass-panel rounded-2xl p-8 text-center">
           <Calendar className="w-8 h-8 text-slate-500 mx-auto mb-3" />
-          <p className="text-xs text-slate-500">Одоогоор төлөвлөсөн хичээл байхгүй.</p>
-          <p className="text-[11px] text-slate-500 mt-1">Найзуудтайгаа холбогдоод хичээл товлоорой!</p>
+          <p className="text-xs text-slate-500">Одоогоор товлосон уулзалт алга.</p>
+          <p className="text-[11px] text-slate-500 mt-1">Холбоо тогтоосон хүнтэйгээ суралцах уулзалт товлоорой.</p>
         </div>
       ) : (
         <div className="space-y-3">

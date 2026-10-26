@@ -34,8 +34,8 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Нүүр', path: '/', icon: ArrowRightLeft },
     { name: 'Хүмүүс', path: '/explore', icon: Search },
-    { name: 'Чиглэлээ олох', path: '/assessment', icon: Compass },
-    { name: 'Туслах чат', path: '/chatbot', icon: Bot },
+    { name: 'Сонирхлоо тодорхойлох', path: '/assessment', icon: Compass },
+    { name: 'Чадварын туслах', path: '/chatbot', icon: Bot },
   ];
 
   const memberLinks = [
@@ -45,8 +45,8 @@ const Navbar = () => {
       icon: UserCheck,
       badge: pendingCount > 0 ? pendingCount : null,
     },
-    { name: 'Мессеж', path: '/chat', icon: MessageSquare },
-    { name: 'Хуваарь', path: '/sessions', icon: Calendar },
+    { name: 'Зурвас', path: '/chat', icon: MessageSquare },
+    { name: 'Хичээлийн хуваарь', path: '/sessions', icon: Calendar },
   ];
 
   const handleLogout = () => {

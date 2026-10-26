@@ -26,8 +26,8 @@ const SurveyProfiles = () => {
       </Link>
 
       <header className="rounded-[28px] bg-gradient-to-br from-indigo-950 via-indigo-900 to-blue-800 p-6 text-white shadow-lg shadow-indigo-950/10 sm:p-8">
-        <div className="flex items-center gap-2 text-xs font-bold text-indigo-200"><Users className="h-4 w-4" /> СУДАЛГААНД СУУРИЛСАН ЖИШЭЭ</div>
-        <h1 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">Суралцах сонирхлын жишээ профайлууд</h1>
+        <div className="flex items-center gap-2 text-xs font-bold text-indigo-200"><Users className="h-4 w-4" /> СУДАЛГААНД ҮНДЭСЛЭСЭН ЖИШЭЭ</div>
+        <h1 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">Суралцагчдын жишээ профайл</h1>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-indigo-100/90">
           Эдгээр нь судалгааны чадварын хариултаас үүсгэсэн, санамсаргүй Монгол нэртэй жишээ профайл юм. Бүртгэлтэй хүмүүс биш тул нэвтрэх, холбоо барих, санал илгээх боломжгүй.
         </p>
@@ -55,7 +55,7 @@ const SurveyProfiles = () => {
           )}
         </>
       ) : (
-        <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center text-sm text-slate-500">Ийм нэр эсвэл чадвартай жишээ олдсонгүй.</div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center text-sm text-slate-500">Таны хайлтад тохирох жишээ профайл олдсонгүй.</div>
       )}
     </main>
   );
