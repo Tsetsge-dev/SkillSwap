@@ -89,4 +89,3 @@ npm run build
 cd ..\backend
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
-
