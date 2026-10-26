@@ -87,7 +87,7 @@ const Home = () => {
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
             <div aria-hidden="true" className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-indigo-200/60 via-blue-100/35 to-transparent blur-2xl" />
             <div className="glass-hero relative overflow-hidden rounded-[1.75rem] p-6 sm:rounded-[2rem] sm:p-8">
-              <div aria-hidden="true" className="absolute -right-16 -top-20 h-48 w-48 rounded-full border border-white/10 shadow-[0_0_0_24px_rgba(255,255,255,.035),0_0_0_48px_rgba(255,255,255,.025)]" />
+              <div aria-hidden="true" className="absolute -right-16 -top-20 h-48 w-48 rounded-full border border-white/10 shadow-[0_0_0_24px_rgba(232,235,242,.035),0_0_0_48px_rgba(232,235,242,.025)]" />
               <div className="relative z-10">
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-bold text-indigo-100">
                   <ArrowRightLeft className="h-3.5 w-3.5" aria-hidden="true" />
