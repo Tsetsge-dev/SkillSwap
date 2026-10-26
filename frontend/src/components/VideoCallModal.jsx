@@ -73,7 +73,7 @@ const VideoCallModal = ({ partner, isCaller = false, onClose }) => {
             if (!timerRef.current) timerRef.current = setInterval(() => setCallDuration((seconds) => seconds + 1), 1000);
           } else if (pc.connectionState === 'failed' || pc.connectionState === 'disconnected') {
             setCallStatus('error');
-            setStatusMessage('Холболт тасарлаа. TURN сервер тохируулах шаардлагатай байж болно.');
+            setStatusMessage('Нөгөө төхөөрөмжтэй холбогдож чадсангүй. Хоёр тал онлайн эсэх болон TURN серверийн тохиргоог шалгана уу.');
           }
         };
 

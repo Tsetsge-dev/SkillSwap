@@ -186,7 +186,7 @@ export const SocketProvider = ({ children }) => {
   }, [emit]);
 
   const sendCallSignal = useCallback((targetId, type, extra = {}) => {
-    emit({
+    return emit({
       type,
       target_id: targetId,
       ...extra,

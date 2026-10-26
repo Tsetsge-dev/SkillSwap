@@ -53,10 +53,10 @@ const Home = () => {
               Ур чадвараа харилцан солилцох нийгэмлэг
             </div>
             <h1 className="mt-6 max-w-2xl text-4xl font-black leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-[3.4rem]">
-              Мэддэгээ хуваалц. <span className="text-indigo-700">Шинэ зүйл сур.</span>
+              Мэдлэгээ хуваалц. <span className="text-indigo-700">Шинэ зүйл сур.</span>
             </h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-              SkillSwap дээр сурахыг хүссэн зүйлээ зааж чадах хүнээ олж, өөрийн мэддэг чадвараа бусадтай хуваалцаарай.
+              SkillSwap дээр сурахыг хүссэн зүйлээ зааж чадах хүнээ олж, мэдлэг, чадвараа бусадтай хуваалцаарай.
               Хамтдаа сурах энгийн эхлэл эндээс.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -94,7 +94,7 @@ const Home = () => {
                   <ArrowRightLeft className="h-3.5 w-3.5" aria-hidden="true" />
                   ЖИШЭЭ СОЛИЛЦОО
                 </div>
-                <h2 className="mt-4 max-w-sm text-xl font-bold leading-snug text-white sm:text-2xl">Хүн бүр өөрийн мэддэг зүйлээ авчирна.</h2>
+                <h2 className="mt-4 max-w-sm text-xl font-bold leading-snug text-white sm:text-2xl">Хүн бүр мэдлэг, чадвараа хуваалцана.</h2>
                 <div className="mt-6 space-y-3">
                   <div className="rounded-2xl border border-white/70 bg-white p-4 shadow-lg shadow-slate-950/10 sm:p-5">
                     <p className="text-[10px] font-bold uppercase tracking-wider text-indigo-600">Би хуваалцана</p>

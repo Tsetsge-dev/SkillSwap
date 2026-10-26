@@ -12,7 +12,7 @@ const ChatPage = () => {
   const { partnerId } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { socket, isConnected, sendChatMessage, sendTyping, isUserOnline, subscribe } = useSocket();
+  const { isConnected, isUserOnline, subscribe } = useSocket();
 
   const [conversations, setConversations] = useState([]);
   const [selectedPartner, setSelectedPartner] = useState(partnerId ? parseInt(partnerId) : null);
@@ -24,6 +24,7 @@ const ChatPage = () => {
   const [showVideo, setShowVideo] = useState(false);
   const [showSidebar, setShowSidebar] = useState(!partnerId);
   const [sending, setSending] = useState(false);
+  const [messageError, setMessageError] = useState('');
 
   const messagesEndRef = useRef(null);
 
@@ -59,7 +60,16 @@ const ChatPage = () => {
       ) {
         setMessages((prev) => {
           if (prev.some((m) => m.id === newMsg.id)) return prev;
-          return [...prev, newMsg];
+          let pendingIndex = -1;
+          for (let i = prev.length - 1; i >= 0; i -= 1) {
+            const item = prev[i];
+            if (item.pending && item.sender_id === newMsg.sender_id && item.receiver_id === newMsg.receiver_id && item.content === newMsg.content && item.msg_type === newMsg.msg_type) {
+              pendingIndex = i;
+              break;
+            }
+          }
+          if (pendingIndex < 0) return [...prev, newMsg];
+          return prev.map((item, index) => index === pendingIndex ? newMsg : item);
         });
       }
       // Update sidebar last message
@@ -158,30 +168,31 @@ const ChatPage = () => {
       content,
       msg_type: 'text',
       created_at: new Date().toISOString(),
+      pending: true,
     };
 
-    // Optimistic UI update
+    setMessageError('');
     setMessages((prev) => [...prev, tempMsg]);
 
     try {
-      // 1. Try WebSocket send first
-      const sentViaWs = sendChatMessage(selectedPartner, content, { msg_type: 'text' });
-      if (!sentViaWs) {
-        // 2. If WS not ready, fallback to REST API
-        await messagesAPI.sendMessage({
-          receiver_id: selectedPartner,
-          content,
-          msg_type: 'text',
-        });
-      }
+      const response = await messagesAPI.sendMessage({
+        receiver_id: selectedPartner,
+        content,
+        msg_type: 'text',
+      });
+      const savedMessage = response.data;
+      setMessages((prev) => prev.map((item) => item.id === tempMsg.id ? savedMessage : item));
     } catch (err) {
       console.error('Error sending message:', err);
+      setMessages((prev) => prev.filter((item) => item.id !== tempMsg.id));
+      const detail = err?.response?.data?.detail;
+      setMessageError(typeof detail === 'string' ? detail : 'Зурвас илгээж чадсангүй. Холболтоо шалгаад дахин оролдоно уу.');
     } finally {
       setSending(false);
     }
   };
 
-  const handleMediaSent = (mediaMsg) => {
+  const handleMediaSent = async (mediaMsg) => {
     const tempMsg = {
       id: Date.now(),
       sender_id: user.id,
@@ -193,17 +204,28 @@ const ChatPage = () => {
       file_size: mediaMsg.file_size,
       audio_duration: mediaMsg.audio_duration,
       created_at: new Date().toISOString(),
+      pending: true,
     };
 
+    setMessageError('');
     setMessages((prev) => [...prev, tempMsg]);
-
-    sendChatMessage(selectedPartner, mediaMsg.content || '', {
-      msg_type: mediaMsg.msg_type,
-      file_url: mediaMsg.file_url,
-      file_name: mediaMsg.file_name,
-      file_size: mediaMsg.file_size,
-      audio_duration: mediaMsg.audio_duration,
-    });
+    try {
+      const response = await messagesAPI.sendMessage({
+        receiver_id: selectedPartner,
+        content: mediaMsg.content || '',
+        msg_type: mediaMsg.msg_type,
+        file_url: mediaMsg.file_url,
+        file_name: mediaMsg.file_name,
+        file_size: mediaMsg.file_size,
+        audio_duration: mediaMsg.audio_duration,
+      });
+      setMessages((prev) => prev.map((item) => item.id === tempMsg.id ? response.data : item));
+    } catch (err) {
+      console.error('Error sending media message:', err);
+      setMessages((prev) => prev.filter((item) => item.id !== tempMsg.id));
+      const detail = err?.response?.data?.detail;
+      setMessageError(typeof detail === 'string' ? detail : 'Файлтай зурвас илгээгдсэнгүй. Дахин оролдоно уу.');
+    }
   };
 
   const renderMessage = (msg) => {
@@ -262,12 +284,12 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-4 h-[calc(100vh-5.5rem)] flex gap-4 animate-fade-in">
+    <div className="max-w-6xl mx-auto px-4 py-4 h-[calc(100dvh-8rem)] min-h-[26rem] flex gap-4 animate-fade-in">
       {/* Sidebar: Conversation List */}
       <div
         className={`${
           showSidebar || !selectedPartner ? 'flex' : 'hidden'
-        } md:flex flex-col w-full md:w-80 shrink-0 glass-panel rounded-2xl overflow-hidden border border-slate-200`}
+        } md:flex min-h-0 flex-col w-full md:w-80 shrink-0 glass-panel rounded-2xl overflow-hidden border border-slate-200`}
       >
         <div className="p-4 border-b border-slate-100 bg-slate-50/50">
           <h2 className="text-sm font-bold text-slate-800">Зурвасууд & Яриа</h2>
@@ -297,7 +319,7 @@ const ChatPage = () => {
                     navigate(`/chat/${pid}`, { replace: true });
                   }}
                   className={`w-full flex items-center gap-3 p-3.5 transition-colors cursor-pointer text-left ${
-                    isSelected ? 'bg-violet-50/90 border-l-3 border-violet-600' : 'hover:bg-slate-50'
+                    isSelected ? 'bg-violet-50/90 border-l-4 border-violet-600' : 'hover:bg-slate-50'
                   }`}
                 >
                   <div className="relative shrink-0">
@@ -341,7 +363,7 @@ const ChatPage = () => {
       <div
         className={`${
           !showSidebar || selectedPartner ? 'flex' : 'hidden'
-        } md:flex flex-1 flex-col glass-panel rounded-2xl overflow-hidden border border-slate-200`}
+        } md:flex min-h-0 min-w-0 flex-1 flex-col glass-panel rounded-2xl overflow-hidden border border-slate-200`}
       >
         {selectedPartner && partnerInfo ? (
           <>
@@ -394,7 +416,7 @@ const ChatPage = () => {
             </div>
 
             {/* Message List */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50/30">
+            <div className="min-h-0 flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50/30">
               {messages.length === 0 ? (
                 <div className="text-center py-16 text-xs text-slate-400 space-y-1">
                   <p className="font-semibold text-slate-600">Яриа эхлээгүй байна</p>
@@ -407,7 +429,10 @@ const ChatPage = () => {
             </div>
 
             {/* Input Bar */}
-            <div className="p-3 bg-white border-t border-slate-100 flex items-center gap-2">
+            <div className="border-t border-slate-100 bg-white p-3">
+              {messageError && <p role="alert" className="mb-2 px-1 text-xs text-red-600">{messageError}</p>}
+              {!isConnected && <p className="mb-2 px-1 text-xs text-amber-700">Шууд холболт тасарсан байна. Зурвас серверээр дамжин илгээгдэнэ.</p>}
+              <div className="flex items-center gap-2">
               <button
                 onClick={() => setShowFiles(true)}
                 className="p-2 rounded-xl text-slate-400 hover:text-violet-600 hover:bg-violet-50 cursor-pointer transition-colors"
@@ -427,9 +452,9 @@ const ChatPage = () => {
                 <input
                   type="text"
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
+                  onChange={(e) => { setInput(e.target.value); setMessageError(''); }}
                   placeholder="Зурвас бичих..."
-                  className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-200"
+                  className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-200"
                 />
                 <button
                   type="submit"
@@ -439,6 +464,7 @@ const ChatPage = () => {
                   <Send className="w-4 h-4" />
                 </button>
               </form>
+              </div>
             </div>
           </>
         ) : (
