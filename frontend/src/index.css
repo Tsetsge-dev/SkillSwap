@@ -1255,3 +1255,199 @@ body .site-footer {
 @media (max-width: 420px) {
   body nav.site-nav { width: calc(100% - 16px); }
 }
+
+
+/* SkillSwap bold navy refresh — 2026-10 */
+:root {
+  color-scheme: dark;
+  --glass-line: rgba(147, 197, 253, 0.2);
+  --glass-edge: rgba(96, 165, 250, 0.22);
+  --glass-shadow: 0 22px 64px -32px rgba(2, 8, 28, 0.8);
+  --ink-strong: #F8FAFC;
+  --glass-ink: #F8FAFC;
+  --glass-slate: #93C5FD;
+  --glass-periwinkle: #60A5FA;
+  --glass-lavender: #60A5FA;
+  --glass-mist: #102A56;
+  --glass-cyan: #38BDF8;
+  --glass-frost: rgba(11, 31, 69, .66);
+  --glass-frost-strong: rgba(16, 42, 86, .82);
+  --glass-border: rgba(96, 165, 250, .22);
+}
+
+html, body {
+  background-color: #07152F;
+  color: #F8FAFC;
+}
+
+body {
+  color: #F8FAFC;
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(37, 99, 235, .24), transparent 36%),
+    radial-gradient(ellipse at 92% 12%, rgba(56, 189, 248, .12), transparent 30%),
+    radial-gradient(ellipse at 52% 100%, rgba(29, 78, 216, .18), transparent 40%),
+    linear-gradient(145deg, #07152F 0%, #0B1F45 52%, #07152F 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  background:
+    radial-gradient(circle at 22% 35%, rgba(37, 99, 235, .12), transparent 28%),
+    radial-gradient(circle at 82% 72%, rgba(56, 189, 248, .09), transparent 26%);
+}
+
+::selection { background: rgba(56, 189, 248, .35); color: #FFFFFF; }
+
+body .bg-white,
+body [class*="bg-white/"],
+body .bg-slate-50,
+body [class*="bg-slate-50/"],
+body .bg-slate-100,
+body [class*="bg-slate-100/"],
+body .bg-indigo-50,
+body [class*="bg-indigo-50/"],
+body .bg-violet-50,
+body [class*="bg-violet-50/"],
+body .bg-sky-50,
+body [class*="bg-sky-50/"] {
+  background-color: rgba(11, 31, 69, .78) !important;
+  color: #F8FAFC;
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+  backdrop-filter: blur(24px) saturate(145%);
+}
+
+body .glass-panel {
+  border-color: rgba(96, 165, 250, .2);
+  background: linear-gradient(145deg, rgba(16, 42, 86, .86), rgba(11, 31, 69, .72));
+  box-shadow: 0 22px 64px -32px rgba(2, 8, 28, .8), inset 0 1px 0 rgba(147, 197, 253, .12);
+}
+
+body .glass-panel-hover:hover {
+  border-color: rgba(56, 189, 248, .42);
+  background: linear-gradient(145deg, rgba(16, 42, 86, .94), rgba(11, 31, 69, .84));
+  box-shadow: 0 24px 64px -34px rgba(2, 8, 28, .88), 0 0 0 1px rgba(37, 99, 235, .12);
+}
+
+body .glass-hero {
+  border-color: rgba(96, 165, 250, .3);
+  background: linear-gradient(125deg, rgba(16, 42, 86, .96), rgba(11, 31, 69, .92) 58%, rgba(15, 45, 92, .92));
+  box-shadow: 0 32px 90px -42px rgba(2, 8, 28, .9), inset 0 1px 0 rgba(147, 197, 253, .16);
+}
+
+body nav[aria-label="Үндсэн цэс"],
+body nav.site-nav {
+  border-color: rgba(96, 165, 250, .22);
+  background: rgba(7, 21, 47, .82);
+  box-shadow: 0 18px 45px -30px rgba(0, 0, 0, .75), inset 0 1px 0 rgba(147, 197, 253, .1);
+  color: #F8FAFC;
+}
+
+body nav[aria-label="Үндсэн цэс"] a[aria-current="page"],
+body nav[aria-label="Үндсэн цэс"] a[href="/register"],
+body nav.site-nav a[aria-current="page"],
+body nav.site-nav a[href="/register"] {
+  border-color: rgba(56, 189, 248, .36);
+  background: linear-gradient(135deg, rgba(37, 99, 235, .28), rgba(56, 189, 248, .12));
+  color: #FFFFFF;
+  box-shadow: inset 0 1px 0 rgba(147, 197, 253, .12), 0 0 22px rgba(37, 99, 235, .12);
+}
+
+body footer,
+body .site-footer {
+  border-color: rgba(96, 165, 250, .18);
+  background: rgba(7, 21, 47, .72);
+  color: #B8C7DF;
+  box-shadow: 0 -14px 42px -34px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(147, 197, 253, .08);
+}
+
+body .text-slate-900, body .text-slate-800, body .text-slate-700,
+body .text-gray-900, body .text-gray-800, body .text-gray-700,
+body .text-zinc-900, body .text-zinc-800, body .text-neutral-900,
+body .text-indigo-950, body .text-indigo-900 {
+  color: #F8FAFC !important;
+}
+
+body .text-slate-600, body .text-slate-500,
+body .text-gray-600, body .text-gray-500,
+body .text-zinc-600, body .text-neutral-600,
+body .text-indigo-700, body .text-violet-700 {
+  color: #B8C7DF !important;
+}
+
+body .border-slate-100, body .border-slate-200,
+body [class*="border-slate-200/"], body .border-indigo-100,
+body .border-violet-100, body .border-gray-200 {
+  border-color: rgba(96, 165, 250, .2) !important;
+}
+
+body input:not([type="checkbox"]):not([type="radio"]),
+body textarea, body select, body .auth-input-wrap {
+  border-color: rgba(96, 165, 250, .25);
+  background-color: rgba(7, 21, 47, .68);
+  color: #F8FAFC;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .16), 0 8px 22px -20px rgba(0, 0, 0, .5);
+}
+
+body input::placeholder, body textarea::placeholder,
+body .auth-input-wrap input::placeholder { color: #8FA6C8; }
+
+body input:focus, body textarea:focus, body select:focus,
+body .auth-input-wrap:focus-within {
+  border-color: rgba(56, 189, 248, .7);
+  background-color: rgba(11, 31, 69, .9);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, .18), 0 10px 28px -20px rgba(0, 0, 0, .5);
+}
+
+body button.glass-accent,
+body .glass-accent,
+body .auth-submit {
+  border-color: rgba(147, 197, 253, .28);
+  background: linear-gradient(110deg, #2563FF 0%, #1D4ED8 58%, #0EA5E9 100%);
+  box-shadow: 0 12px 30px -14px rgba(37, 99, 255, .6), inset 0 1px 0 rgba(255, 255, 255, .18);
+  color: #FFFFFF;
+}
+
+body .glass-accent:hover,
+body .auth-submit:hover:not(:disabled) {
+  background: linear-gradient(110deg, #4D8DFF 0%, #2563FF 55%, #38BDF8 100%);
+  box-shadow: 0 15px 34px -14px rgba(37, 99, 255, .72), 0 0 0 1px rgba(56, 189, 248, .16);
+}
+
+body .auth-page {
+  background:
+    radial-gradient(ellipse at 8% 6%, rgba(37, 99, 235, .2), transparent 38%),
+    radial-gradient(ellipse at 94% 84%, rgba(56, 189, 248, .1), transparent 34%),
+    linear-gradient(135deg, #07152F, #0B1F45);
+  color: #F8FAFC;
+}
+
+body .auth-layout {
+  border-color: rgba(96, 165, 250, .24);
+  background: linear-gradient(145deg, rgba(16, 42, 86, .9), rgba(11, 31, 69, .82));
+  box-shadow: 0 30px 80px -40px rgba(0, 0, 0, .82), inset 0 1px 0 rgba(147, 197, 253, .14);
+}
+
+body .auth-heading h1, body .auth-brand-card,
+body .auth-input-wrap input, body .auth-input-wrap > svg {
+  color: #F8FAFC;
+}
+
+body .auth-heading p, body .auth-switch, body .auth-field > label,
+body .auth-label-row label, body .auth-text-button {
+  color: #B8C7DF;
+}
+
+body .auth-brand-card .auth-brand-mark,
+body .auth-heading-icon, body .auth-note-icon {
+  border-color: rgba(96, 165, 250, .24);
+  background: linear-gradient(145deg, rgba(37, 99, 235, .22), rgba(56, 189, 248, .08));
+  color: #93C5FD;
+}
+
+body .auth-card-foot { border-top-color: rgba(96, 165, 250, .2); color: #8FA6C8; }
+body .auth-switch a, body .auth-text-button { color: #60A5FA; }
+body a:hover { color: #7DD3FC; }
+
+@media (prefers-reduced-motion: reduce) {
+  body button, body a, body .glass-panel-hover { transition: none; }
+}
