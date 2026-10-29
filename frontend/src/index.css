@@ -1548,3 +1548,69 @@ body .border-violet-100, body .border-gray-200 {
     background-color: rgba(255,255,255,.40) !important;
   }
 }
+
+
+/* Refined balanced theme: calm navy base, restrained white glass, clear contrast */
+html, body { background-color: #07152F !important; color: #F8FAFC; }
+body {
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(255,255,255,.10), transparent 38%),
+    radial-gradient(ellipse at 88% 20%, rgba(37,99,235,.16), transparent 34%),
+    linear-gradient(145deg, #07152F 0%, #102A56 52%, #07152F 100%) !important;
+  background-attachment: fixed;
+}
+body::before {
+  background:
+    radial-gradient(circle at 20% 35%, rgba(255,255,255,.055), transparent 30%),
+    radial-gradient(circle at 82% 72%, rgba(37,99,235,.08), transparent 28%) !important;
+}
+body .glass-panel, body .glass-hero, body .auth-layout {
+  background: linear-gradient(145deg, rgba(255,255,255,.105), rgba(16,42,86,.88) 55%, rgba(255,255,255,.055)) !important;
+  border-color: rgba(255,255,255,.24) !important;
+  box-shadow: 0 22px 60px -34px rgba(0,0,0,.62), inset 0 1px 0 rgba(255,255,255,.12) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+  backdrop-filter: blur(22px) saturate(125%);
+}
+body nav.site-nav, body nav[aria-label="Үндсэн цэс"] {
+  background: rgba(7,21,47,.88) !important;
+  border-color: rgba(255,255,255,.24) !important;
+  box-shadow: 0 16px 42px -28px rgba(0,0,0,.62), inset 0 1px 0 rgba(255,255,255,.10) !important;
+}
+body footer, body .site-footer {
+  background: rgba(7,21,47,.84) !important;
+  border-color: rgba(255,255,255,.16) !important;
+}
+body input:not([type="checkbox"]):not([type="radio"]),
+body textarea, body select, body .auth-input-wrap {
+  background: rgba(235,242,252,.14) !important;
+  border-color: rgba(255,255,255,.32) !important;
+  color: #FFFFFF !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.12) !important;
+}
+body input::placeholder, body textarea::placeholder,
+body .auth-input-wrap input::placeholder { color: #B8C7DF !important; }
+body input:focus, body textarea:focus, body select:focus,
+body .auth-input-wrap:focus-within {
+  background: rgba(235,242,252,.19) !important;
+  border-color: rgba(255,255,255,.62) !important;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.08) !important;
+}
+body .glass-panel-hover:hover {
+  background: linear-gradient(145deg, rgba(255,255,255,.14), rgba(16,42,86,.92)) !important;
+  border-color: rgba(255,255,255,.38) !important;
+}
+body button.glass-accent, body .glass-accent, body .auth-submit {
+  background: linear-gradient(110deg, #2563FF 0%, #1D4ED8 82%, #DCE7F8 100%) !important;
+  border-color: rgba(255,255,255,.32) !important;
+  color: #FFFFFF !important;
+}
+body .text-slate-600, body .text-slate-500,
+body .text-gray-600, body .text-gray-500,
+body .text-zinc-600, body .text-neutral-600 {
+  color: #C2D0E6 !important;
+}
+body .border-slate-100, body .border-slate-200,
+body [class*="border-slate-200/"], body .border-indigo-100,
+body .border-violet-100, body .border-gray-200 {
+  border-color: rgba(255,255,255,.18) !important;
+}
