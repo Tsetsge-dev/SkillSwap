@@ -1477,3 +1477,74 @@ body .glass-panel-hover:hover {
   box-shadow: 0 24px 64px -34px rgba(2, 8, 28, .88),
     0 0 0 1px rgba(255, 255, 255, .06);
 }
+
+
+/* Mobile-friendly lighter glass: target roughly 40% white, navy remains readable */
+:root {
+  --glass-frost: rgba(255, 255, 255, .40);
+  --glass-frost-strong: rgba(255, 255, 255, .48);
+  --glass-border: rgba(255, 255, 255, .62);
+  --glass-line: rgba(255, 255, 255, .52);
+  --glass-edge: rgba(255, 255, 255, .58);
+}
+html, body {
+  background-color: #07152F;
+}
+body {
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(255,255,255,.42), transparent 42%),
+    radial-gradient(ellipse at 92% 18%, rgba(255,255,255,.28), transparent 36%),
+    radial-gradient(ellipse at 50% 100%, rgba(255,255,255,.24), transparent 46%),
+    linear-gradient(145deg, #07152F 0%, #173766 48%, #07152F 100%);
+}
+body::before {
+  background:
+    radial-gradient(circle at 22% 35%, rgba(255,255,255,.22), transparent 30%),
+    radial-gradient(circle at 82% 72%, rgba(255,255,255,.2), transparent 28%);
+}
+body .glass-panel,
+body .glass-hero,
+body .auth-layout,
+body nav.site-nav,
+body nav[aria-label="Үндсэн цэс"],
+body footer,
+body .site-footer {
+  background-color: rgba(255,255,255,.40) !important;
+  background-image: linear-gradient(135deg, rgba(255,255,255,.20), rgba(255,255,255,.04)) !important;
+  border-color: rgba(255,255,255,.62) !important;
+  color: #F8FAFC;
+  -webkit-backdrop-filter: blur(28px) saturate(155%);
+  backdrop-filter: blur(28px) saturate(155%);
+}
+body .glass-panel-hover:hover {
+  background-color: rgba(255,255,255,.48) !important;
+  border-color: rgba(255,255,255,.78) !important;
+}
+body input:not([type="checkbox"]):not([type="radio"]),
+body textarea, body select, body .auth-input-wrap {
+  background-color: rgba(255,255,255,.40) !important;
+  border-color: rgba(255,255,255,.68) !important;
+  color: #07152F !important;
+}
+body input::placeholder, body textarea::placeholder,
+body .auth-input-wrap input::placeholder {
+  color: rgba(7,21,47,.62) !important;
+}
+body .text-slate-600, body .text-slate-500,
+body .text-gray-600, body .text-gray-500,
+body .text-zinc-600, body .text-neutral-600,
+body .auth-heading p, body .auth-switch, body .auth-field > label,
+body .auth-label-row label, body .auth-text-button {
+  color: #EAF1FC !important;
+}
+body .border-slate-100, body .border-slate-200,
+body [class*="border-slate-200/"], body .border-indigo-100,
+body .border-violet-100, body .border-gray-200 {
+  border-color: rgba(255,255,255,.52) !important;
+}
+@media (max-width: 640px) {
+  body .glass-panel, body .glass-hero, body .auth-layout,
+  body nav.site-nav, body nav[aria-label="Үндсэн цэс"] {
+    background-color: rgba(255,255,255,.40) !important;
+  }
+}
