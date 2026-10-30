@@ -262,24 +262,24 @@ const Assessment = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-8">
       <section className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 items-stretch">
-        <div className="rounded-[28px] bg-slate-950 text-white p-6 sm:p-8 shadow-xl overflow-hidden relative">
+        <div className="assessment-intro-panel rounded-[28px] bg-slate-950 text-white p-6 sm:p-8 shadow-xl overflow-hidden relative">
           <div className="relative z-10 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-bold">
+            <div className="assessment-intro-badge inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-bold">
               <Compass className="w-3.5 h-3.5" />
               SkillSwap чиглэл тодорхойлогч
             </div>
             <div>
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+              <h1 className="assessment-intro-heading text-3xl sm:text-5xl font-black tracking-tight leading-tight">
                 Өөрт тохирох ур чадвараа олоорой.
               </h1>
-              <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+              <p className="assessment-intro-copy mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
                 Сонирхол, давуу тал, сурах хэв маяг, зорилгод тань тулгуурлан эхлэхэд хамгийн тохиромжтой чиглэлүүдийг санал болгоно.
               </p>
             </div>
             <div className="grid grid-cols-3 gap-3">
               {["6 асуулт", "5 зөвлөмж", "Нууцлалтай"].map((item) => (
-                <div key={item} className="rounded-2xl bg-white/8 border border-white/10 p-3">
-                  <p className="text-xs font-bold text-slate-200">{item}</p>
+                <div key={item} className="assessment-stat rounded-2xl bg-white/8 border border-white/10 p-3">
+                  <p className="assessment-stat-label text-xs font-bold text-slate-200">{item}</p>
                 </div>
               ))}
             </div>
@@ -291,13 +291,13 @@ const Assessment = () => {
         <div className="bg-white/94 border border-slate-200 rounded-[28px] p-5 sm:p-7 shadow-xl shadow-slate-200/60">
           <div className="flex items-center justify-between gap-4 mb-6">
             <div>
-              <p className="text-xs font-black text-indigo-600">
+              <p className="assessment-progress-label text-xs font-black text-indigo-600">
                 Асуулт {step + 1} / {assessmentQuestions.length}
               </p>
               <h2 className="mt-1 text-xl sm:text-2xl font-black text-slate-950">{current.title}</h2>
               <p className="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed">{current.helper}</p>
             </div>
-            <div className="hidden sm:grid place-items-center w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-700 font-black">
+            <div className="assessment-progress-chip hidden sm:grid place-items-center w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-700 font-black">
               {progress}%
             </div>
           </div>
