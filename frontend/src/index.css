@@ -1850,3 +1850,63 @@ input:focus, select:focus, textarea:focus {
   border-color: rgba(36, 59, 99, 0.13) !important;
   color: #243B63 !important;
 }
+
+
+/* Home page contrast corrections: keep glass surfaces light and text readable. */
+body .home-exchange-panel {
+  border-color: rgba(197, 212, 232, .9) !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .94), rgba(228, 236, 246, .88)) !important;
+  color: #304C74 !important;
+  box-shadow: 0 24px 64px -38px rgba(48, 76, 116, .28), inset 0 1px 0 rgba(255, 255, 255, .96) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(145%);
+  backdrop-filter: blur(30px) saturate(145%);
+}
+body .home-exchange-panel .home-exchange-heading,
+body .home-exchange-panel .home-exchange-note,
+body .home-exchange-panel .text-indigo-100 {
+  color: #304C74 !important;
+}
+body .home-exchange-panel .home-exchange-card {
+  border-color: #D2DEEE !important;
+  background: rgba(255, 255, 255, .96) !important;
+  color: #304C74 !important;
+  box-shadow: 0 10px 26px -20px rgba(48, 76, 116, .32), inset 0 1px 0 rgba(255, 255, 255, .98) !important;
+}
+body .home-exchange-panel .home-exchange-card .text-slate-900 { color: #304C74 !important; }
+body .home-exchange-panel .home-exchange-card .text-slate-500 { color: #526B8D !important; }
+body .home-exchange-panel .home-exchange-card .text-indigo-600,
+body .home-exchange-panel .home-exchange-card .text-blue-700 { color: #5277AA !important; }
+body .home-exchange-panel .text-blue-200 { color: #829FC6 !important; }
+
+body .home-primary-action,
+body nav.site-nav a[href="/register"] {
+  border-color: #5277AA !important;
+  background: #5277AA !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 24px -16px rgba(48, 76, 116, .55) !important;
+}
+body .home-primary-action:hover,
+body nav.site-nav a[href="/register"]:hover {
+  background: #304C74 !important;
+  color: #FFFFFF !important;
+}
+body .home-secondary-action {
+  border-color: #C5D4E8 !important;
+  background: rgba(255, 255, 255, .9) !important;
+  color: #304C74 !important;
+}
+body .home-secondary-action:hover {
+  border-color: #829FC6 !important;
+  background: #E4ECF6 !important;
+  color: #304C74 !important;
+}
+body nav.site-nav a[aria-current="page"] {
+  border-color: #D2DEEE !important;
+  background: #E4ECF6 !important;
+  color: #304C74 !important;
+}
+body .home-main-heading span { color: #5277AA !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  body .home-primary-action, body .home-secondary-action { transition: none; }
+}
