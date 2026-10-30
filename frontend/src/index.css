@@ -1459,3 +1459,35 @@ body button:focus-visible,body a:focus-visible,input:focus-visible,select:focus-
 @media (prefers-reduced-motion: reduce) {
   body button,body a { transition:none !important; }
 }
+
+
+/* Assessment introduction: soft glass panel with navy, readable copy. */
+body .assessment-intro-panel {
+  border-color:#D2DEEE !important;
+  background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(228,236,246,.94)) !important;
+  color:#243B63 !important;
+  box-shadow:0 22px 58px -36px rgba(36,59,99,.24),inset 0 1px 0 #FFFFFF !important;
+}
+body .assessment-intro-panel .assessment-intro-heading { color:#243B63 !important; }
+body .assessment-intro-panel .assessment-intro-copy { color:#526B8D !important; }
+body .assessment-intro-panel .assessment-intro-badge {
+  border-color:#D2DEEE !important;
+  background:#E4ECF6 !important;
+  color:#416896 !important;
+}
+body .assessment-intro-panel .assessment-stat {
+  border-color:#D2DEEE !important;
+  background:rgba(228,236,246,.78) !important;
+}
+body .assessment-intro-panel .assessment-stat-label { color:#385779 !important; }
+body .assessment-intro-panel > .absolute { border-color:rgba(82,119,170,.18) !important; }
+body .assessment-intro-panel .bg-white\/8 { background:rgba(82,119,170,.08) !important; }
+body .assessment-progress-label { color:#416896 !important; }
+body .assessment-progress-chip {
+  background:#E4ECF6 !important;
+  color:#315F9D !important;
+}
+/* Keep intentional low-opacity glass highlights translucent. */
+body [class~="bg-white/8"] { background-color:rgba(255,255,255,.08) !important; }
+body [class~="bg-white/10"] { background-color:rgba(255,255,255,.10) !important; }
+body [class~="bg-white/15"] { background-color:rgba(255,255,255,.15) !important; }
