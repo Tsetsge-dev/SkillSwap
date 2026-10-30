@@ -1810,3 +1810,43 @@ body .border-violet-100, body .border-gray-200 {
 }
 body a { color: #285DB8; }
 body a:hover { color: #17458F; }
+
+
+/* Refined SkillSwap palette: slightly deeper navy, still airy and light */
+:root {
+  --skillswap-navy: #243B63;
+  --skillswap-navy-deep: #1B2F52;
+  --skillswap-blue: #DCE7F5;
+  --skillswap-white: #F8FAFD;
+}
+body {
+  background: linear-gradient(135deg, #F7F9FD 0%, #EAF0F8 55%, #E1EAF6 100%) !important;
+  color: #243B63 !important;
+}
+header, nav, .navbar, .topbar {
+  background: rgba(248, 250, 253, 0.94) !important;
+  border-color: rgba(36, 59, 99, 0.12) !important;
+}
+button, .btn, [type="submit"] {
+  background: #2B456F !important;
+  border-color: #2B456F !important;
+  color: #FFFFFF !important;
+}
+button:hover, .btn:hover, [type="submit"]:hover {
+  background: #1F355B !important;
+  border-color: #1F355B !important;
+}
+input, select, textarea {
+  background: #FFFFFF !important;
+  border-color: #CBD7E8 !important;
+  color: #243B63 !important;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #5876A5 !important;
+  box-shadow: 0 0 0 3px rgba(88, 118, 165, 0.14) !important;
+}
+.card, .auth-card, .form-card, .panel, .modal-content {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(36, 59, 99, 0.13) !important;
+  color: #243B63 !important;
+}
