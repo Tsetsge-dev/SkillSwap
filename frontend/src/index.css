@@ -1333,6 +1333,13 @@ body .text-zinc-700, body .text-zinc-600, body .text-neutral-700 {
 body .text-slate-500, body .text-gray-500, body .text-zinc-500 {
   color:#526B8D !important;
 }
+body .text-indigo-800,body .text-indigo-700,body .text-indigo-600,
+body .text-blue-800,body .text-blue-700,body .text-blue-600,
+body .text-violet-700,body .text-cyan-700 {
+  color:#416896 !important;
+}
+body .auth-brand-card > span:last-child > span,
+body .auth-card-foot,body .auth-footer { color:#526B8D !important; }
 body .border-slate-100, body .border-slate-200, body .border-slate-300,
 body [class*="border-slate-200/"], body .border-indigo-100, body .border-violet-100,
 body .border-gray-200 {
