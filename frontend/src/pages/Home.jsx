@@ -52,7 +52,7 @@ const Home = () => {
               <ArrowRightLeft className="h-4 w-4" aria-hidden="true" />
               Ур чадвараа харилцан солилцох нийгэмлэг
             </div>
-            <h1 className="mt-6 max-w-2xl text-4xl font-black leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="home-main-heading mt-6 max-w-2xl text-4xl font-black leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-[3.4rem]">
               Мэдлэгээ хуваалц. <span className="text-indigo-700">Шинэ зүйл сур.</span>
             </h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
@@ -101,7 +101,7 @@ const Home = () => {
                     <p className="mt-1 text-xs text-slate-500">Ярианы дадлага, шинэ үгс</p>
                   </div>
                   <div className="flex justify-center" aria-hidden="true"><ArrowRightLeft className="h-5 w-5 rotate-90 text-blue-200" /></div>
-                  <div className="rounded-2xl border border-white/70 bg-white p-4 shadow-lg shadow-slate-950/10 sm:p-5">
+                  <div className="home-exchange-card rounded-2xl border border-white/70 bg-white p-4 shadow-lg shadow-slate-950/10 sm:p-5">
                     <p className="text-[10px] font-bold uppercase tracking-wider text-blue-700">Би сурна</p>
                     <p className="mt-1 text-base font-bold text-slate-900">Вэб дизайн</p>
                     <p className="mt-1 text-xs text-slate-500">Эхний загвараа бүтээх</p>
