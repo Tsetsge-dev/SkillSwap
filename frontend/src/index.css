@@ -1363,6 +1363,16 @@ body .auth-input-wrap {
   color:#243B63 !important;
   box-shadow:inset 0 1px 2px rgba(36,59,99,.045) !important;
 }
+
+body input:-webkit-autofill,
+body input:-webkit-autofill:hover,
+body input:-webkit-autofill:focus,
+body textarea:-webkit-autofill,
+body select:-webkit-autofill {
+  -webkit-text-fill-color:#243B63 !important;
+  box-shadow:0 0 0 1000px #FFFFFF inset !important;
+  transition:background-color 9999s ease-in-out 0s;
+}
 body input::placeholder,body textarea::placeholder,body .auth-input-wrap input::placeholder {
   color:#7187A7 !important;
 }
@@ -1435,39 +1445,6 @@ body .home-secondary-action {
 body .home-secondary-action:hover { background:#E4ECF6 !important; color:#243B63 !important; }
 body .home-main-heading span { color:#416896 !important; }
 
-/* Assessment cards and selectable answers stay clear in both states. */
-body .assessment-surface,body .assessment-surface * { color:#243B63; }
-body .assessment-surface { background:linear-gradient(145deg,#FFFFFF,#EEF3FA) !important; }
-body .assessment-surface .text-white { color:#FFFFFF !important; }
-body .assessment-surface .bg-slate-950 {
-  background:#416896 !important;
-}
-body .assessment-surface button.bg-slate-950,
-body .assessment-surface button[class*="bg-slate-950"] {
-  color:#FFFFFF !important;
-}
-body .assessment-surface article,
-body .assessment-surface aside,
-body .assessment-surface [class*="bg-white/"] {
-  background:rgba(255,255,255,.96) !important;
-  color:#243B63 !important;
-}
-body .assessment-surface h1,body .assessment-surface h2,body .assessment-surface h3,
-body .assessment-surface p,body .assessment-surface li,body .assessment-surface span {
-  color:#385779;
-}
-body .assessment-surface h1,body .assessment-surface h2,body .assessment-surface h3 {
-  color:#243B63 !important;
-}
-body .assessment-surface .bg-slate-950.text-white,
-body .assessment-surface .rounded-xl.bg-slate-950 {
-  background:#416896 !important;
-  color:#FFFFFF !important;
-}
-body .assessment-surface .bg-slate-950.text-white *,
-body .assessment-surface .rounded-xl.bg-slate-950 * {
-  color:#FFFFFF !important;
-}
 body button:focus-visible,body a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible {
   outline:3px solid #829FC6 !important;
   outline-offset:2px;
