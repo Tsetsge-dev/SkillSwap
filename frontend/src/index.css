@@ -1718,3 +1718,95 @@ body [class*="border-slate-200/"], body .border-indigo-100,
 body .border-violet-100, body .border-gray-200 {
   border-color: rgba(235,243,255,.26) !important;
 }
+
+
+/* Bright, airy SkillSwap theme — pale surfaces with navy text */
+html, body {
+  background: #F4F7FC !important;
+  color: #14294A !important;
+}
+body {
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(255,255,255,.98), transparent 42%),
+    radial-gradient(ellipse at 88% 18%, rgba(207,224,250,.58), transparent 38%),
+    linear-gradient(145deg, #F8FAFF 0%, #EAF1FC 58%, #F5F8FE 100%) !important;
+  background-attachment: fixed;
+}
+body::before {
+  background:
+    radial-gradient(circle at 20% 35%, rgba(255,255,255,.7), transparent 30%),
+    radial-gradient(circle at 82% 72%, rgba(192,214,247,.28), transparent 28%) !important;
+}
+body, body #root, body main {
+  color: #14294A;
+}
+body .glass-panel, body .glass-hero, body .auth-layout,
+body nav.site-nav, body nav[aria-label="Үндсэн цэс"],
+body footer, body .site-footer {
+  background: rgba(255,255,255,.88) !important;
+  background-image: linear-gradient(145deg, rgba(255,255,255,.96), rgba(235,242,252,.88)) !important;
+  border-color: rgba(160,181,214,.48) !important;
+  color: #14294A !important;
+  box-shadow: 0 18px 48px -32px rgba(31,58,99,.22), inset 0 1px 0 rgba(255,255,255,.95) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  backdrop-filter: blur(18px) saturate(120%);
+}
+body nav.site-nav, body nav[aria-label="Үндсэн цэс"] {
+  background: rgba(255,255,255,.94) !important;
+}
+body footer, body .site-footer {
+  background: rgba(239,244,252,.96) !important;
+}
+body .auth-page {
+  background: linear-gradient(145deg, #F8FAFF, #E8F0FC) !important;
+  color: #14294A !important;
+}
+body .auth-heading h1, body .auth-brand-card,
+body .auth-input-wrap input, body .auth-input-wrap > svg,
+body .auth-heading p, body .auth-switch, body .auth-field > label,
+body .auth-label-row label, body .auth-text-button,
+body .text-slate-900, body .text-slate-800, body .text-slate-700,
+body .text-gray-900, body .text-gray-800, body .text-gray-700,
+body .text-zinc-900, body .text-zinc-800, body .text-neutral-900,
+body .text-indigo-950, body .text-indigo-900,
+body .text-slate-600, body .text-slate-500,
+body .text-gray-600, body .text-gray-500 {
+  color: #193456 !important;
+}
+body .auth-input-wrap, body input:not([type="checkbox"]):not([type="radio"]),
+body textarea, body select {
+  background: #F8FAFE !important;
+  border-color: #C6D4E8 !important;
+  color: #193456 !important;
+  box-shadow: inset 0 1px 2px rgba(35,61,99,.045) !important;
+}
+body input::placeholder, body textarea::placeholder,
+body .auth-input-wrap input::placeholder {
+  color: #8294AF !important;
+}
+body .auth-input-wrap > svg, body .auth-input-wrap button {
+  background: #E7EEF9 !important;
+  color: #31527E !important;
+}
+body .auth-input-wrap:focus-within, body input:focus,
+body textarea:focus, body select:focus {
+  border-color: #6B91D1 !important;
+  box-shadow: 0 0 0 3px rgba(75,118,190,.12) !important;
+}
+body button.glass-accent, body .glass-accent, body .auth-submit {
+  background: linear-gradient(110deg, #2862D8, #397BEA) !important;
+  border-color: rgba(40,98,216,.2) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 26px -15px rgba(40,98,216,.42) !important;
+}
+body .glass-panel-hover:hover {
+  background: #FFFFFF !important;
+  border-color: #B6C9E5 !important;
+}
+body .border-slate-100, body .border-slate-200,
+body [class*="border-slate-200/"], body .border-indigo-100,
+body .border-violet-100, body .border-gray-200 {
+  border-color: #D7E1EF !important;
+}
+body a { color: #285DB8; }
+body a:hover { color: #17458F; }
