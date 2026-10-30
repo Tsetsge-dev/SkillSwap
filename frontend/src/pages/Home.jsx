@@ -61,7 +61,7 @@ const Home = () => {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/explore"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-indigo-700 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-700/20 transition hover:-translate-y-0.5 hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700"
+                className="home-primary-action inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-indigo-700 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-700/20 transition hover:-translate-y-0.5 hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700"
               >
                 <Search className="h-4 w-4" aria-hidden="true" />
                 Тохирох хүн хайх
@@ -69,7 +69,7 @@ const Home = () => {
               </Link>
               <Link
                 to="/assessment"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 shadow-sm transition hover:border-indigo-200 hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700"
+                className="home-secondary-action inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 shadow-sm transition hover:border-indigo-200 hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700"
               >
                 <Compass className="h-4 w-4 text-indigo-700" aria-hidden="true" />
                 Сонирхлоо тодорхойлох
@@ -86,16 +86,16 @@ const Home = () => {
 
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
             <div aria-hidden="true" className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-indigo-200/60 via-blue-100/35 to-transparent blur-2xl" />
-            <div className="glass-hero relative overflow-hidden rounded-[1.75rem] p-6 sm:rounded-[2rem] sm:p-8">
+            <div className="glass-hero home-exchange-panel relative overflow-hidden rounded-[1.75rem] p-6 sm:rounded-[2rem] sm:p-8">
               <div aria-hidden="true" className="absolute -right-16 -top-20 h-48 w-48 rounded-full border border-white/10 shadow-[0_0_0_24px_rgba(232,235,242,.035),0_0_0_48px_rgba(232,235,242,.025)]" />
               <div className="relative z-10">
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-bold text-indigo-100">
                   <ArrowRightLeft className="h-3.5 w-3.5" aria-hidden="true" />
                   ЖИШЭЭ СОЛИЛЦОО
                 </div>
-                <h2 className="mt-4 max-w-sm text-xl font-bold leading-snug text-white sm:text-2xl">Хүн бүр мэдлэг, чадвараа хуваалцана.</h2>
+                <h2 className="home-exchange-heading mt-4 max-w-sm text-xl font-bold leading-snug text-white sm:text-2xl">Хүн бүр мэдлэг, чадвараа хуваалцана.</h2>
                 <div className="mt-6 space-y-3">
-                  <div className="rounded-2xl border border-white/70 bg-white p-4 shadow-lg shadow-slate-950/10 sm:p-5">
+                  <div className="home-exchange-card rounded-2xl border border-white/70 bg-white p-4 shadow-lg shadow-slate-950/10 sm:p-5">
                     <p className="text-[10px] font-bold uppercase tracking-wider text-indigo-600">Би хуваалцана</p>
                     <p className="mt-1 text-base font-bold text-slate-900">Англи хэл</p>
                     <p className="mt-1 text-xs text-slate-500">Ярианы дадлага, шинэ үгс</p>
@@ -107,7 +107,7 @@ const Home = () => {
                     <p className="mt-1 text-xs text-slate-500">Эхний загвараа бүтээх</p>
                   </div>
                 </div>
-                <div className="mt-5 flex items-center gap-2 text-xs font-medium text-indigo-100">
+                <div className="home-exchange-note mt-5 flex items-center gap-2 text-xs font-medium text-indigo-100">
                   <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden="true" />
                   Хоёр талдаа суралцах боломж
                 </div>
