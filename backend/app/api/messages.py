@@ -10,10 +10,7 @@ from app.core.config import settings
 from app.models import Message, User
 from app.schemas import MessageCreate, MessageOut, UserPublicOut
 from app.api.deps import get_current_user
-<<<<<<< HEAD
-=======
 from app.api.websocket import manager
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
 router = APIRouter(prefix="/messages", tags=["Messages & Media"])
 
@@ -101,11 +98,7 @@ def get_message_history(
     return messages
 
 @router.post("/send", response_model=MessageOut)
-<<<<<<< HEAD
-def send_message_rest(
-=======
 async def send_message_rest(
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     msg_in: MessageCreate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -127,8 +120,6 @@ async def send_message_rest(
     db.add(new_msg)
     db.commit()
     db.refresh(new_msg)
-<<<<<<< HEAD
-=======
     payload = {
         "type": "new_message",
         "message": {
@@ -147,7 +138,6 @@ async def send_message_rest(
     }
     await manager.send_personal_message(payload, msg_in.receiver_id)
     await manager.send_personal_message(payload, current_user.id)
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     return new_msg
 
 @router.post("/upload")
