@@ -57,13 +57,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 border border-violet-400/40 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-              <ArrowRightLeft className="w-4 h-4" />
-            </div>
-            <span className="text-base font-bold text-slate-800 tracking-tight">
-              Skill<span className="bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">Swap</span>
-            </span>
+          <Link to="/" className="flex items-center group">
+            <img
+              src="/logo.jpg"
+              alt="SkillSwap"
+              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform"
+            />
           </Link>
 
           {/* Desktop Links */}
