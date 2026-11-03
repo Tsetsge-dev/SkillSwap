@@ -5,6 +5,8 @@ import {
   Compass,
   Search,
   Bot,
+  MessageSquare,
+  UserRoundCheck,
   LogOut,
   Menu,
   X
@@ -24,6 +26,10 @@ const Navbar = () => {
     { name: 'Хүмүүс', path: '/explore', icon: Search },
     { name: 'Сонирхлоо тодорхойлох', path: '/assessment', icon: Compass },
     { name: 'Чадварын туслах', path: '/chatbot', icon: Bot, highlight: true },
+    ...(isAuthenticated ? [
+      { name: 'Хүсэлтүүд', path: '/requests', icon: UserRoundCheck },
+      { name: 'Зурвас', path: '/chat', icon: MessageSquare },
+    ] : []),
   ];
 
   const handleLogout = () => {
@@ -42,7 +48,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <div className="hidden xl:flex items-center gap-1 xl:gap-2">
             {navLinks.map((link) => {
               const Icon = link.icon;
               const isActive = location.pathname === link.path;
@@ -69,7 +75,7 @@ const Navbar = () => {
           </div>
 
           {/* Right Section */}
-          <div className="hidden lg:flex items-center gap-2.5 xl:gap-4">
+          <div className="hidden xl:flex items-center gap-2.5 xl:gap-4">
             <LanguageSwitcher compact />
             {isAuthenticated ? (
               <div className="flex items-center gap-2">
@@ -111,7 +117,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="xl:hidden flex items-center gap-2">
             <LanguageSwitcher compact />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -125,7 +131,7 @@ const Navbar = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden rounded-3xl border-t border-white/70 bg-white/90 px-4 py-3 shadow-inner backdrop-blur-xl space-y-1">
+        <div className="xl:hidden rounded-3xl border-t border-white/70 bg-white/90 px-4 py-3 shadow-inner backdrop-blur-xl space-y-1">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = location.pathname === link.path;
