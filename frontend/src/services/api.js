@@ -60,15 +60,12 @@ export const skillsAPI = {
 export const matchesAPI = {
   explore: (params) => api.get('/matches/explore', { params }),
   getRecommendations: () => api.get('/matches/recommendations'),
-<<<<<<< HEAD
   getSurveyOptions: () => api.get('/matches/survey-options'),
   getSkillRecommendations: (answers) => api.post('/matches/skill-recommendations', answers),
-=======
 };
 
 export const assessmentAPI = {
   recommend: (answers) => api.post('/assessment/recommendations', { answers }),
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 };
 
 export const requestsAPI = {
@@ -103,17 +100,12 @@ export const sessionsAPI = {
   leaveReview: (data) => api.post('/sessions/review', data),
 };
 
-<<<<<<< HEAD
-export const chatbotAPI = {
-  sendMessage: (message, history = []) => api.post('/chatbot/message', { message, history }),
-=======
 export const callsAPI = {
   getIceServers: () => api.get('/calls/ice-servers'),
 };
 
 export const chatbotAPI = {
   sendMessage: (message, history = []) => api.post('/chatbot/message', { message, history }, { timeout: 35000 }),
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 };
 
 export default api;
