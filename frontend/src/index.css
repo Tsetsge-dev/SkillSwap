@@ -1502,7 +1502,7 @@ body [class~="bg-white/15"] { background-color:rgba(255,255,255,.15) !important;
 }
 .home-liquid-nav {
   border: 1px solid rgba(255, 255, 255, .94);
-  background: rgba(255, 255, 255, .76);
+  background: rgba(255, 255, 255, .54);
   box-shadow: 0 12px 34px -26px rgba(36, 59, 99, .38), inset 0 1px 0 rgba(255, 255, 255, .98);
   -webkit-backdrop-filter: blur(26px) saturate(155%);
   backdrop-filter: blur(26px) saturate(155%);
