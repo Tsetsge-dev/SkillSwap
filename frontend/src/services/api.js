@@ -105,7 +105,7 @@ export const callsAPI = {
 };
 
 export const chatbotAPI = {
-  sendMessage: (message, history = []) => api.post('/chatbot/message', { message, history }, { timeout: 35000 }),
+  sendMessage: (message, history = [], language = 'mn') => api.post('/chatbot/message', { message, history, language }, { timeout: 35000 }),
 };
 
 export default api;
