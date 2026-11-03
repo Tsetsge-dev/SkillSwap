@@ -7,10 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-<<<<<<< HEAD
-=======
     "test": "node --test",
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     "preview": "vite preview"
   },
   "dependencies": {
