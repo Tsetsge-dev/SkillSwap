@@ -2,7 +2,8 @@
 
 from app.core.database import SessionLocal
 from app.core.security import get_password_hash
-from app.models import User, UserSkillOffered, UserSkillWanted
+from app.models import MatchRequest, Message, User, UserSkillOffered, UserSkillWanted
+from sqlalchemy import and_, or_
 
 
 DEMO_PASSWORD = "password123"
@@ -76,17 +77,23 @@ DEMO_PROFILES = [
 
 
 def ensure_demo_accounts() -> int:
-    """Insert missing demo users and their skills; never edit existing users."""
+    """Insert missing demo users and idempotent sample requests/chats."""
     db = SessionLocal()
     created = 0
+    demo_users = []
+    password_hash = None
     try:
         for profile in DEMO_PROFILES:
-            if db.query(User.id).filter(User.email == profile["email"]).first():
+            user = db.query(User).filter(User.email == profile["email"]).first()
+            if user:
+                demo_users.append(user)
                 continue
 
+            if password_hash is None:
+                password_hash = get_password_hash(DEMO_PASSWORD)
             user = User(
                 email=profile["email"],
-                hashed_password=get_password_hash(DEMO_PASSWORD),
+                hashed_password=password_hash,
                 full_name=profile["full_name"],
                 headline=profile["headline"],
                 bio=profile["bio"],
@@ -114,6 +121,67 @@ def ensure_demo_accounts() -> int:
                     goals="Demo learning goal.",
                 ))
             created += 1
+            demo_users.append(user)
+
+        # A pending request ring makes both incoming and sent-request views useful
+        # from every demo login. Insert only when no request exists either way.
+        for index, sender in enumerate(demo_users):
+            receiver = demo_users[(index + 1) % len(demo_users)]
+            pair_filter = or_(
+                and_(MatchRequest.sender_id == sender.id, MatchRequest.receiver_id == receiver.id),
+                and_(MatchRequest.sender_id == receiver.id, MatchRequest.receiver_id == sender.id),
+            )
+            if not db.query(MatchRequest.id).filter(pair_filter).first():
+                db.add(MatchRequest(
+                    sender_id=sender.id,
+                    receiver_id=receiver.id,
+                    offered_skill_name=sender.skills_offered[0].skill_name if sender.skills_offered else "Skill exchange",
+                    wanted_skill_name=receiver.skills_offered[0].skill_name if receiver.skills_offered else "New skill",
+                    message="Hi! I can share what I know about this skill. Would you like to exchange lessons?",
+                    status="pending",
+                ))
+
+        # Add four accepted connections, plus one two-way sample conversation
+        # for each pair, so the Requests and Chat pages have realistic content.
+        half = len(demo_users) // 2
+        for index in range(half):
+            first = demo_users[index]
+            second = demo_users[index + half]
+            pair_filter = or_(
+                and_(MatchRequest.sender_id == first.id, MatchRequest.receiver_id == second.id),
+                and_(MatchRequest.sender_id == second.id, MatchRequest.receiver_id == first.id),
+            )
+            if not db.query(MatchRequest.id).filter(pair_filter).first():
+                db.add(MatchRequest(
+                    sender_id=first.id,
+                    receiver_id=second.id,
+                    offered_skill_name=first.skills_offered[0].skill_name if first.skills_offered else "Skill exchange",
+                    wanted_skill_name=second.skills_offered[0].skill_name if second.skills_offered else "New skill",
+                    message="Hello! Your profile looks like a great skill exchange match.",
+                    status="accepted",
+                ))
+
+            messages_filter = or_(
+                and_(Message.sender_id == first.id, Message.receiver_id == second.id),
+                and_(Message.sender_id == second.id, Message.receiver_id == first.id),
+            )
+            if not db.query(Message.id).filter(messages_filter).first():
+                db.add_all([
+                    Message(
+                        sender_id=first.id,
+                        receiver_id=second.id,
+                        content=f"Hi {second.full_name.split()[0]}! I would be happy to teach {first.skills_offered[0].skill_name if first.skills_offered else 'a skill'}.",
+                        msg_type="text",
+                        is_read=False,
+                    ),
+                    Message(
+                        sender_id=second.id,
+                        receiver_id=first.id,
+                        content=f"Thanks! I can help you learn {second.skills_offered[0].skill_name if second.skills_offered else 'a skill'}. Let's plan a session.",
+                        msg_type="text",
+                        is_read=False,
+                    ),
+                ])
 
         db.commit()
         return created
