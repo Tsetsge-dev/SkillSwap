@@ -207,6 +207,7 @@ class ReviewCreate(BaseModel):
 class ChatbotMessageRequest(BaseModel):
     message: str = Field(..., min_length=1, max_length=2000)
     history: Optional[List[dict]] = Field(default_factory=list, max_length=8)
+    language: Optional[str] = Field(default="mn", pattern="^(mn|en)$")
 
 class ChatbotActionRecommendation(BaseModel):
     user_id: int
