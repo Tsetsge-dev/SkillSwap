@@ -186,6 +186,32 @@ const Home = () => {
           </div>
         </section>
 
+        <section id="how-it-works" className="max-w-5xl mx-auto px-4 w-full">
+          <div className="rounded-3xl border border-violet-100 bg-gradient-to-br from-white via-violet-50/70 to-sky-50/70 p-6 sm:p-9 shadow-sm">
+            <div className="max-w-2xl mx-auto text-center mb-7">
+              <p className="text-[10px] font-extrabold tracking-[0.18em] text-violet-600">ЭНГИЙН 3 АЛХАМ</p>
+              <h2 className="mt-2 text-xl sm:text-2xl font-black text-slate-800">SkillSwap хэрхэн ажилладаг вэ?</h2>
+              <p className="mt-2 text-xs sm:text-sm text-slate-500">Мэдлэгээ хуваалцаад, хүссэн чадвараа түнштэйгээ хамт сураарай.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {[
+                { number: '01', title: 'Профайлаа бүрдүүл', description: 'Заах чадвар болон сурахыг хүссэн чадвараа нэм.' },
+                { number: '02', title: 'Түншээ сонго', description: 'Хайлт, зөвлөмжөөр тохирох хүнээ олоод санал илгээ.' },
+                { number: '03', title: 'Хамтдаа суралц', description: 'Чат эсвэл видео уулзалтаар цагаа товлоод чадвараа солилц.' },
+              ].map((step) => (
+                <article key={step.number} className="rounded-2xl border border-white bg-white/85 p-4 sm:p-5 shadow-sm">
+                  <span className="inline-flex w-9 h-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-100 to-sky-100 text-xs font-black text-violet-700">{step.number}</span>
+                  <h3 className="mt-3 text-sm font-extrabold text-slate-800">{step.title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-500">{step.description}</p>
+                </article>
+              ))}
+            </div>
+            <div className="mt-6 flex justify-center">
+              <Link to="/explore" className="rounded-xl bg-violet-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-violet-700">Хүн хайж эхлэх</Link>
+            </div>
+          </div>
+        </section>
+
         {/* Recommended Partners */}
         <section className="max-w-5xl mx-auto px-4">
           <div className="flex items-center justify-between mb-6">

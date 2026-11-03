@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRightLeft, UserPlus, Mail, Lock, User } from 'lucide-react';
+import { UserPlus, Mail, Lock, User } from 'lucide-react';
 import { authAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import BrandLogo from '../components/BrandLogo';
 
 const Register = () => {
   const { login } = useAuth();
@@ -42,14 +43,7 @@ const Register = () => {
       <div className="w-full max-w-sm space-y-6">
 
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 border border-violet-400/40 flex items-center justify-center text-white shadow-md">
-              <ArrowRightLeft className="w-4.5 h-4.5" />
-            </div>
-            <span className="text-lg font-bold text-slate-800 tracking-tight">
-              Skill<span className="bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">Swap</span>
-            </span>
-          </div>
+          <BrandLogo className="h-16 w-auto max-w-[230px] mx-auto mb-3 rounded-xl bg-white px-2 py-1 shadow-sm" />
           <h1 className="text-xl font-bold text-slate-800">Бүртгүүлэх</h1>
           <p className="text-xs text-slate-500 mt-1">Чадвар солилцоонд нэгдээрэй</p>
         </div>
@@ -62,10 +56,10 @@ const Register = () => {
           )}
 
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-slate-600">Бүтэн нэр</label>
+            <label htmlFor="register-full-name" className="text-xs font-semibold text-slate-600">Овог, нэр</label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
-              <input type="text" name="full_name" value={form.full_name} onChange={handleChange} placeholder="Таны нэр" required
+              <input id="register-full-name" type="text" name="full_name" value={form.full_name} onChange={handleChange} placeholder="Овог, нэрээ оруулна уу" autoComplete="name" maxLength={100} required
                 className="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-700 placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:ring-2 focus:ring-violet-100" />
             </div>
           </div>

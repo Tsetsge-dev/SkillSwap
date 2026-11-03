@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
-  ArrowRightLeft,
   Search,
   Sparkles,
   Bot,
@@ -16,6 +15,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { requestsAPI } from '../services/api';
 import LanguageSwitcher from './LanguageSwitcher';
+import BrandLogo from './BrandLogo';
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -59,11 +59,7 @@ const Navbar = () => {
           
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <img
-              src="/logo.jpg"
-              alt="SkillSwap"
-              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform"
-            />
+            <BrandLogo className="h-10 sm:h-11 w-auto max-w-[150px] group-hover:scale-105 transition-transform" />
           </Link>
 
           {/* Desktop Links */}

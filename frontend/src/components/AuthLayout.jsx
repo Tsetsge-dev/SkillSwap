@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRightLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import BrandLogo from './BrandLogo';
 
 const AuthLayout = ({ children, mode }) => (
   <section className="auth-page">
@@ -9,8 +9,7 @@ const AuthLayout = ({ children, mode }) => (
     <div className="auth-layout">
       <main className={`auth-card auth-card-${mode}`}>
         <Link to="/" className="auth-brand auth-brand-card" aria-label="SkillSwap нүүр хуудас">
-          <span className="auth-brand-mark"><ArrowRightLeft size={18} strokeWidth={2.5} /></span>
-          <span>Skill<span>Swap</span></span>
+          <BrandLogo className="h-14 w-auto max-w-[210px] rounded-lg bg-white p-1" />
         </Link>
         {children}
         <p className="auth-card-foot">SkillSwap-д нэгдэж, мэдлэг чадвараа бусадтай хуваалцаарай.</p>

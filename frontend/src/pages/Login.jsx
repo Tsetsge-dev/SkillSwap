@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRightLeft, LogIn, Mail, Lock, Zap } from 'lucide-react';
+import { LogIn, Mail, Lock, Zap } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import BrandLogo from '../components/BrandLogo';
 
 const DEMO_ACCOUNTS = [
   { name: 'Билгүүн', role: 'Python хөгжүүлэгч', email: 'alex.chen@skillswap.io' },
@@ -52,14 +53,7 @@ const Login = () => {
 
         {/* Logo */}
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 border border-violet-400/40 flex items-center justify-center text-white shadow-md">
-              <ArrowRightLeft className="w-4.5 h-4.5" />
-            </div>
-            <span className="text-lg font-bold text-slate-800 tracking-tight">
-              Skill<span className="bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">Swap</span>
-            </span>
-          </div>
+          <BrandLogo className="h-16 w-auto max-w-[230px] mx-auto mb-3 rounded-xl bg-white px-2 py-1 shadow-sm" />
           <h1 className="text-xl font-bold text-slate-800">Нэвтрэх</h1>
           <p className="text-xs text-slate-500 mt-1">Чадвар солилцооны платформд тавтай морил</p>
         </div>

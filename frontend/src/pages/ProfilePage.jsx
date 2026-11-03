@@ -127,8 +127,8 @@ const ProfilePage = () => {
       <div className="glass-panel rounded-2xl p-5 space-y-3">
         <h2 className="text-sm font-bold text-slate-800 flex items-center gap-2"><User className="w-4 h-4 text-emerald-600" /> Ерөнхий мэдээлэл</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Нэр</label>
-            <input type="text" value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} placeholder="Бүтэн нэр" className={inputClass} /></div>
+          <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Овог, нэр</label>
+            <input type="text" value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} placeholder="Овог, нэрээ оруулна уу" autoComplete="name" maxLength={100} className={inputClass} /></div>
           <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Гарчиг</label>
             <input type="text" value={form.headline} onChange={(e) => setForm({...form, headline: e.target.value})} placeholder="ж нь: Python хөгжүүлэгч" className={inputClass} /></div>
         </div>
