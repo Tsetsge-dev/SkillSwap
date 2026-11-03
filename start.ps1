@@ -15,14 +15,14 @@ Write-Host ""
 $backendJob = Start-Job -ArgumentList $backendDir -ScriptBlock {
     param($dir)
     Set-Location $dir
-    $python = Join-Path $dir "venv\Scripts\python.exe"
+    $python = Join-Path $dir ".venv\Scripts\python.exe"
     if (-not (Test-Path $python)) {
         $python = "python"
     }
-    & $python -m uvicorn app.main:app --reload --port 8000 2>&1
+    & $python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8001 2>&1
 }
 
-Write-Host "  [1/2] Backend server is running (port 8000)..." -ForegroundColor Cyan
+Write-Host "  [1/2] Backend server is running (port 8001)..." -ForegroundColor Cyan
 
 # Brief pause
 Start-Sleep -Seconds 3
@@ -38,7 +38,7 @@ Write-Host "  [2/2] Frontend server is running (port 5173)..." -ForegroundColor 
 Write-Host ""
 Write-Host "  ============================================" -ForegroundColor DarkGray
 Write-Host "  Web App:   http://localhost:5173" -ForegroundColor Yellow
-Write-Host "  API Docs:  http://localhost:8000/docs" -ForegroundColor Yellow
+Write-Host "  API Docs:  http://localhost:8001/docs" -ForegroundColor Yellow
 Write-Host "  ============================================" -ForegroundColor DarkGray
 Write-Host ""
 Write-Host "  To stop: Press Ctrl+C and type 'Y'" -ForegroundColor DarkGray

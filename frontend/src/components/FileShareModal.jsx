@@ -47,8 +47,13 @@ const FileShareModal = ({ isOpen, onClose, onFileSent }) => {
       });
       onClose();
     } catch (err) {
+<<<<<<< HEAD
       console.error('File upload error:', err);
       setError('Failed to upload file. Please try again.');
+=======
+      console.error('Файл илгээх үед алдаа гарлаа:', err);
+      setError('Файл илгээж чадсангүй. Дахин оролдоно уу.');
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     } finally {
       setUploading(false);
     }
@@ -70,9 +75,15 @@ const FileShareModal = ({ isOpen, onClose, onFileSent }) => {
           <X className="w-5 h-5" />
         </button>
 
+<<<<<<< HEAD
         <h3 className="text-xl font-bold text-slate-800 mb-1">Share File or Photo</h3>
         <p className="text-xs text-slate-500 mb-5">
           Send learning materials, cheatsheets, screenshots, or code files.
+=======
+        <h3 className="text-xl font-bold text-slate-800 mb-1">Файл эсвэл зураг илгээх</h3>
+        <p className="text-xs text-slate-500 mb-5">
+          Сургалтын материал, тэмдэглэл, screenshot эсвэл кодын файл илгээнэ үү.
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         </p>
 
         {error && (
@@ -96,10 +107,17 @@ const FileShareModal = ({ isOpen, onClose, onFileSent }) => {
           />
           <UploadCloud className="w-10 h-10 text-slate-400 group-hover:text-violet-500 mx-auto mb-3 transition-colors" />
           <p className="text-sm font-semibold text-slate-700 mb-1">
+<<<<<<< HEAD
             Click to browse or drag & drop
           </p>
           <p className="text-[11px] text-slate-400">
             Supports PNG, JPG, PDF, ZIP, code files up to 25MB
+=======
+            Файл сонгох эсвэл энд чирж тавих
+          </p>
+          <p className="text-[11px] text-slate-400">
+            PNG, JPG, PDF, ZIP болон кодын файлыг 25MB хүртэл дэмжинэ
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           </p>
         </div>
 
@@ -123,7 +141,11 @@ const FileShareModal = ({ isOpen, onClose, onFileSent }) => {
               }}
               className="text-slate-400 hover:text-red-500 text-xs font-semibold"
             >
+<<<<<<< HEAD
               Remove
+=======
+              Устгах
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             </button>
           </div>
         )}
@@ -133,14 +155,22 @@ const FileShareModal = ({ isOpen, onClose, onFileSent }) => {
             onClick={onClose}
             className="flex-1 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-sm transition-all"
           >
+<<<<<<< HEAD
             Cancel
+=======
+            Цуцлах
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           </button>
           <button
             onClick={handleUpload}
             disabled={!file || uploading}
             className="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm transition-all disabled:opacity-50 shadow-md glow-emerald cursor-pointer"
           >
+<<<<<<< HEAD
             {uploading ? 'Uploading...' : 'Send File'}
+=======
+            {uploading ? 'Илгээж байна...' : 'Файл илгээх'}
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           </button>
         </div>
       </div>

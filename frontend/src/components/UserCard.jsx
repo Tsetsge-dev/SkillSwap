@@ -1,17 +1,38 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { Link, useNavigate } from 'react-router-dom';
 import { Star, MapPin, ArrowRightLeft, Sparkles, UserCheck, Lock } from 'lucide-react';
+=======
+import { Link } from 'react-router-dom';
+import { ArrowRightLeft, UserCheck, Lock } from 'lucide-react';
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 import { useAuth } from '../context/AuthContext';
 import SkillBadge from './SkillBadge';
 import AuthPromptModal from './AuthPromptModal';
 
 const UserCard = ({ user, onRequestSwap, isConnected = false }) => {
+<<<<<<< HEAD
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authActionMessage, setAuthActionMessage] = useState('');
 
   const score = user.compatibility_score;
+=======
+  const { user: currentUser, isAuthenticated } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authActionMessage, setAuthActionMessage] = useState('');
+
+  const hasMemberSkills = Boolean(user.skills_offered?.length || user.skills_wanted?.length);
+  const hasCurrentUserSkills = Boolean(currentUser?.skills_offered?.length || currentUser?.skills_wanted?.length);
+  const score = isAuthenticated && hasMemberSkills && hasCurrentUserSkills
+    ? user.compatibility_score
+    : null;
+  const headline = user.headline === 'Eager to teach & learn'
+    ? 'Чадвараа хуваалцаж, шинэ зүйл сурахад бэлэн'
+    : user.headline || 'SkillSwap гишүүн';
+  const isDemoProfile = headline.startsWith('Жишээ профайл');
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
   const handleProtectedClick = (e, actionType) => {
     if (!isAuthenticated) {
@@ -72,14 +93,24 @@ const UserCard = ({ user, onRequestSwap, isConnected = false }) => {
                   </h3>
                 </Link>
                 <p className="text-xs text-slate-500 line-clamp-1">
+<<<<<<< HEAD
                   {user.headline || 'SkillSwap гишүүн'}
                 </p>
+=======
+                  {headline}
+                </p>
+                {isDemoProfile && <span className="mt-1 inline-flex rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-900">Жишээ профайл · хүсэлт туршиж болно</span>}
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
               </div>
             </div>
 
             {score !== undefined && score !== null && (
               <div className="px-2.5 py-1 rounded-lg text-xs font-bold bg-violet-100 text-violet-700 border border-violet-200 shrink-0">
+<<<<<<< HEAD
                 {score}% match
+=======
+                {score}% тохироо
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
               </div>
             )}
           </div>
@@ -102,7 +133,11 @@ const UserCard = ({ user, onRequestSwap, isConnected = false }) => {
                     />
                   ))
                 ) : (
+<<<<<<< HEAD
                   <span className="text-xs text-slate-400 italic">Оруулаагүй</span>
+=======
+                  <span className="text-xs text-slate-400 italic">Мэдээлэл оруулаагүй</span>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                 )}
               </div>
             </div>
@@ -123,7 +158,11 @@ const UserCard = ({ user, onRequestSwap, isConnected = false }) => {
                     />
                   ))
                 ) : (
+<<<<<<< HEAD
                   <span className="text-xs text-slate-400 italic">Оруулаагүй</span>
+=======
+                  <span className="text-xs text-slate-400 italic">Мэдээлэл оруулаагүй</span>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                 )}
               </div>
             </div>
@@ -151,10 +190,17 @@ const UserCard = ({ user, onRequestSwap, isConnected = false }) => {
 
           <button
             onClick={handleSwapClick}
+<<<<<<< HEAD
             className="flex-1 py-2 text-center text-xs font-bold rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
           >
             <ArrowRightLeft className="w-3 h-3" />
             <span>Санал илгээх</span>
+=======
+            className="flex-1 py-2 text-center text-xs font-bold rounded-xl glass-accent  text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
+          >
+            <ArrowRightLeft className="w-3 h-3" />
+            <span>Хүсэлт илгээх</span>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           </button>
         </div>
       </div>

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+import React, { useState } from 'react';
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 import { Calendar, Star, Clock } from 'lucide-react';
 import { sessionsAPI } from '../services/api';
 
@@ -7,7 +11,11 @@ const SessionsPage = () => {
   const [loading, setLoading] = useState(false);
   const [reviewForm, setReviewForm] = useState({ sessionId: null, rating: 5, comment: '' });
 
+<<<<<<< HEAD
   useEffect(() => {
+=======
+  useState(() => {
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     setLoading(true);
     sessionsAPI.getSessions()
       .then((res) => setSessions(res.data))
@@ -18,7 +26,11 @@ const SessionsPage = () => {
   const submitReview = async () => {
     if (!reviewForm.sessionId) return;
     try {
+<<<<<<< HEAD
       await sessionsAPI.leaveReview({
+=======
+      await sessionsAPI.submitReview({
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         session_id: reviewForm.sessionId,
         rating: reviewForm.rating,
         comment: reviewForm.comment
@@ -32,6 +44,7 @@ const SessionsPage = () => {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 space-y-5">
       <div>
+<<<<<<< HEAD
         <h1 className="text-xl font-bold text-slate-800">Хичээлийн хуваарь</h1>
         <p className="text-xs text-slate-500">Төлөвлөсөн 1-on-1 хичээлүүд болон үнэлгээ</p>
       </div>
@@ -43,6 +56,19 @@ const SessionsPage = () => {
           <Calendar className="w-8 h-8 text-slate-500 mx-auto mb-3" />
           <p className="text-xs text-slate-500">Одоогоор төлөвлөсөн хичээл байхгүй.</p>
           <p className="text-[11px] text-slate-500 mt-1">Найзуудтайгаа холбогдоод хичээл товлоорой!</p>
+=======
+        <h1 className="text-xl font-bold text-slate-800">Суралцах уулзалтын хуваарь</h1>
+        <p className="text-xs text-slate-500">Товлосон уулзалтуудаа харах, дууссан уулзалтад үнэлгээ өгөх.</p>
+      </div>
+
+      {loading ? (
+        <div className="text-center py-16 text-xs text-slate-500">Хуваарийг ачаалж байна…</div>
+      ) : sessions.length === 0 ? (
+        <div className="glass-panel rounded-2xl p-8 text-center">
+          <Calendar className="w-8 h-8 text-slate-500 mx-auto mb-3" />
+          <p className="text-xs text-slate-500">Одоогоор товлосон уулзалт алга.</p>
+          <p className="text-[11px] text-slate-500 mt-1">Холбоо тогтоосон хүнтэйгээ суралцах уулзалт товлоорой.</p>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         </div>
       ) : (
         <div className="space-y-3">

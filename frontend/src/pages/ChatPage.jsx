@@ -12,7 +12,11 @@ const ChatPage = () => {
   const { partnerId } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
+<<<<<<< HEAD
   const { socket, isConnected, sendChatMessage, sendTyping, isUserOnline, subscribe } = useSocket();
+=======
+  const { isConnected, isUserOnline, subscribe } = useSocket();
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
   const [conversations, setConversations] = useState([]);
   const [selectedPartner, setSelectedPartner] = useState(partnerId ? parseInt(partnerId) : null);
@@ -24,6 +28,10 @@ const ChatPage = () => {
   const [showVideo, setShowVideo] = useState(false);
   const [showSidebar, setShowSidebar] = useState(!partnerId);
   const [sending, setSending] = useState(false);
+<<<<<<< HEAD
+=======
+  const [messageError, setMessageError] = useState('');
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
   const messagesEndRef = useRef(null);
 
@@ -59,7 +67,20 @@ const ChatPage = () => {
       ) {
         setMessages((prev) => {
           if (prev.some((m) => m.id === newMsg.id)) return prev;
+<<<<<<< HEAD
           return [...prev, newMsg];
+=======
+          let pendingIndex = -1;
+          for (let i = prev.length - 1; i >= 0; i -= 1) {
+            const item = prev[i];
+            if (item.pending && item.sender_id === newMsg.sender_id && item.receiver_id === newMsg.receiver_id && item.content === newMsg.content && item.msg_type === newMsg.msg_type) {
+              pendingIndex = i;
+              break;
+            }
+          }
+          if (pendingIndex < 0) return [...prev, newMsg];
+          return prev.map((item, index) => index === pendingIndex ? newMsg : item);
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         });
       }
       // Update sidebar last message
@@ -158,6 +179,7 @@ const ChatPage = () => {
       content,
       msg_type: 'text',
       created_at: new Date().toISOString(),
+<<<<<<< HEAD
     };
 
     // Optimistic UI update
@@ -176,12 +198,37 @@ const ChatPage = () => {
       }
     } catch (err) {
       console.error('Error sending message:', err);
+=======
+      pending: true,
+    };
+
+    setMessageError('');
+    setMessages((prev) => [...prev, tempMsg]);
+
+    try {
+      const response = await messagesAPI.sendMessage({
+        receiver_id: selectedPartner,
+        content,
+        msg_type: 'text',
+      });
+      const savedMessage = response.data;
+      setMessages((prev) => prev.map((item) => item.id === tempMsg.id ? savedMessage : item));
+    } catch (err) {
+      console.error('Error sending message:', err);
+      setMessages((prev) => prev.filter((item) => item.id !== tempMsg.id));
+      const detail = err?.response?.data?.detail;
+      setMessageError(typeof detail === 'string' ? detail : 'Зурвас илгээж чадсангүй. Холболтоо шалгаад дахин оролдоно уу.');
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     } finally {
       setSending(false);
     }
   };
 
+<<<<<<< HEAD
   const handleMediaSent = (mediaMsg) => {
+=======
+  const handleMediaSent = async (mediaMsg) => {
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     const tempMsg = {
       id: Date.now(),
       sender_id: user.id,
@@ -193,6 +240,7 @@ const ChatPage = () => {
       file_size: mediaMsg.file_size,
       audio_duration: mediaMsg.audio_duration,
       created_at: new Date().toISOString(),
+<<<<<<< HEAD
     };
 
     setMessages((prev) => [...prev, tempMsg]);
@@ -204,6 +252,30 @@ const ChatPage = () => {
       file_size: mediaMsg.file_size,
       audio_duration: mediaMsg.audio_duration,
     });
+=======
+      pending: true,
+    };
+
+    setMessageError('');
+    setMessages((prev) => [...prev, tempMsg]);
+    try {
+      const response = await messagesAPI.sendMessage({
+        receiver_id: selectedPartner,
+        content: mediaMsg.content || '',
+        msg_type: mediaMsg.msg_type,
+        file_url: mediaMsg.file_url,
+        file_name: mediaMsg.file_name,
+        file_size: mediaMsg.file_size,
+        audio_duration: mediaMsg.audio_duration,
+      });
+      setMessages((prev) => prev.map((item) => item.id === tempMsg.id ? response.data : item));
+    } catch (err) {
+      console.error('Error sending media message:', err);
+      setMessages((prev) => prev.filter((item) => item.id !== tempMsg.id));
+      const detail = err?.response?.data?.detail;
+      setMessageError(typeof detail === 'string' ? detail : 'Файлтай зурвас илгээгдсэнгүй. Дахин оролдоно уу.');
+    }
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
   };
 
   const renderMessage = (msg) => {
@@ -215,7 +287,11 @@ const ChatPage = () => {
         <div
           className={`max-w-[80%] sm:max-w-[70%] p-3.5 rounded-2xl text-xs leading-relaxed shadow-sm ${
             isMine
+<<<<<<< HEAD
               ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-br-none'
+=======
+              ? 'glass-accent text-white rounded-br-none'
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
               : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none'
           }`}
         >
@@ -262,21 +338,36 @@ const ChatPage = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="max-w-6xl mx-auto px-4 py-4 h-[calc(100vh-5.5rem)] flex gap-4 animate-fade-in">
+=======
+    <div className="max-w-6xl mx-auto px-4 py-4 h-[calc(100dvh-8rem)] min-h-[26rem] flex gap-4 animate-fade-in">
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
       {/* Sidebar: Conversation List */}
       <div
         className={`${
           showSidebar || !selectedPartner ? 'flex' : 'hidden'
+<<<<<<< HEAD
         } md:flex flex-col w-full md:w-80 shrink-0 glass-panel rounded-2xl overflow-hidden border border-slate-200`}
       >
         <div className="p-4 border-b border-slate-100 bg-slate-50/50">
           <h2 className="text-sm font-bold text-slate-800">Зурвасууд & Яриа</h2>
+=======
+        } md:flex min-h-0 flex-col w-full md:w-80 shrink-0 glass-panel rounded-2xl overflow-hidden border border-slate-200`}
+      >
+        <div className="p-4 border-b border-slate-100 bg-slate-50/50">
+          <h2 className="text-sm font-bold text-slate-800">Зурвасууд</h2>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         </div>
 
         <div className="flex-1 overflow-y-auto divide-y divide-slate-100">
           {conversations.length === 0 ? (
             <div className="p-6 text-xs text-slate-400 text-center space-y-2">
+<<<<<<< HEAD
               <p>Одоогоор идэвхтэй яриа байхгүй байна.</p>
+=======
+              <p>Энэ хүнтэй одоогоор зурвас солилцоогүй байна.</p>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
               <Link to="/explore" className="text-violet-600 font-bold hover:underline block pt-2">
                 Найз хайх →
               </Link>
@@ -297,7 +388,11 @@ const ChatPage = () => {
                     navigate(`/chat/${pid}`, { replace: true });
                   }}
                   className={`w-full flex items-center gap-3 p-3.5 transition-colors cursor-pointer text-left ${
+<<<<<<< HEAD
                     isSelected ? 'bg-violet-50/90 border-l-3 border-violet-600' : 'hover:bg-slate-50'
+=======
+                    isSelected ? 'bg-violet-50/90 border-l-4 border-violet-600' : 'hover:bg-slate-50'
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                   }`}
                 >
                   <div className="relative shrink-0">
@@ -341,7 +436,11 @@ const ChatPage = () => {
       <div
         className={`${
           !showSidebar || selectedPartner ? 'flex' : 'hidden'
+<<<<<<< HEAD
         } md:flex flex-1 flex-col glass-panel rounded-2xl overflow-hidden border border-slate-200`}
+=======
+        } md:flex min-h-0 min-w-0 flex-1 flex-col glass-panel rounded-2xl overflow-hidden border border-slate-200`}
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
       >
         {selectedPartner && partnerInfo ? (
           <>
@@ -386,7 +485,11 @@ const ChatPage = () => {
                 <button
                   onClick={() => setShowVideo(true)}
                   className="p-2 rounded-xl bg-slate-100 hover:bg-violet-50 text-slate-600 hover:text-violet-700 transition-colors cursor-pointer"
+<<<<<<< HEAD
                   title="1-on-1 Видео дуудлага"
+=======
+                  title="Видео дуудлага эхлүүлэх"
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                 >
                   <Video className="w-4 h-4" />
                 </button>
@@ -394,11 +497,19 @@ const ChatPage = () => {
             </div>
 
             {/* Message List */}
+<<<<<<< HEAD
             <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50/30">
               {messages.length === 0 ? (
                 <div className="text-center py-16 text-xs text-slate-400 space-y-1">
                   <p className="font-semibold text-slate-600">Яриа эхлээгүй байна</p>
                   <p>Эхний мэндчилгээгээ бичиж чадвар солилцоогоо эхлүүлээрэй! 👋</p>
+=======
+            <div className="min-h-0 flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50/30">
+              {messages.length === 0 ? (
+                <div className="text-center py-16 text-xs text-slate-400 space-y-1">
+                  <p className="font-semibold text-slate-600">Яриа эхлээгүй байна</p>
+                  <p>Эхний зурвасаа бичиж, чадвар солилцох яриагаа эхлүүлээрэй. 👋</p>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                 </div>
               ) : (
                 messages.map(renderMessage)
@@ -407,7 +518,14 @@ const ChatPage = () => {
             </div>
 
             {/* Input Bar */}
+<<<<<<< HEAD
             <div className="p-3 bg-white border-t border-slate-100 flex items-center gap-2">
+=======
+            <div className="border-t border-slate-100 bg-white p-3">
+              {messageError && <p role="alert" className="mb-2 px-1 text-xs text-red-600">{messageError}</p>}
+              {!isConnected && <p className="mb-2 px-1 text-xs text-amber-700">Шууд холболт тасарсан байна. Зурвас серверээр дамжин илгээгдэнэ.</p>}
+              <div className="flex items-center gap-2">
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
               <button
                 onClick={() => setShowFiles(true)}
                 className="p-2 rounded-xl text-slate-400 hover:text-violet-600 hover:bg-violet-50 cursor-pointer transition-colors"
@@ -427,18 +545,32 @@ const ChatPage = () => {
                 <input
                   type="text"
                   value={input}
+<<<<<<< HEAD
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Зурвас бичих..."
                   className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-200"
+=======
+                  onChange={(e) => { setInput(e.target.value); setMessageError(''); }}
+                  placeholder="Зурвас бичих..."
+                  className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-200"
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || sending}
+<<<<<<< HEAD
                   className="p-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white rounded-xl disabled:opacity-40 cursor-pointer shadow-md transition-all shrink-0"
+=======
+                  className="p-2.5 glass-accent  text-white rounded-xl disabled:opacity-40 cursor-pointer shadow-md transition-all shrink-0"
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                 >
                   <Send className="w-4 h-4" />
                 </button>
               </form>
+<<<<<<< HEAD
+=======
+              </div>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             </div>
           </>
         ) : (
@@ -447,7 +579,11 @@ const ChatPage = () => {
               💬
             </div>
             <p className="font-semibold text-slate-700">Зурвас бичих хэрэглэгчээ сонгоно уу</p>
+<<<<<<< HEAD
             <p>Зүүн талын жагсаалтаас сонгох эсвэл Explore хуудаснаас чадвар солилцох хүнээ сонгоно уу.</p>
+=======
+            <p>Зүүн талын жагсаалтаас хүн сонгох эсвэл “Хүмүүс” хэсгээс тохирох хүнээ хайгаарай.</p>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           </div>
         )}
       </div>

@@ -1,6 +1,13 @@
 import os
+<<<<<<< HEAD
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+=======
+from pathlib import Path
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 from fastapi.staticfiles import StaticFiles
 from app.core.config import settings
 from app.core.database import engine, Base
@@ -16,6 +23,11 @@ from app.api.messages import router as messages_router
 from app.api.sessions import router as sessions_router
 from app.api.chatbot import router as chatbot_router
 from app.api.websocket import router as ws_router
+<<<<<<< HEAD
+=======
+from app.api.assessment import router as assessment_router
+from app.api.calls import router as calls_router
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 from app.api.survey_recommendations import router as survey_recommendations_router
 
 # Initialize Database tables
@@ -27,10 +39,19 @@ app = FastAPI(
     description="SkillSwap - AI-Powered Bilateral Skill Exchange & Collaboration Platform"
 )
 
+<<<<<<< HEAD
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+=======
+FRONTEND_DIST = Path(__file__).resolve().parents[1] / "frontend-dist"
+
+# CORS configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.BACKEND_CORS_ORIGINS,
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -48,11 +69,22 @@ app.include_router(requests_router, prefix=settings.API_V1_STR)
 app.include_router(messages_router, prefix=settings.API_V1_STR)
 app.include_router(sessions_router, prefix=settings.API_V1_STR)
 app.include_router(chatbot_router, prefix=settings.API_V1_STR)
+<<<<<<< HEAD
+=======
+app.include_router(assessment_router, prefix=settings.API_V1_STR)
+app.include_router(calls_router, prefix=settings.API_V1_STR)
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 app.include_router(survey_recommendations_router, prefix=settings.API_V1_STR)
 app.include_router(ws_router)
 
 @app.get("/")
 def root():
+<<<<<<< HEAD
+=======
+    frontend_index = FRONTEND_DIST / "index.html"
+    if frontend_index.is_file():
+        return FileResponse(frontend_index)
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     return {
         "status": "online",
         "app": settings.PROJECT_NAME,
@@ -63,3 +95,20 @@ def root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
+<<<<<<< HEAD
+=======
+
+
+# In a Render single-service deployment, the API and built React app share one
+# origin. Local development continues to use Vite on port 5173.
+@app.get("/{frontend_path:path}", include_in_schema=False)
+def frontend_routes(frontend_path: str):
+    index_file = FRONTEND_DIST / "index.html"
+    if not index_file.is_file():
+        return {"detail": "Not Found"}
+
+    requested_file = (FRONTEND_DIST / frontend_path).resolve()
+    if requested_file.is_relative_to(FRONTEND_DIST.resolve()) and requested_file.is_file():
+        return FileResponse(requested_file)
+    return FileResponse(index_file)
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0

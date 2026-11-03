@@ -12,6 +12,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
+<<<<<<< HEAD
         target: 'http://localhost:8000',
         changeOrigin: true
       },
@@ -21,6 +22,17 @@ export default defineConfig({
       },
       '/ws': {
         target: 'ws://localhost:8000',
+=======
+        target: 'http://localhost:8001',
+        changeOrigin: true
+      },
+      '/uploads': {
+        target: 'http://localhost:8001',
+        changeOrigin: true
+      },
+      '/ws': {
+        target: 'ws://localhost:8001',
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         ws: true
       }
     }

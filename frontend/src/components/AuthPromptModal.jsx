@@ -36,10 +36,17 @@ const AuthPromptModal = ({ isOpen, onClose, message }) => {
         </button>
 
         <div className="text-center space-y-2 pt-2">
+<<<<<<< HEAD
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 text-white flex items-center justify-center mx-auto shadow-lg shadow-violet-500/30">
             <Lock className="w-6 h-6" />
           </div>
           <h3 className="text-lg font-extrabold text-slate-800">Системд нэвтэрнэ үү</h3>
+=======
+          <div className="w-12 h-12 rounded-2xl glass-accent text-white flex items-center justify-center mx-auto shadow-lg shadow-violet-500/30">
+            <Lock className="w-6 h-6" />
+          </div>
+          <h3 className="text-lg font-extrabold text-slate-800">SkillSwap-д нэвтэрнэ үү</h3>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           <p className="text-xs text-slate-500 leading-relaxed max-w-sm mx-auto">
             {message || 'Хэрэглэгчийн дэлгэрэнгүй профайл үзэх, чадвар солилцох санал илгээх болон чатлахын тулд та системд нэвтэрсэн байх шаардлагатай.'}
           </p>
@@ -50,7 +57,11 @@ const AuthPromptModal = ({ isOpen, onClose, message }) => {
           <Link
             to="/login"
             onClick={onClose}
+<<<<<<< HEAD
             className="py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md"
+=======
+            className="py-2.5 glass-accent  text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md"
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           >
             <LogIn className="w-3.5 h-3.5" /> Нэвтрэх
           </Link>

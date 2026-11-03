@@ -1,5 +1,9 @@
 from pydantic import BaseModel, EmailStr, Field
+<<<<<<< HEAD
 from typing import List, Optional, Any
+=======
+from typing import List, Optional, Any, Literal
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 from datetime import datetime
 
 # Auth Schemas
@@ -7,8 +11,13 @@ class UserRegister(BaseModel):
     email: EmailStr
     password: str = Field(..., min_length=6)
     full_name: str
+<<<<<<< HEAD
     headline: Optional[str] = "Eager to teach & learn"
     location: Optional[str] = "Remote / Global"
+=======
+    headline: Optional[str] = "Чадвараа хуваалцаж, шинэ зүйл сурахад бэлэн"
+    location: Optional[str] = "Алсын зайнаас"
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     timezone: Optional[str] = "UTC"
 
 class UserLogin(BaseModel):
@@ -204,9 +213,19 @@ class ReviewCreate(BaseModel):
     skill_name: Optional[str] = None
 
 # ChatBot Schemas
+<<<<<<< HEAD
 class ChatbotMessageRequest(BaseModel):
     message: str
     history: Optional[List[dict]] = []
+=======
+class ChatbotHistoryMessage(BaseModel):
+    role: Literal["user", "assistant"]
+    content: str = Field(..., min_length=1, max_length=4000)
+
+class ChatbotMessageRequest(BaseModel):
+    message: str = Field(..., min_length=1, max_length=2000)
+    history: List[ChatbotHistoryMessage] = Field(default_factory=list, max_length=8)
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
 class ChatbotActionRecommendation(BaseModel):
     user_id: int
@@ -227,3 +246,27 @@ class ChatbotMessageResponse(BaseModel):
     recommendations: List[ChatbotActionRecommendation] = []
     intent: str
     powered_by: Optional[str] = "local_ml"
+<<<<<<< HEAD
+=======
+
+# Assessment Recommendation Schemas
+class AssessmentRequest(BaseModel):
+    answers: dict
+
+class AssessmentRecommendation(BaseModel):
+    id: str
+    name: str
+    category: str
+    level: str
+    tags: List[str] = []
+    signals: List[str] = []
+    nextSteps: List[str] = []
+    explanation: str
+    score: int
+    matchedSignals: List[str] = []
+    reasons: List[str] = []
+
+class AssessmentResponse(BaseModel):
+    recommendations: List[AssessmentRecommendation]
+    scoring_note: str
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0

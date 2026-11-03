@@ -19,6 +19,10 @@ def handle_chatbot_interaction(
         db=db,
         current_user=current_user,
         user_message=payload.message,
+<<<<<<< HEAD
         chat_history=payload.history
+=======
+        chat_history=[item.model_dump() for item in payload.history],
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     )
     return result

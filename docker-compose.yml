@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: '3.8'
 
 services:
@@ -17,11 +18,35 @@ services:
       - ./backend/skillswap.db:/app/skillswap.db
     networks:
       - skillswap-network
+=======
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      DATABASE_URL: sqlite:///./skillswap.db
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8002}:8000"
+    volumes:
+      - ./backend/skillswap.db:/app/skillswap.db
+      - ./backend/uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+<<<<<<< HEAD
     container_name: skillswap_frontend
     restart: always
     ports:
@@ -34,3 +59,11 @@ services:
 networks:
   skillswap-network:
     driver: bridge
+=======
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0

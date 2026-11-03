@@ -61,7 +61,11 @@ const UserProfileDetail = () => {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center space-y-3">
         <div className="w-8 h-8 border-3 border-violet-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+<<<<<<< HEAD
         <p className="text-xs text-slate-500 font-medium">Хэрэглэгчийн мэдээллийг ачааллаж байна...</p>
+=======
+        <p className="text-xs text-slate-500 font-medium">Профайлыг ачаалж байна…</p>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
       </div>
     );
   }
@@ -69,6 +73,7 @@ const UserProfileDetail = () => {
   if (!isAuthenticated) {
     return (
       <div className="max-w-md mx-auto px-4 py-16 text-center space-y-5 animate-fade-in">
+<<<<<<< HEAD
         <div className="w-16 h-16 rounded-3xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 text-white flex items-center justify-center mx-auto shadow-xl shadow-violet-500/30">
           <Lock className="w-8 h-8" />
         </div>
@@ -76,13 +81,26 @@ const UserProfileDetail = () => {
           <h2 className="text-lg font-bold text-slate-800">Хэрэглэгчийн профайл үзэхийн тулд нэвтэрнэ үү</h2>
           <p className="text-xs text-slate-500 leading-relaxed">
             SkillSwap нь бүртгэлтэй гишүүд хоорондын аюулгүй, итгэлтэй чадвар солилцоог хангадаг тул дэлгэрэнгүй профайл үзэх, холбогдохын тулд системд нэвтэрсэн байна.
+=======
+        <div className="w-16 h-16 rounded-3xl glass-accent text-white flex items-center justify-center mx-auto shadow-xl shadow-violet-500/30">
+          <Lock className="w-8 h-8" />
+        </div>
+        <div className="space-y-2">
+          <h2 className="text-lg font-bold text-slate-800">Профайлыг үзэхийн тулд нэвтэрнэ үү</h2>
+          <p className="text-xs text-slate-500 leading-relaxed">
+            Дэлгэрэнгүй мэдээлэл үзэх болон чадвар солилцох хүсэлт илгээхийн тулд бүртгэлдээ нэвтэрнэ үү.
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           </p>
         </div>
 
         <div className="grid grid-cols-2 gap-3 pt-2">
           <Link
             to="/login"
+<<<<<<< HEAD
             className="py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md"
+=======
+            className="py-3 glass-accent  text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md"
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           >
             <LogIn className="w-4 h-4" /> Нэвтрэх
           </Link>
@@ -95,7 +113,11 @@ const UserProfileDetail = () => {
         </div>
 
         <div className="pt-4 border-t border-slate-100">
+<<<<<<< HEAD
           <p className="text-[11px] font-semibold text-slate-400 mb-2">⚡ 1 товшилтоор демо хаягаар нэвтрэх:</p>
+=======
+          <p className="text-[11px] font-semibold text-slate-400 mb-2">⚡ Туршилтын хаягаар нэвтрэх:</p>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           <button
             onClick={() => login('alex.chen@skillswap.io', 'password123')}
             className="w-full p-2.5 rounded-xl bg-violet-50 hover:bg-violet-100 border border-violet-200 text-xs font-bold text-violet-800 transition-colors cursor-pointer flex items-center justify-center gap-2"
@@ -227,7 +249,11 @@ const UserProfileDetail = () => {
                 }
                 setShowSwapModal(true);
               }}
+<<<<<<< HEAD
               className="flex-1 py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all"
+=======
+              className="flex-1 py-2.5 glass-accent  text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all"
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             >
               <ArrowRightLeft className="w-4 h-4" /> Чадвар солилцох санал илгээх
             </button>
@@ -247,7 +273,11 @@ const UserProfileDetail = () => {
         <div className="glass-panel rounded-2xl p-5 space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-xs font-bold text-violet-700 flex items-center gap-1.5">
+<<<<<<< HEAD
               <GraduationCap className="w-4 h-4 text-violet-600" /> Заах чадварууд (Offered)
+=======
+              <GraduationCap className="w-4 h-4 text-violet-600" /> Зааж чадах чадварууд
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             </h3>
             <span className="text-[10px] text-slate-400 font-semibold">
               {profile.skills_offered?.length || 0} чадвар
@@ -262,7 +292,11 @@ const UserProfileDetail = () => {
                     <SkillBadge name={s.skill_name} type="offered" proficiency={s.proficiency_level} size="sm" />
                     {s.years_experience && (
                       <span className="text-[11px] text-slate-400 font-medium">
+<<<<<<< HEAD
                         {s.years_experience} жил туршлагатай
+=======
+                        {s.years_experience} жилийн туршлагатай
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                       </span>
                     )}
                   </div>
@@ -272,7 +306,11 @@ const UserProfileDetail = () => {
                 </div>
               ))
             ) : (
+<<<<<<< HEAD
               <p className="text-xs text-slate-400 italic py-3 text-center">Заах чадвар оруулаагүй байна.</p>
+=======
+              <p className="text-xs text-slate-400 italic py-3 text-center">Зааж чадах чадвараа хараахан нэмээгүй байна.</p>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             )}
           </div>
         </div>
@@ -281,7 +319,11 @@ const UserProfileDetail = () => {
         <div className="glass-panel rounded-2xl p-5 space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-xs font-bold text-sky-700 flex items-center gap-1.5">
+<<<<<<< HEAD
               <BookOpen className="w-4 h-4 text-sky-600" /> Сурах хүсэлтэй чадварууд (Wanted)
+=======
+              <BookOpen className="w-4 h-4 text-sky-600" /> Сурахыг хүссэн чадварууд
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             </h3>
             <span className="text-[10px] text-slate-400 font-semibold">
               {profile.skills_wanted?.length || 0} чадвар
@@ -308,7 +350,11 @@ const UserProfileDetail = () => {
                 </div>
               ))
             ) : (
+<<<<<<< HEAD
               <p className="text-xs text-slate-400 italic py-3 text-center">Сурах чадвар оруулаагүй байна.</p>
+=======
+              <p className="text-xs text-slate-400 italic py-3 text-center">Сурахыг хүссэн чадвараа хараахан нэмээгүй байна.</p>
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             )}
           </div>
         </div>
@@ -319,7 +365,11 @@ const UserProfileDetail = () => {
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
             <Star className="w-4 h-4 text-amber-500 fill-amber-400" />
+<<<<<<< HEAD
             Хүлээн авсан үнэлгээ & сэтгэгдлүүд
+=======
+            Үнэлгээ, сэтгэгдэл
+>>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           </h3>
           <span className="text-[11px] text-slate-400 font-medium">
             {reviews.length} сэтгэгдэл
