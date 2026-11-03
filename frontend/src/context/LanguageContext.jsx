@@ -808,6 +808,14 @@ const MN_PATTERNS = [
   [/^Цааш харах \((\d+) үлдсэн\)$/, (_, count) => `Show more (${count} remaining)`],
   [/^(.+) цаг солилцсон$/, (_, count) => `${count} hours exchanged`],
   [/^(.+) жил туршлагатай$/, (_, count) => `${count} years of experience`],
+  [/^(\d+) мин$/, (_, minutes) => `${minutes} min`],
+  [/^(\d+) оноо$/, (_, score) => `${score} points`],
+  [/^(\d+) үнэлгээ$/, (_, count) => `${count} review${count === '1' ? '' : 's'}`],
+  [/^(\d+) сэтгэгдэл$/, (_, count) => `${count} review${count === '1' ? '' : 's'}`],
+  [/^Би заана: (.+)$/, (_, skill) => `I can teach: ${skill}`],
+  [/^Би сурна: (.+)$/, (_, skill) => `I want to learn: ${skill}`],
+  [/^Тэр заана: (.+)$/, (_, skill) => `They can teach: ${skill}`],
+  [/^Тэр сурна: (.+)$/, (_, skill) => `They want to learn: ${skill}`],
 ];
 
 const translateContent = (content, language) => {
