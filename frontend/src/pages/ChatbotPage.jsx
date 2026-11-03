@@ -5,6 +5,7 @@ import { chatbotAPI } from '../services/api';
 import MatchRequestModal from '../components/MatchRequestModal';
 import AuthPromptModal from '../components/AuthPromptModal';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 
 const STARTER_PROMPTS = [
   '🔍 Надад тохирох найз хайж өг',
@@ -60,6 +61,7 @@ const ChatbotPage = () => {
   const [geminiStatus, setGeminiStatus] = useState(null); // 'active' | 'local' | null
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const { isAuthenticated } = useAuth();
+  const { language } = useLanguage();
 
   const messagesEndRef = useRef(null);
 
@@ -82,7 +84,7 @@ const ChatbotPage = () => {
         content: m.text,
       }));
 
-      const res = await chatbotAPI.sendMessage(text, historyPayload);
+      const res = await chatbotAPI.sendMessage(text, historyPayload, language);
       const data = res.data;
 
       // Track if Gemini is active
