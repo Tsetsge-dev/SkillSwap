@@ -1,0 +1,544 @@
+import React, { createContext, useContext, useEffect, useState } from 'react';
+
+const LanguageContext = createContext(null);
+
+const MN_TO_EN = {
+  'Хайх & Match': 'Explore & Match',
+  'Чадварын зөвлөмж': 'Skill recommendations',
+  'AI Туслах': 'AI Assistant',
+  'Хүсэлтүүд': 'Requests',
+  'Зурвас': 'Messages',
+  'Хуваарь': 'Schedule',
+  'Нэвтрэх': 'Log in',
+  'Бүртгүүлэх': 'Sign up',
+  'Миний профайл': 'My profile',
+  'Миний Профайл': 'My profile',
+  'Гарах': 'Log out',
+  'Skill Swap платформ': 'Skill Swap platform',
+  'SkillSwap-д нэгдэж, мэдлэг чадвараа бусадтай хуваалцаарай.': 'Join SkillSwap and share what you know with others.',
+  '© {year} SkillSwap · Ур чадвараа хуваалцъя': '© {year} SkillSwap · Share your skills',
+  'Онлайн суралцагчид:': 'Learners online:',
+  'Өөрийн чадвараа зааж,': 'Teach a skill you know,',
+  'хүссэн бүхнээ': 'learn what you want',
+  'үнэгүй сур.': 'for free.',
+  'Програмчлал заагаад Япон хэл сурах, Дизайн заагаад Гитар тоглож': 'Teach programming to learn Japanese, or teach design to learn guitar.',
+  'сурах зэргээр бие биедээ 1-on-1 туслан хамтдаа хөгжье.': 'Share one-on-one lessons and grow together.',
+  'Би заана:': 'I can teach:',
+  'Би сурна:': 'I want to learn:',
+  'ж нь: Python, Дизайн...': 'e.g. Python, design...',
+  'ж нь: Япон хэл, Гитар...': 'e.g. Japanese, guitar...',
+  'Хайх': 'Search',
+  'Танд тохирох чадвараа олох': 'Find skills that suit you',
+  'AI-аар тохирох хүн хайх': 'Find a match with AI',
+  'Бүх хэрэглэгчид →': 'All members →',
+  'Санал болгож буй суралцагчид': 'Recommended learners',
+  'Өндөр тохиролтой хүмүүс рүү шууд санал илгээнэ үү': 'Send a request to people with a strong match.',
+  'Бүгдийг харах': 'View all',
+  'Хайх & Тохирох хүмүүс': 'Explore and find a match',
+  'Өөрийн заах болон сурах чадвараар тохирох хүмүүсээ олоорой': 'Find people who match the skills you can teach and want to learn.',
+  'Нэр эсвэл түлхүүр үг...': 'Name or keyword...',
+  'Заадаг чадвар (ж нь: Python)...': 'Skill you can teach (e.g. Python)...',
+  'Сурмаар байгаа чадвар...': 'Skill you want to learn...',
+  'Хайж байна...': 'Searching...',
+  'Тохирох хэрэглэгч олдсонгүй. Хайлтын үгээ өөрчлөөд үзнэ үү.': 'No matching members found. Try a different search.',
+  'Бүгд': 'All',
+  'Програмчлал & IT': 'Programming & IT',
+  'Хиймэл оюун & Дата': 'AI & Data',
+  'Гадаад хэл': 'Languages',
+  'Шинжлэх ухаан & Хичээл': 'Science & School',
+  'Хөгжим & Аудио': 'Music & Audio',
+  'Дизайн & Бүтээлч': 'Design & Creative',
+  'Бизнес & Маркетинг': 'Business & Marketing',
+  'Эрүүл мэнд & Спорт': 'Health & Sports',
+  'Эрүүл мэнд & Иог': 'Health & Yoga',
+  'Судалгаанд тулгуурласан жишээ': 'Research-based examples',
+  'Суралцагчдын жишээ профайл': 'Example learner profiles',
+  'Судалгааны хариултад тулгуурлан бэлтгэсэн жишээ профайлууд. Эдгээр нь SkillSwap-д бүртгэлтэй хэрэглэгчид биш.': 'Example profiles based on survey responses. These people are not registered SkillSwap members.',
+  'Бүх {count} жишээг үзэх': 'View all {count} examples',
+  'Суралцагчдын жишээ': 'Example learners',
+  'Судалгаанд үндэслэсэн жишээ · бүртгэлтэй хэрэглэгч биш': 'Survey-based example · not a registered member',
+  'Зааж чадах чадвар': 'Skills they can teach',
+  'Сурахыг хүссэн чадвар': 'Skills they want to learn',
+  'Таны хувийн зөвлөмж бэлэн боллоо': 'Your personalized recommendations are ready',
+  'Танд тохирох чиглэлүүд': 'Directions that may suit you',
+  'Энэ оноо нь таны сонгосон сонирхол, давуу тал, сурах хэв маяг, ойрын зорилгод тулгуурласан зөвлөмжийн оноо юм.': 'This score reflects recommendations based on your interests, strengths, learning style, and near-term goals.',
+  'Сэтгэлзүйн онош биш, эхлэх чиглэлээ тодруулахад туслах зураглал гэж ойлгоорой.': 'This is not a psychological assessment; use it as a guide for choosing where to start.',
+  'Дахин бөглөх': 'Start over',
+  'Хамт сурах хүн хайх': 'Find a study partner',
+  'Яагаад тохирч байна вэ?': 'Why it may suit you',
+  'Эхлэх боломж': 'A way to get started',
+  'Нууцлал ба хэрэглээ': 'Privacy and use',
+  'Асуулгын хариу таны төхөөрөмж дээр хадгалагдаж, зөвлөмж гаргахад л ашиглагдана. Нэр, имэйл, хувийн мэдээлэл шаардахгүй.': 'Survey answers stay on your device and are only used to create recommendations. No name, email, or personal information is required.',
+  'Дараагийн алхам': 'Next step',
+  'Хамгийн өндөр оноотой 1 чиглэлээр 7 хоногийн жижиг туршилт эхлүүлээд SkillSwap дээр хамтрах хүн хайгаарай.': 'Try the highest-rated direction for a week, then find someone to learn with on SkillSwap.',
+  'SkillSwap чиглэл тодорхойлогч': 'SkillSwap interest finder',
+  'Өөрт тохирох ур чадвараа олоорой.': 'Find skills that suit you.',
+  'Сонирхол, давуу тал, сурах хэв маяг, зорилгод тань тулгуурлан эхлэхэд хамгийн тохиромжтой чиглэлүүдийг санал болгоно.': 'Get suggestions for where to start based on your interests, strengths, learning style, and goals.',
+  '6 асуулт': '6 questions',
+  '5 зөвлөмж': '5 suggestions',
+  'Нууцлалтай': 'Private',
+  'Буцах': 'Back',
+  'Боловсруулж байна...': 'Working...',
+  'Зөвлөмж харах': 'See recommendations',
+  'Дараах': 'Next',
+  'Ур чадварууд': 'Skills',
+  'Сонирхож үзэх чадварууд': 'Explore skills',
+  'Зөвлөмжөөс гадна бусад чадварыг хайж, шүүж үзээрэй.': 'Search and filter other skills as well as recommendations.',
+  'Ур чадвар хайх...': 'Search skills...',
+  'Заах чадвар нэмэхэд алдаа гарлаа. Дахин оролдоно уу.': 'Could not add the teaching skill. Please try again.',
+  'Сурах чадвар нэмэхэд алдаа гарлаа. Дахин оролдоно уу.': 'Could not add the learning skill. Please try again.',
+  'Чадвар хасахад алдаа гарлаа. Дахин оролдоно уу.': 'Could not remove the skill. Please try again.',
+  'Сервертэй холбогдож чадсангүй. Таны хариултад тулгуурлан түр зөвлөмж гаргалаа.': 'Could not reach the server. Temporary recommendations were created from your answers.',
+  'Дор хаяж {count} сонголт сонгоно уу.': 'Please select at least {count} option(s).',
+  'Үргэлжлүүлэхийн өмнө нэг сонголт сонгоно уу.': 'Choose an option before continuing.',
+  'Хэрэглэгчийн мэдээллийг ачааллаж байна...': 'Loading member details...',
+  'Хэрэглэгчийн профайл үзэхийн тулд нэвтэрнэ үү': 'Log in to view this profile',
+  'Хэрэглэгч олдсонгүй': 'Member not found',
+  'Таны хайсан хэрэглэгчийн бүртгэл олдсонгүй эсвэл идэвхгүй болсон байна.': 'This member could not be found or is no longer active.',
+  'Хэрэглэгчид рүү буцах': 'Back to members',
+  'Хэрэглэгчийн мэдээллийг ачааллаж байна...': 'Loading member details...',
+  'Баталгаажсан гишүүн': 'Verified member',
+  'Заах чадвар оруулаагүй байна.': 'No teaching skills added yet.',
+  'Сурах чадвар оруулаагүй байна.': 'No learning skills added yet.',
+  'Одоогоор үнэлгээ бүртгэгдээгүй байна.': 'No reviews yet.',
+  'Зурвасууд & Яриа': 'Messages and conversations',
+  'Одоогоор идэвхтэй яриа байхгүй байна.': 'There are no active conversations yet.',
+  'Найз хайх →': 'Find a partner →',
+  'Шинэ яриа эхлүүлэх...': 'Start a new conversation...',
+  'Одоо онлайн байна': 'Online now',
+  'Оффлайн': 'Offline',
+  'Яриа эхлээгүй байна': 'No messages yet',
+  'Эхний мэндчилгээгээ бичиж чадвар солилцоогоо эхлүүлээрэй! 👋': 'Send a greeting to start your skill exchange! 👋',
+  'Файл / Зураг илгээх': 'Send a file or image',
+  'Дуут зурвас илгээх': 'Send a voice message',
+  'Зурвас бичих...': 'Write a message...',
+  'Зурвас бичих хэрэглэгчээ сонгоно уу': 'Choose someone to message',
+  'Зүүн талын жагсаалтаас сонгох эсвэл Explore хуудаснаас чадвар солилцох хүнээ сонгоно уу.': 'Choose someone from the list or find a partner on the Explore page.',
+  'Дуут мессеж': 'Voice message',
+  'Зураг': 'Image',
+  'Хавсаргасан файл татах': 'Download attachment',
+  'Чадвар солилцох санал илгээх': 'Send a skill exchange request',
+  'Санал амжилттай илгээгдлээ!': 'Request sent successfully!',
+  'Хэрэглэгч хүлээн авсны дараа та хоёр холбогдох болно.': 'You can connect once the member accepts your request.',
+  'Заах чадвараа сонгох эсвэл бичнэ үү.': 'Choose or enter a skill you can teach.',
+  'Сурах чадвараа сонгох эсвэл бичнэ үү.': 'Choose or enter a skill you want to learn.',
+  'Санал илгээхэд алдаа гарлаа. Дахин оролдоно уу.': 'Could not send the request. Please try again.',
+  'Би заана (Таны заах чадвар):': 'I can teach (your skill):',
+  'Жагсаалтаас сонгох': 'Choose from list',
+  'Өөрөөр бичих': 'Enter another',
+  '-- Заах чадвараа сонгоно уу --': '-- Choose a skill to teach --',
+  '-- Сурах чадвараа сонгоно уу --': '-- Choose a skill to learn --',
+  'Сурах чадвар': 'Skill to learn',
+  'Зурвас (заавал биш):': 'Message (optional):',
+  'Сайн байна уу! Тантай чадвар солилцох сонирхолтой байна...': 'Hi! I would love to exchange skills with you...',
+  'Илгээж байна...': 'Sending...',
+  'Ирсэн хүсэлтүүд': 'Incoming',
+  'Илгээсэн': 'Sent',
+  'Найзууд': 'Connections',
+  'Танд одоогоор ирсэн чадвар солилцох хүсэлт байхгүй байна.': 'You have no incoming skill exchange requests.',
+  'Тэр заана:': 'They can teach:',
+  'Тэр сурна:': 'They want to learn:',
+  'Зөвшөөрөх': 'Accept',
+  'Татгалзах': 'Decline',
+  'Та одоогоор хэнд ч санал илгээгээгүй байна. Explore хуудаснаас хүмүүс олж санал илгээгээрэй!': 'You have not sent any requests yet. Find people on Explore and send a request.',
+  'Би заана:': 'I can teach:',
+  'Би сурна:': 'I want to learn:',
+  'Зөвшөөрсөн': 'Accepted',
+  'Татгалзсан': 'Declined',
+  'Хүлээгдэж байна': 'Pending',
+  'Цуцлах': 'Cancel',
+  'Холбогдсон найз одоогоор байхгүй байна. Санал илгээж эсвэл ирсэн хүсэлтийг зөвшөөрч найз болоорой!': 'No connections yet. Send a request or accept an incoming request to connect.',
+  'Зурвас бичих': 'Message',
+  'Хүсэлтүүд & Найзууд': 'Requests and connections',
+  'Ачааллаж байна...': 'Loading...',
+  'Суралцах уулзалтын хуваарь': 'Learning schedule',
+  'Товлосон уулзалтуудаа харах, дууссан уулзалтад үнэлгээ өгөх.': 'View upcoming sessions and review completed ones.',
+  'Хуваарийг ачаалж байна…': 'Loading schedule…',
+  'Одоогоор товлосон уулзалт алга.': 'No sessions scheduled yet.',
+  'Холбоо тогтоосон хүнтэйгээ суралцах уулзалт товлоорой!': 'Schedule a learning session with one of your connections.',
+  'Хичээл': 'Session',
+  'Дууссан': 'Completed',
+  'Товлосон': 'Scheduled',
+  'Үнэлгээ өгөх:': 'Leave a review:',
+  'Сэтгэгдэл бичих...': 'Write a review...',
+  'Системд нэвтэрнэ үү': 'Log in to continue',
+  'Нэвтрэх': 'Log in',
+  '⚡ Эсвэл 1 товшилтоор демо хаягаар нэвтрэх:': '⚡ Or try a demo account with one click:',
+  'Үзэх': 'View',
+  'Санал илгээх': 'Send request',
+  'Заана:': 'Can teach:',
+  'Сурна:': 'Wants to learn:',
+  'Оруулаагүй': 'Not added',
+  'Амжилттай хадгалагдлаа!': 'Saved successfully!',
+  'Амжилттай нэмэгдлээ.': 'Added successfully.',
+  'Алдаа гарлаа.': 'Something went wrong.',
+  'Ерөнхий мэдээлэл': 'Profile details',
+  'Нэр': 'Name',
+  'Бүтэн нэр': 'Full name',
+  'Гарчиг': 'Headline',
+  'ж нь: Python хөгжүүлэгч': 'e.g. Python developer',
+  'Танилцуулга': 'About me',
+  'Өөрийнхөө тухай товч...': 'A short introduction...',
+  'Байршил': 'Location',
+  'Улаанбаатар': 'Ulaanbaatar',
+  'Цагийн бүс': 'Time zone',
+  'Портфолио': 'Portfolio',
+  'Хадгалж байна...': 'Saving...',
+  'Хадгалах': 'Save',
+  'Заадаг чадварууд': 'Skills I can teach',
+  'Чадвар нэмээгүй': 'No skills added yet',
+  'Чадвар нэмэх...': 'Add a skill...',
+  'Сурах хүсэлтэй чадварууд': 'Skills I want to learn',
+  'Сурах чадвар нэмэх...': 'Add a learning skill...',
+  'Анхан': 'Beginner',
+  'Дунд': 'Intermediate',
+  'Ахисан': 'Advanced',
+  'Мэргэшсэн': 'Expert',
+  'Хасах': 'Remove',
+  'Нэвтэрч байна...': 'Logging in...',
+  'Чадвар солилцооны платформд тавтай морил': 'Welcome to the skill exchange platform',
+  'Имэйл': 'Email',
+  'Нууц үг': 'Password',
+  'Бүртгэлгүй юу?': 'New here?',
+  'Бүртгэлтэй юу?': 'Already have an account?',
+  'Шууд туршиж үзэх': 'Try a demo account',
+  'Чадвар солилцоонд нэгдээрэй': 'Join the skill exchange',
+  'Бүтэн нэр': 'Full name',
+  'Таны нэр': 'Your name',
+  'Нууц үг давтах': 'Confirm password',
+  '6+ тэмдэгт': 'At least 6 characters',
+  'Бүртгэж байна...': 'Creating account...',
+  'Хэрэглэгчийн дэлгэрэнгүй профайл үзэх, чадвар солилцох санал илгээх болон чатлахын тулд та системд нэвтэрсэн байх шаардлагатай.': 'Log in to view full profiles, send skill exchange requests, and chat.',
+  'Хэрэглэгчийн дэлгэрэнгүй профайл болон хичээлүүдийг үзэхийн тулд нэвтэрнэ үү.': 'Log in to view full profiles and sessions.',
+  'Чадвар солилцох санал илгээхийн тулд та системд нэвтэрнэ үү.': 'Log in to send a skill exchange request.',
+  'Заах чадвар оруулаагүй байна.': 'No teaching skills added.',
+  'Сурах чадвар оруулаагүй байна.': 'No learning skills added.',
+  'Та ямар түвшнээс эхэлж байна вэ?': 'What level are you starting from?',
+  'Шинээр эхэлж байгаа': 'Just getting started',
+  'SkillSwap дээр тохирох суралцах хэлбэр санал болгоход хэрэглэнэ.': 'Used to suggest a learning format on SkillSwap.',
+  'Гадаад хэлний практик': 'Language practice',
+  'Санал зөвлөмж гаргаж чадсангүй. Дахин оролдоно уу.': 'Could not create recommendations. Please try again.',
+  'Үргэлжлүүлэхийн өмнө бүх шаардлагатай асуултад хариулна уу.': 'Answer all required questions before continuing.',
+  'Үр дүн гаргахын өмнө бүх шаардлагатай асуултад хариулна уу.': 'Answer all required questions to see your results.',
+  'Survey сонголтуудыг ачаалж байна...': 'Loading survey options...',
+  'Танд санал болгох чадварууд': 'Recommended skills for you',
+  'Танд тохирох чадвараа олоорой': 'Find skills that suit you',
+  'Таны сонголт болон ижил хариулттай оролцогчдын сурах хүсэлд тулгуурлан эрэмбэлэв.': 'Ranked using your answers and the learning interests of similar survey participants.',
+  'Хариултаа шинэчлэх': 'Update your answers',
+  'Таны хариултад тохирох чадвар олдсонгүй. Сонголтоо өөрчлөөд дахин оролдоорой.': 'No matching skills found. Change your answers and try again.',
+  'SkillSwap асуулга': 'SkillSwap survey',
+  'Үргэлжлүүлэх': 'Continue',
+  'Хариултыг боловсруулж байна...': 'Processing your answers...',
+  'Миний зөвлөмжийг харах': 'Show my recommendations',
+  'Одоо': 'Now',
+  'Бүгд': 'All',
+  'Би Python заана, Япон хэл сурмаар байна': 'I can teach Python and want to learn Japanese',
+  'Математик яаж сурах вэ?': 'How can I learn mathematics?',
+  'Надад найз хайж өг': 'Find me a learning partner',
+  '🔍 Надад тохирох найз хайж өг': '🔍 Find a learning partner for me',
+  '🤝 Хамтран суралцах хүн олох (Study Buddy)': '🤝 Find a study buddy',
+  '📹 Видео дуудлага яаж хийх вэ?': '📹 How do I start a video call?',
+  '🔄 Чадвар солилцох санал яаж илгээх вэ?': '🔄 How do I send a skill exchange request?',
+  '💡 SkillSwap хэрхэн ажилладаг вэ?': '💡 How does SkillSwap work?',
+  'SkillSwap AI Ухаалаг Туслах': 'SkillSwap AI Assistant',
+  'Монгол хэлний NLP': 'Mongolian language NLP',
+  'Gemini API тохируулах (Үнэгүй)': 'Set up Gemini API (free)',
+  'Одоо Local ML mode ажиллаж байна — API key оруулсны дараа Gemini идэвхжинэ.': 'Local ML mode is active. Gemini will be enabled after an API key is added.',
+  'AI бодож байна...': 'AI is thinking...',
+  'AI хайж байна...': 'AI is searching...',
+  'Асуух эсвэл хайх чадвараа бичнэ үү...': 'Ask a question or enter a skill to search...',
+  'Асуух зүйл эсвэл заах/сурах чадвараа бичнэ үү...': 'Ask a question or enter a skill to teach or learn...',
+  'Илгээх': 'Send',
+  'Мэдлэгээ хуваалц. Шинэ зүйл сур.': 'Share what you know. Learn something new.',
+  'Мэддэг зүйлээ бусадтай хуваалцаж, сурахыг хүссэн чадвараа заадаг хүнээ олоорой.': 'Share what you know and find someone who can teach you a skill you want to learn.',
+  'Тохирох хүн хайх': 'Find a match',
+  'Сонирхлоо тодорхойлох': 'Find your interests',
+  'Шинээр орж ирэв үү?': 'New to SkillSwap?',
+  'ЖИШЭЭ СОЛИЛЦОО': 'EXAMPLE EXCHANGE',
+  'Хүн бүр мэдлэг, чадвараа хуваалцана.': 'Everyone has something to teach and learn.',
+  'ТОВЧ ТАНИЛЦУУЛГА': 'ABOUT SKILLSWAP',
+  'SkillSwap гэж юу вэ?': 'What is SkillSwap?',
+  'SkillSwap нь мэддэг зүйлээ бусадтай хуваалцаж, тэднээс шинэ чадвар сурах боломж олгодог платформ юм.': 'SkillSwap helps you share what you know and learn new skills from others.',
+  'Бүртгэлтэй суралцагчид': 'Community members',
+  'Нийгэмлэг': 'Community',
+  'Профайлаа нийтэд харагдахаар тохируулсан гишүүдийг энд харуулна.': 'Members with public profiles are shown here.',
+  'Хайлт': 'Explore',
+  '1 нийтэд харагдах профайл': '1 public profile',
+  'Чадвараа хуваалцаж, шинэ зүйл сурахад бэлэн': 'Ready to share skills and learn something new',
+  'Мэдлэгээ хуваалцаж, хамтдаа суралцъя.': 'Share knowledge and learn together.',
+  'Нэмэлт холбоос': 'More links',
+  'Хүмүүс': 'Members',
+  'Б. Цэцэгжаргал, Б. Чимэддорж нар SkillSwap-ийг Girls</>BoysCode2026 хөтөлбөрийн хүрээнд бүтээв. Холбоо барих:': 'SkillSwap was created by Tsetsegjargal B. and Chimeddorj B. as part of Girls</>BoysCode2026. Contact:',
+  'Амжилттай хадгалагдлаа!': 'Saved successfully!',
+  'Амжилттай нэмэгдлээ.': 'Added successfully.',
+  'Сайн байна уу! Би SkillSwap платформын AI Ухаалаг Туслах байна.': 'Hello! I am SkillSwap’s AI assistant.',
+  'Таны сонирхол': 'Your interests',
+  'Нас болон сонирхлын чиглэлээ сонгоно уу.': 'Choose your age and areas of interest.',
+  'Нас': 'Age',
+  'Та юунд илүү сонирхолтой вэ?': 'What are you most interested in?',
+  'Таны чадвар': 'Your skills',
+  'Бусдад зааж болох чадвар, түвшнээ тэмдэглээрэй.': 'Tell us what you can teach and your skill level.',
+  'Таны үндсэн чадвар': 'Your main skill',
+  'Хоёрдогч чадвар': 'Secondary skill',
+  'Үндсэн чадварын түвшин': 'Main skill level',
+  'Таны сурах зорилго': 'Your learning goals',
+  'Ямар чадвараа, ямар түвшинд хүргэхийг хүсэж байна вэ?': 'What skill do you want to learn, and to what level?',
+  'Сурахыг хүсэж буй чадвар': 'Skill you want to learn',
+  'Хүрэхийг хүсэж буй түвшин': 'Target level',
+  'Энэ чадварыг юунд ашиглах вэ?': 'What would you use this skill for?',
+  'Танд тохирох сурах арга': 'Your preferred way to learn',
+  'Таны хэв маягтай ойролцоо хариултуудтай survey оролцогчдын сонголтоор үр дүнг эрэмбэлнэ.': 'Results are ranked using survey participants with answers similar to yours.',
+  'Та яаж сурахыг илүүд үздэг вэ?': 'How do you prefer to learn?',
+  'Хэзээ суралцах боломжтой вэ?': 'When are you available to learn?',
+  'Хамтрагчийн ямар түвшнийг илүүд үзэх вэ?': 'What level would you prefer in a learning partner?',
+  'Байхгүй': 'None',
+  'Сонголт хийхгүй': 'No selection',
+  'Сонгоно уу': 'Please choose',
+  'Таны хариултад тулгуурласан зөвлөмж': 'Recommendations based on your answers',
+  'Яагаад санал болгож байна вэ?': 'Why we recommend this',
+  'Судалгааны сонголтыг ачаалж чадсангүй. Дахин оролдоно уу.': 'Could not load survey choices. Please try again.',
+  'Үргэлжлүүлэхийн өмнө бүх шаардлагатай асуултад хариулна уу.': 'Answer all required questions before continuing.',
+  'Дахин ачаалах': 'Reload',
+  'Хариултуудыг судалгааны хэв маягтай харьцуулж, сонголт бүрийн шалтгааныг тайлбарлана.': 'We compare your answers with survey patterns and explain each recommendation.',
+  'Нууц runtime судалгааны өгөгдөл': 'Private runtime survey data',
+  'Нууц runtime судалгааны өгөгдлөөр эрэмбэлэв': 'Ranked using private runtime survey data',
+  'Синтетик демо өгөгдөл — бодит сурагчийн мэдээлэл агуулаагүй': 'Synthetic demo data — contains no real student information',
+  'Таны хайлтад тохирох жишээ профайл олдсонгүй.': 'No example profiles matched your search.',
+  'Цааш харах': 'Show more',
+  'Нэр эсвэл чадвараар хайх': 'Search by name or skill',
+  'Нүүр хуудас руу буцах': 'Back to home',
+  'Имэйл эсвэл нууц үг буруу байна.': 'Email or password is incorrect.',
+  'Демо нэвтрэлт амжилтгүй боллоо.': 'Demo sign-in failed.',
+  'имэйл@example.com': 'email@example.com',
+  'Нууц үгээ оруулна уу': 'Enter your password',
+  'Нууц үгээ мартсан уу?': 'Forgot password?',
+  'Нууц үг таарахгүй байна.': 'Passwords do not match.',
+  'Нууц үг хамгийн багадаа 6 тэмдэгт байх ёстой.': 'Password must be at least 6 characters.',
+  'Бүртгэл амжилтгүй боллоо. Имэйл бүртгэлтэй байж магадгүй.': 'Could not create the account. This email may already be registered.',
+  'SkillSwap нь бүртгэлтэй гишүүд хоорондын аюулгүй, итгэлтэй чадвар солилцоог хангадаг тул дэлгэрэнгүй профайл үзэх, холбогдохын тулд системд нэвтэрсэн байна.': 'SkillSwap supports safe skill exchanges between members. Log in to view full profiles and connect.',
+  'Билгүүн (alex.chen@skillswap.io) хаягаар нэвтрэх': 'Log in as Bilguun (alex.chen@skillswap.io)',
+  'Хүлээн авсан үнэлгээ & сэтгэгдлүүд': 'Ratings and reviews',
+  'Зорилго:': 'Goal:',
+  'жил туршлагатай': 'years of experience',
+  'цаг солилцсон': 'hours exchanged',
+  'Хүсэлтийг шийдвэрлэхэд алдаа гарлаа. Дахин оролдоно уу.': 'Could not update the request. Please try again.',
+  'Бүртгэлтэй хэрэглэгч биш': 'Not a registered member',
+  'Хэрэглэгч': 'Member',
+  'SkillSwap гишүүн': 'SkillSwap member',
+  'SkillSwap талбарын идэвхтэй гишүүн': 'Active SkillSwap member',
+  'SkillSwap талбарын найз': 'SkillSwap connection',
+  '1 товшилтоор демо хаягаар нэвтрэх:': 'Sign in with a demo account in one click:',
+  'Хэл солих': 'Change language',
+  'Хэл сонгох': 'Choose language',
+  'Чадвараа хуваалцах': 'Share a skill',
+  'Шинэ чадвар сурах': 'Learn a new skill',
+  'Англи хэл': 'English',
+  'Солонгос хэл': 'Korean',
+  'Япон хэл': 'Japanese',
+  'Математик': 'Mathematics',
+  'Гитар': 'Guitar',
+  'Юу хийхэд танд хамгийн сонирхолтой санагддаг вэ?': 'What activities interest you most?',
+  'Ойрхон санагдсан 2-4 сонголтыг сонгоорой.': 'Choose 2–4 options that feel right for you.',
+  'Технологи, апп, төхөөрөмж': 'Technology, apps, and devices',
+  'Зураг, дизайн, бичлэг, хөгжим': 'Art, design, video, and music',
+  'Ярих, тайлбарлах, хүмүүстэй ажиллах': 'Speaking, explaining, and working with people',
+  'Туршилт, тооцоо, судалгаа': 'Experiments, calculations, and research',
+  'Санаа гаргах, худалдаа, төсөл': 'Creating ideas, business, and projects',
+  'Спорт, хөдөлгөөн, багийн тоглолт': 'Sports, movement, and team games',
+  'Таны одоо сайн хийж чаддаг зүйлс юу вэ?': 'What are you already good at?',
+  'Өөрийгөө төгс гэж бодох албагүй. Давуу тал байж болох зүйлээ сонгоно уу.': 'You do not have to be perfect. Choose things that may be strengths.',
+  'Асуудлыг задалж бодох': 'Breaking down problems',
+  'Юмыг гоё, цэгцтэй харагдуулах': 'Making things look clear and polished',
+  'Бичих, санаагаа ойлгомжтой илэрхийлэх': 'Writing and expressing ideas clearly',
+  'Багаар ажиллах, бусдыг дэмжих': 'Working in a team and supporting others',
+  'Тууштай давтах, бэлтгэл хийх': 'Practicing consistently',
+  'Шинэ зүйл турших, асуулт асуух': 'Trying new things and asking questions',
+  'Энэ нь онош биш, зөвхөн эхлэх алхмыг зөв тохируулахад ашиглагдана.': 'This is not an assessment; it only helps suggest a good first step.',
+  'Өмнө нь бага зэрэг туршиж үзсэн': 'I have tried it a little before',
+  'Жижиг төсөл/дасгал хийж байсан': 'I have worked on a small project or exercise',
+  'Бусдад тайлбарлаж чадах түвшинд': 'I can explain it to someone else',
+  'Та яаж сурахдаа илүү урамтай байдаг вэ?': 'What helps you enjoy learning?',
+  'Нэг гол хэв маягаа сонгоорой.': 'Choose the approach you prefer most.',
+  'Жижиг төсөл хийж турших': 'Trying a small project',
+  'Хүнээр тайлбарлуулж, асууж сурах': 'Learning through explanations and questions',
+  'Заавар, нийтлэл, тэмдэглэл унших': 'Reading guides, articles, and notes',
+  'Давталт, дасгал, сорилтоор сайжрах': 'Improving through practice and challenges',
+  'Ойрын 3 сард ямар үр дүн хүсэж байна вэ?': 'What would you like to achieve in the next 3 months?',
+  'Танд одоо хамгийн хэрэгтэй зорилгыг сонгоно уу.': 'Choose the goal that would help you most right now.',
+  'Ирээдүйн мэргэжлийн чиглэлээ тодруулах': 'Explore a future career direction',
+  'Портфолио эсвэл бодит бүтээлтэй болох': 'Build a portfolio or create something real',
+  'Өөртөө итгэлтэй болж, хүмүүстэй харилцах': 'Build confidence and connect with people',
+  'Эрүүл дадал, хөдөлгөөнөө тогтмолжуулах': 'Build healthy habits and stay active',
+  'Бусадтай хамтрахад танд аль нь тохиромжтой вэ?': 'How would you prefer to learn with others?',
+  'Эхлээд ганцаараа туршаад дараа нь асуумаар байна': 'I want to try on my own first, then ask questions',
+  'Нэг түвшний найзтай хамт ахимаар байна': 'I want to progress with a peer',
+  'Илүү туршлагатай хүнээс чиглэл авмаар байна': 'I want guidance from someone more experienced',
+  'Багийн төсөл, клуб, тэмцээнд оролцмоор байна': 'I want to join a team project, club, or competition',
+  'Анхан шатнаас эхлэх боломжтой': 'Suitable for beginners',
+  'Санаа, ажиглалтаас эхэлнэ': 'Start with ideas and observation',
+  'Гар утаснаас эхэлж болно': 'You can start with a phone',
+  'Өдөр тутмын дасгалаар ахина': 'Improve with daily practice',
+  'Суурь математикаас эхэлнэ': 'Start with basic mathematics',
+  'Асуудал ажиглахаас эхэлнэ': 'Start by observing problems',
+  'Өдөр бүрийн жижиг дадлаар ахина': 'Improve with small daily habits',
+  'Аюулгүй суурь дадлаас эхэлнэ': 'Start with safe basic practices',
+  'Программчлал': 'Programming',
+  'Технологи': 'Technology',
+  'Дизайн': 'Design',
+  'Бүтээлч': 'Creative',
+  'Харилцаа': 'Communication',
+  'Шинжлэх ухаан': 'Science',
+  'Бизнес': 'Business',
+  'Хэл': 'Languages',
+  'Хөдөлгөөн': 'Movement',
+  'Веб апп': 'Web apps',
+  'Хэрэглэгчийн судалгаа': 'User research',
+  'Визуал систем': 'Visual systems',
+  'Бичлэг': 'Video',
+  'Монтаж': 'Editing',
+  'Илтгэл': 'Presentation',
+  'Дебат': 'Debate',
+  'Ярилцлага': 'Interview',
+  'Багийн манлайлал': 'Team leadership',
+  'Судалгаа': 'Research',
+  'Яриа': 'Conversation',
+  'Сонсгол': 'Listening',
+  'Үгсийн сан': 'Vocabulary',
+  'Солилцоо': 'Exchange',
+  'Багийн ажил': 'Teamwork',
+  'Дадал': 'Habits',
+  'Тэсвэр': 'Endurance',
+  'Зорилго': 'Goal',
+  'Таны сонгосон сонирхлын чиглэлтэй давхцаж байна.': 'This aligns with the interests you selected.',
+  'Одоогийн давуу талууд тань энэ чиглэлд хэрэг болох суурь өгч байна.': 'Your current strengths provide a useful foundation for this area.',
+  'Таны сурах хэв маяг энэ чиглэлийн эхлэх аргатай нийцэж байна.': 'Your learning style fits a good starting approach for this area.',
+  'Ойрын зорилгод тань хэрэг болох бодит үр дүн гаргах боломжтой.': 'This could help you make progress toward your near-term goal.',
+  'Таны хүссэн хамтрах хэлбэрээр SkillSwap дээр туршихад тохиромжтой.': 'You can explore this on SkillSwap in the type of collaboration you prefer.',
+  'Таны зарим сонголт энэ чиглэлийн суурь чадвартай огтлолцож байна.': 'Some of your choices overlap with the foundational skills for this area.',
+};
+
+const EN_TO_MN = Object.fromEntries(Object.entries(MN_TO_EN).map(([mn, en]) => [en, mn]));
+const originalText = new WeakMap();
+const lastTranslatedText = new WeakMap();
+const originalAttributes = new WeakMap();
+const lastTranslatedAttributes = new WeakMap();
+const TRANSLATABLE_ATTRIBUTES = ['placeholder', 'title', 'aria-label', 'alt'];
+const MN_PATTERNS = [
+  [/^Асуулт (\d+) \/ (\d+)$/, (_, current, total) => `Question ${current} of ${total}`],
+  [/^Алхам (\d+) \/ (\d+)$/, (_, current, total) => `Step ${current} of ${total}`],
+  [/^(\d+) жишээ профайл$/, (_, count) => `${count} example profiles`],
+  [/^(\d+) жишээ олдлоо$/, (_, count) => `${count} examples found`],
+  [/^(\d+) чадвар$/, (_, count) => `${count} skills`],
+  [/^([\d.]+)% тохирол$/, (_, score) => `${score}% match`],
+  [/^Эрэмбийн оноо ([\d.]+) \/ 100$/, (_, score) => `Relevance score ${score} / 100`],
+];
+
+const translateContent = (content, language) => {
+  const knownOriginal = EN_TO_MN[content] || content;
+  if (language === 'mn') return knownOriginal;
+  if (MN_TO_EN[knownOriginal]) return MN_TO_EN[knownOriginal];
+  for (const [pattern, replacement] of MN_PATTERNS) {
+    const match = knownOriginal.match(pattern);
+    if (match) return replacement(...match);
+  }
+  return knownOriginal;
+};
+
+const textForLanguage = (value, language) => {
+  const leading = value.match(/^\s*/)?.[0] || '';
+  const trailing = value.match(/\s*$/)?.[0] || '';
+  const content = value.trim();
+  if (!content) return value;
+
+  const target = translateContent(content, language);
+  return `${leading}${target}${trailing}`;
+};
+
+const translateTextNode = (node, language) => {
+  const current = node.nodeValue;
+  if (!current) return;
+  const known = originalText.get(node);
+  const last = lastTranslatedText.get(node);
+  const base = known && (current === known || current === last) ? known : EN_TO_MN[current.trim()] || current;
+  originalText.set(node, base);
+  const next = textForLanguage(base, language);
+  lastTranslatedText.set(node, next);
+  if (next !== current) {
+    node.nodeValue = next;
+  }
+};
+
+const translateAttributes = (element, language) => {
+  for (const name of TRANSLATABLE_ATTRIBUTES) {
+    const current = element.getAttribute(name);
+    if (current == null) continue;
+    let originals = originalAttributes.get(element);
+    if (!originals) {
+      originals = new Map();
+      originalAttributes.set(element, originals);
+    }
+    let translated = lastTranslatedAttributes.get(element);
+    if (!translated) {
+      translated = new Map();
+      lastTranslatedAttributes.set(element, translated);
+    }
+    const known = originals.get(name);
+    const last = translated.get(name);
+    const base = known && (current === known || current === last) ? known : EN_TO_MN[current.trim()] || current;
+    originals.set(name, base);
+    const next = textForLanguage(base, language);
+    translated.set(name, next);
+    if (next !== current) {
+      element.setAttribute(name, next);
+    }
+  }
+};
+
+const translateNode = (node, language) => {
+  if (node.nodeType === Node.TEXT_NODE) {
+    translateTextNode(node, language);
+    return;
+  }
+  if (node.nodeType !== Node.ELEMENT_NODE && node.nodeType !== Node.DOCUMENT_NODE) return;
+  if (node.nodeType === Node.ELEMENT_NODE) translateAttributes(node, language);
+  node.childNodes.forEach((child) => translateNode(child, language));
+};
+
+export const LanguageProvider = ({ children }) => {
+  const [language, setLanguage] = useState(() => localStorage.getItem('skillswap_language') === 'en' ? 'en' : 'mn');
+
+  useEffect(() => {
+    localStorage.setItem('skillswap_language', language);
+    document.documentElement.lang = language;
+    translateNode(document.body, language);
+
+    const observer = new MutationObserver((records) => {
+      records.forEach((record) => {
+        if (record.type === 'characterData') {
+          translateTextNode(record.target, language);
+        } else if (record.type === 'attributes') {
+          translateAttributes(record.target, language);
+        } else {
+          record.addedNodes.forEach((node) => translateNode(node, language));
+        }
+      });
+    });
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: TRANSLATABLE_ATTRIBUTES,
+    });
+    return () => observer.disconnect();
+  }, [language]);
+
+  const value = { language, setLanguage };
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
+};
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (!context) throw new Error('useLanguage must be used inside LanguageProvider');
+  return context;
+};

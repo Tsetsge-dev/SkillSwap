@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { requestsAPI } from '../services/api';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -94,6 +95,7 @@ const Navbar = () => {
 
           {/* Right Section */}
           <div className="hidden md:flex items-center gap-2.5">
+            <LanguageSwitcher compact />
             {isAuthenticated ? (
               <div className="flex items-center gap-2">
                 <Link
@@ -137,7 +139,8 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher compact />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-1.5 text-slate-600 hover:text-violet-600"

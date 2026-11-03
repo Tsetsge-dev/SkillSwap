@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Components
 import Navbar from './components/Navbar';
@@ -10,6 +11,7 @@ import ChatBotWidget from './components/ChatBotWidget';
 import IncomingCallAlert from './components/IncomingCallAlert';
 import VideoCallModal from './components/VideoCallModal';
 import ProtectedRoute from './components/ProtectedRoute';
+import LanguageSwitcher from './components/LanguageSwitcher';
 
 // Pages
 import Home from './pages/Home';
@@ -38,6 +40,11 @@ function AppContent() {
   return (
     <div className="min-h-screen flex flex-col text-slate-800 selection:bg-violet-500/30 selection:text-black">
       {!isAuthPage && <Navbar />}
+      {isAuthPage && (
+        <div className="fixed right-4 top-4 z-50">
+          <LanguageSwitcher />
+        </div>
+      )}
 
       <main className="flex-1">
         <Routes>
@@ -115,13 +122,15 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <SocketProvider>
-          <AppContent />
-        </SocketProvider>
-      </AuthProvider>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <AuthProvider>
+          <SocketProvider>
+            <AppContent />
+          </SocketProvider>
+        </AuthProvider>
+      </Router>
+    </LanguageProvider>
   );
 }
 
