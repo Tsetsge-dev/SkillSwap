@@ -19,6 +19,7 @@ def handle_chatbot_interaction(
         db=db,
         current_user=current_user,
         user_message=payload.message,
-        chat_history=payload.history
+        chat_history=payload.history,
+        language=payload.language or "mn",
     )
     return result
