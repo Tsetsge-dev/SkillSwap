@@ -4,6 +4,7 @@ import { chatbotAPI } from '../services/api';
 import MatchRequestModal from './MatchRequestModal';
 import AuthPromptModal from './AuthPromptModal';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 
 const ChatBotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +21,7 @@ const ChatBotWidget = () => {
   const [selectedUserForSwap, setSelectedUserForSwap] = useState(null);
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const { isAuthenticated } = useAuth();
+  const { language } = useLanguage();
 
   const messagesEndRef = useRef(null);
 
@@ -49,7 +51,7 @@ const ChatBotWidget = () => {
         content: m.text,
       }));
 
-      const res = await chatbotAPI.sendMessage(query, historyPayload);
+      const res = await chatbotAPI.sendMessage(query, historyPayload, language);
       if (!textToSend) setInput('');
       const botReply = {
         id: Date.now() + 1,
