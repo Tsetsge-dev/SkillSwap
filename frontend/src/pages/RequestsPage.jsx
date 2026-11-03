@@ -5,13 +5,8 @@ import { requestsAPI, usersAPI } from '../services/api';
 
 const TABS = [
   { key: 'incoming', label: 'Ирсэн хүсэлтүүд', icon: UserCheck },
-<<<<<<< HEAD
   { key: 'outgoing', label: 'Илгээсэн', icon: Clock },
   { key: 'friends', label: 'Найзууд', icon: Users },
-=======
-  { key: 'outgoing', label: 'Явуулсан хүсэлт', icon: Clock },
-  { key: 'friends', label: 'Холбоо тогтоосон', icon: Users },
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 ];
 
 const RequestsPage = () => {
@@ -73,11 +68,7 @@ const RequestsPage = () => {
     <div className="space-y-3">
       {incoming.length === 0 ? (
         <div className="text-center py-16 text-xs text-slate-500 glass-panel rounded-2xl">
-<<<<<<< HEAD
           Танд одоогоор ирсэн чадвар солилцох хүсэлт байхгүй байна.
-=======
-          Одоогоор танд ирсэн чадвар солилцох хүсэлт алга.
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         </div>
       ) : (
         incoming.map((req) => {
@@ -102,19 +93,11 @@ const RequestsPage = () => {
                   </Link>
                   <div className="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1.5 flex-wrap">
                     <span className="font-semibold text-violet-700 bg-violet-50 px-2 py-0.5 rounded-md border border-violet-100">
-<<<<<<< HEAD
                       Тэр заана: {req.offered_skill_name}
                     </span>
                     <ArrowRightLeft className="w-3 h-3 text-slate-400" />
                     <span className="font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-100">
                       Тэр сурна: {req.wanted_skill_name}
-=======
-                      Заах чадвар: {req.offered_skill_name}
-                    </span>
-                    <ArrowRightLeft className="w-3 h-3 text-slate-400" />
-                    <span className="font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-100">
-                      Сурах чадвар: {req.wanted_skill_name}
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                     </span>
                   </div>
                   {req.message && (
@@ -129,11 +112,7 @@ const RequestsPage = () => {
                 <button
                   onClick={() => handleRespond(req.id, 'accept')}
                   disabled={actionLoading === req.id}
-<<<<<<< HEAD
                   className="px-3.5 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md disabled:opacity-50 transition-all"
-=======
-                  className="px-3.5 py-2 glass-accent  text-white font-bold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md disabled:opacity-50 transition-all"
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                 >
                   <Check className="w-3.5 h-3.5" /> {actionLoading === req.id ? 'Түр хүлээнэ үү...' : 'Зөвшөөрөх'}
                 </button>
@@ -156,11 +135,7 @@ const RequestsPage = () => {
     <div className="space-y-3">
       {outgoing.length === 0 ? (
         <div className="text-center py-16 text-xs text-slate-500 glass-panel rounded-2xl">
-<<<<<<< HEAD
           Та одоогоор хэнд ч санал илгээгээгүй байна. Explore хуудаснаас хүмүүс олж санал илгээгээрэй!
-=======
-          Та одоогоор хүсэлт илгээгээгүй байна. Хүмүүс хэсгээс тохирох хүнээ хайгаад хүсэлт илгээгээрэй.
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         </div>
       ) : (
         outgoing.map((req) => {
@@ -185,19 +160,11 @@ const RequestsPage = () => {
                   </Link>
                   <div className="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1.5 flex-wrap">
                     <span className="font-semibold text-violet-700 bg-violet-50 px-2 py-0.5 rounded-md border border-violet-100">
-<<<<<<< HEAD
                       Би заана: {req.offered_skill_name}
                     </span>
                     <ArrowRightLeft className="w-3 h-3 text-slate-400" />
                     <span className="font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-100">
                       Би сурна: {req.wanted_skill_name}
-=======
-                      Таны заах чадвар: {req.offered_skill_name}
-                    </span>
-                    <ArrowRightLeft className="w-3 h-3 text-slate-400" />
-                    <span className="font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-100">
-                      Таны сурах чадвар: {req.wanted_skill_name}
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                     </span>
                   </div>
                   <span className={`text-[10px] font-semibold mt-1 inline-block px-2 py-0.5 rounded-full ${
@@ -232,11 +199,7 @@ const RequestsPage = () => {
     <div className="space-y-3">
       {friends.length === 0 ? (
         <div className="text-center py-16 text-xs text-slate-500 glass-panel rounded-2xl">
-<<<<<<< HEAD
           Холбогдсон найз одоогоор байхгүй байна. Санал илгээж эсвэл ирсэн хүсэлтийг зөвшөөрч найз болоорой!
-=======
-          Одоогоор та бусад гишүүнтэй холбогдоогүй байна. Чадвар солилцох хүсэлт илгээх эсвэл ирсэн хүсэлтийг зөвшөөрөөрэй.
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         </div>
       ) : (
         friends.map((friend) => (
@@ -257,20 +220,12 @@ const RequestsPage = () => {
                 >
                   {friend.full_name}
                 </Link>
-<<<<<<< HEAD
                 <p className="text-[11px] text-slate-500 truncate">{friend.headline || 'SkillSwap талбарын найз'}</p>
-=======
-                <p className="text-[11px] text-slate-500 truncate">{friend.headline || 'SkillSwap-ийн гишүүн'}</p>
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
               </div>
             </div>
             <Link
               to={`/chat/${friend.id}`}
-<<<<<<< HEAD
               className="px-4 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all shrink-0"
-=======
-              className="px-4 py-2 glass-accent  text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all shrink-0"
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             >
               <MessageSquare className="w-3.5 h-3.5" /> Зурвас бичих
             </Link>
@@ -282,11 +237,7 @@ const RequestsPage = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 space-y-5 animate-fade-in">
-<<<<<<< HEAD
       <h1 className="text-xl font-bold text-slate-800">Хүсэлтүүд & Найзууд</h1>
-=======
-      <h1 className="text-xl font-bold text-slate-800">Хүсэлт ба холбоо тогтоосон хүмүүс</h1>
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
       {/* Tabs */}
       <div className="flex items-center gap-1.5 bg-white p-1 rounded-xl border border-slate-200 shadow-sm">
@@ -305,11 +256,7 @@ const RequestsPage = () => {
               onClick={() => setActiveTab(tab.key)}
               className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 isActive
-<<<<<<< HEAD
                   ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-sm'
-=======
-                  ? 'glass-accent text-white shadow-sm'
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                   : 'text-slate-600 hover:text-violet-700 hover:bg-violet-50'
               }`}
             >

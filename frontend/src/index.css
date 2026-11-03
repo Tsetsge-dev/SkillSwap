@@ -1,28 +1,5 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8faff;
-    --bg-card: rgba(255, 255, 255, 0.9);
-    --border-color: rgba(99, 102, 241, 0.2);
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --accent: #7c3aed;
-    --accent-hover: #6d28d9;
-    --warning: #f59e0b;
-    --error: #ef4444;
-    --success: #10b981;
-  }
-
-  body {
-    /* Bright, playful gradient background */
-    background:
-      radial-gradient(circle at 12% 18%, rgba(129, 140, 248, 0.35), transparent 55%),
-      radial-gradient(circle at 88% 12%, rgba(244, 114, 182, 0.30), transparent 50%),
-      radial-gradient(circle at 75% 85%, rgba(45, 212, 191, 0.30), transparent 55%),
-      radial-gradient(circle at 15% 85%, rgba(251, 191, 36, 0.25), transparent 50%),
-      linear-gradient(135deg, #eef2ff 0%, #fdf4ff 45%, #ecfeff 100%);
 @theme {
   --color-slate-50: #F5F8FC;
   --color-slate-100: #F5F8FC;
@@ -550,17 +527,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
-    letter-spacing: -0.01em;
-  }
-}
-
-/* Minimalist Clean Glass Panel - lightweight white card */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(124, 58, 237, 0.16);
-  box-shadow: 0 10px 30px -12px rgba(99, 102, 241, 0.25);
     letter-spacing: 0;
   }
 }
@@ -580,9 +546,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .glass-panel-hover:hover {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: rgba(124, 58, 237, 0.35);
-  box-shadow: 0 16px 40px -12px rgba(99, 102, 241, 0.35);
   background: rgba(245, 248, 252, 0.98);
   border-color: rgba(197, 212, 232, 0.35);
   box-shadow: 0 16px 40px -12px rgba(197, 212, 232, 0.35);
@@ -590,11 +553,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .glow-emerald {
-  box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.35);
-}
-
-.glow-accent {
-  box-shadow: 0 0 24px -6px rgba(124, 58, 237, 0.5);
   box-shadow: 0 0 20px -5px rgba(197, 212, 232, 0.35);
 }
 
@@ -628,11 +586,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(124, 58, 237, 0.25);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 58, 237, 0.4);
   background: rgba(197, 212, 232, 0.25);
   border-radius: 9999px;
 }
@@ -842,7 +795,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(110deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 48%, rgba(255,255,255,0) 100%);
   background: linear-gradient(110deg, rgba(245, 248, 252, 0) 0%, rgba(245, 248, 252, 0.5) 48%, rgba(245, 248, 252, 0) 100%);
   background-size: 220% 100%;
   animation: shimmer-sweep 4.5s ease-in-out infinite;
@@ -859,10 +811,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* Slow color-pulsing border for attention-grabbing badges */
 @keyframes border-pulse {
-  0%, 100% { border-color: rgba(147,51,234,.25); }
-  25% { border-color: rgba(236,72,153,.35); }
-  50% { border-color: rgba(147,51,234,.25); }
-  75% { border-color: rgba(236,72,153,.35); }
   0%, 100% { border-color: rgba(197, 212, 232, .25); }
   25% { border-color: rgba(197, 212, 232, .35); }
   50% { border-color: rgba(197, 212, 232, .25); }
