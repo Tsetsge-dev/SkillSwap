@@ -22,7 +22,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f4f7fc] text-[#243b63]">
+    <div className="home-liquid-shell min-h-screen text-[#243b63]">
       <section className="mx-auto grid min-h-[calc(100svh-100px)] w-full max-w-[1660px] grid-cols-1 items-center gap-12 px-6 py-12 sm:px-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:px-12 lg:py-16">
         <div className="max-w-[900px] lg:pl-0">
           <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-[#cbdaf0] bg-white/80 px-5 py-3 text-sm font-bold text-[#365984] shadow-sm">
@@ -47,19 +47,19 @@ const Home = () => {
           <p className="mt-5 text-sm text-[#456488]">Шинээр орж ирэв үү? <Link className="font-extrabold text-[#365984] hover:underline" to="/register">Бүртгүүлэх</Link></p>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[780px] rounded-[38px] border border-[#d0def0] bg-white/70 p-6 shadow-[0_28px_80px_-50px_#29466f55] backdrop-blur-sm sm:p-8 lg:p-10">
-          <div className="inline-flex items-center gap-3 rounded-full bg-[#f0f4fa] px-4 py-2.5 text-sm font-extrabold text-[#29466f]">
+        <div className="home-liquid-panel relative mx-auto w-full max-w-[780px] rounded-[38px] p-6 sm:p-8 lg:p-10">
+          <div className="home-liquid-badge inline-flex items-center gap-3 rounded-full px-4 py-2.5 text-sm font-extrabold text-[#29466f]">
             <ArrowRightLeft className="h-5 w-5" /> ЖИШЭЭ СОЛИЛЦОО
           </div>
           <h2 className="mt-6 text-2xl font-black leading-tight tracking-tight text-[#243b63] sm:text-[28px]">Хүн бүр мэдлэг, чадвараа хуваалцана.</h2>
 
-          <div className="mt-7 rounded-[24px] border border-[#d0def0] bg-white px-6 py-5 shadow-[0_10px_30px_-24px_#29466f55] sm:px-7">
+          <div className="home-liquid-card mt-7 rounded-[24px] px-6 py-5 sm:px-7">
             <p className="text-xs font-extrabold tracking-wide text-[#365984]">БИ ХУВААЛЦАНА</p>
             <p className="mt-2 text-xl font-extrabold text-[#29466f]">Англи хэл</p>
             <p className="mt-1.5 text-base text-[#456488]">Ярианы дадлага, шинэ үгс</p>
           </div>
           <div className="flex h-12 items-center justify-center text-[#5277aa]" aria-hidden="true"><ArrowRightLeft className="h-6 w-6 rotate-90" /></div>
-          <div className="rounded-[24px] border border-[#d0def0] bg-white px-6 py-5 shadow-[0_10px_30px_-24px_#29466f55] sm:px-7">
+          <div className="home-liquid-card rounded-[24px] px-6 py-5 sm:px-7">
             <p className="text-xs font-extrabold tracking-wide text-[#365984]">БИ СУРНА</p>
             <p className="mt-2 text-xl font-extrabold text-[#29466f]">Вэб дизайн</p>
             <p className="mt-1.5 text-base text-[#456488]">Эхний загвараа бүтээх</p>
@@ -75,7 +75,7 @@ const Home = () => {
           <h2 className="mt-3 text-3xl font-black text-[#243b63]">SkillSwap хэрхэн ажилладаг вэ?</h2>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
-          {steps.map((step) => <article key={step.number} className="rounded-3xl border border-[#d5e0ef] bg-white p-7 shadow-sm"><span className="text-sm font-black text-[#5277aa]">{step.number}</span><h3 className="mt-3 text-lg font-extrabold">{step.title}</h3><p className="mt-2 text-sm leading-6 text-[#5d789d]">{step.description}</p></article>)}
+          {steps.map((step) => <article key={step.number} className="home-liquid-card rounded-3xl p-7"><span className="text-sm font-black text-[#5277aa]">{step.number}</span><h3 className="mt-3 text-lg font-extrabold">{step.title}</h3><p className="mt-2 text-sm leading-6 text-[#456488]">{step.description}</p></article>)}
         </div>
         <div className="mt-16">
           <div className="mb-6 flex items-center justify-between gap-4"><div><h2 className="text-2xl font-black">Санал болгож буй суралцагчид</h2><p className="mt-1 text-sm text-[#5d789d]">Тохирох хүнээ сонгоод солилцооны санал илгээгээрэй.</p></div><Link to="/explore" className="inline-flex items-center gap-2 font-bold text-[#456b9c]">Бүгдийг харах <ArrowRight className="h-4 w-4" /></Link></div>
