@@ -6,6 +6,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from app.core.config import settings
 from app.core.database import engine, Base
+from app.demo_accounts import ensure_demo_accounts
 import app.models # Register all models
 
 FRONTEND_DIST = Path(__file__).resolve().parents[1] / "frontend-dist"
@@ -26,6 +27,7 @@ from app.api.survey_recommendations import router as survey_recommendations_rout
 
 # Initialize Database tables
 Base.metadata.create_all(bind=engine)
+ensure_demo_accounts()
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
