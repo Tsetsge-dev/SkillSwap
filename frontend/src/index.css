@@ -1528,3 +1528,8 @@ body [class~="bg-white/15"] { background-color:rgba(255,255,255,.15) !important;
   -webkit-backdrop-filter: blur(22px) saturate(145%);
   backdrop-filter: blur(22px) saturate(145%);
 }
+
+body a.home-primary-action,
+body a.home-register-action { color: #fff !important; }
+body a.home-primary-action:hover,
+body a.home-register-action:hover { color: #fff !important; }
