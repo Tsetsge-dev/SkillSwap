@@ -17,11 +17,14 @@ export const AuthProvider = ({ children }) => {
       if (savedToken) {
         try {
           const res = await authAPI.getMe();
-          setUser(res.data);
-          localStorage.setItem('skillswap_user', JSON.stringify(res.data));
+          if (localStorage.getItem('skillswap_token') === savedToken) {
+            setUser(res.data);
+            localStorage.setItem('skillswap_user', JSON.stringify(res.data));
+          }
         } catch (err) {
           console.error('Failed to load authenticated user profile:', err);
-          logout();
+          // Do not clear a newer token if registration or login completed meanwhile.
+          if (localStorage.getItem('skillswap_token') === savedToken) logout();
         }
       }
       setLoading(false);
@@ -93,3 +96,4 @@ export const useAuth = () => {
   }
   return context;
 };
+
