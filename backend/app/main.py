@@ -1,10 +1,14 @@
 import os
+from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from app.core.config import settings
 from app.core.database import engine, Base
 import app.models # Register all models
+
+FRONTEND_DIST = Path(__file__).resolve().parents[1] / "frontend-dist"
 
 # Import Routers
 from app.api.auth import router as auth_router
