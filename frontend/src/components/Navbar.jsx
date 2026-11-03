@@ -102,7 +102,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/register"
-                  className="rounded-full bg-[#5277aa] px-5 py-2.5 text-xs font-extrabold text-white shadow-md transition hover:bg-[#456b9c]"
+                  className="home-register-action rounded-full bg-[#5277aa] px-5 py-2.5 text-xs font-extrabold text-white shadow-md transition hover:bg-[#456b9c]"
                 >
                   Бүртгүүлэх
                 </Link>
@@ -183,7 +183,7 @@ const Navbar = () => {
                 <Link
                   to="/register"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex-1 rounded-xl bg-[#5277aa] py-2 text-center text-xs font-bold text-white"
+                  className="home-register-action flex-1 rounded-xl bg-[#5277aa] py-2 text-center text-xs font-bold text-white"
                 >
                   Бүртгүүлэх
                 </Link>
