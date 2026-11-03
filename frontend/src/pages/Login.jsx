@@ -10,6 +10,9 @@ const DEMO_ACCOUNTS = [
   { name: 'Энхжин', role: 'UI/UX Дизайнер', email: 'elena.rostova@skillswap.io' },
   { name: 'Тэмүүлэн', role: 'Хөгжмийн продюсер', email: 'marcus.vance@skillswap.io' },
   { name: 'Номин', role: 'Маркетинг мэргэжилтэн', email: 'sophia.martinez@skillswap.io' },
+  { name: 'Хангал', role: 'Морин хуурч', email: 'khangal.morin@skillswap.io' },
+  { name: 'Отгонбаяр', role: 'Математик, физикийн багш', email: 'otgon.math@skillswap.io' },
+  { name: 'Бат-Эрдэнэ', role: 'Шатрын дасгалжуулагч', email: 'bat.chess@skillswap.io' },
 ];
 
 const Login = () => {
