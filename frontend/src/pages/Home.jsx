@@ -1,279 +1,92 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  ArrowRightLeft,
-  Sparkles,
-  Bot,
-  Search,
-  Users,
-  ArrowRight,
-  Activity,
-} from "lucide-react";
+import { ArrowRight, ArrowRightLeft, Bot, CheckCircle2, Compass, Search, Users } from "lucide-react";
 import { matchesAPI } from "../services/api";
 import UserCard from "../components/UserCard";
 import MatchRequestModal from "../components/MatchRequestModal";
-import FloatingSkillIcons from "../components/FloatingSkillIcons";
 
 const Home = () => {
   const navigate = useNavigate();
   const [featuredUsers, setFeaturedUsers] = useState([]);
   const [selectedUserForSwap, setSelectedUserForSwap] = useState(null);
-  const [searchTeach, setSearchTeach] = useState("");
-  const [searchLearn, setSearchLearn] = useState("");
 
   useEffect(() => {
-    matchesAPI
-      .explore({ limit: 6 })
+    matchesAPI.explore({ limit: 6 })
       .then((res) => setFeaturedUsers(res.data.slice(0, 6)))
       .catch(() => {});
   }, []);
 
-  const handleQuickSearch = (e) => {
-    e.preventDefault();
-    const params = new URLSearchParams();
-    if (searchTeach) params.append("teach_skill", searchTeach);
-    if (searchLearn) params.append("learn_skill", searchLearn);
-    navigate(`/explore?${params.toString()}`);
-  };
-
-  const categories = [
-    "Програмчлал & IT",
-    "Гадаад хэл",
-    "Дизайн & Бүтээлч",
-    "Хөгжим & Аудио",
-    "Бизнес & Маркетинг",
-    "Эрүүл мэнд & Иог",
+  const steps = [
+    { number: "01", title: "Профайлаа бүрдүүл", description: "Заах болон сурахыг хүссэн чадвараа нэм." },
+    { number: "02", title: "Түншээ сонго", description: "Тохирох хүнээ олоод солилцооны санал илгээ." },
+    { number: "03", title: "Хамтдаа суралц", description: "Чат, уулзалтаар мэдлэг чадвараа солилц." },
   ];
 
   return (
-    <>
-      <div className="space-y-16 pb-16">
-        {/* Hero Section */}
-        <section className="relative pt-12 md:pt-20 text-center px-4 max-w-4xl mx-auto min-h-[360px]">
-          <FloatingSkillIcons />
-          <div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-600 text-xs font-semibold mb-6 animate-fade-in-up animate-border-pulse"
-            style={{ animationDelay: "0.1s" }}
-          >
-            <Sparkles className="w-3.5 h-3.5 animate-sparkle-in" />
-            <span>Skill Swap платформ</span>
+    <div className="min-h-screen bg-[#f4f7fc] text-[#243b63]">
+      <section className="mx-auto grid min-h-[calc(100svh-100px)] w-full max-w-[1660px] grid-cols-1 items-center gap-12 px-6 py-12 sm:px-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:px-12 lg:py-16">
+        <div className="max-w-[760px] lg:pl-0">
+          <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-[#cbdaf0] bg-white/80 px-5 py-3 text-sm font-bold text-[#456b9c] shadow-sm">
+            <ArrowRightLeft className="h-5 w-5" />
+            Ур чадвараа харилцан солилцох нийгэмлэг
           </div>
-
-          {/* Live learners status pill — animated to draw attention */}
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-slate-200 text-xs text-slate-600">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse-dot" />
-              <span className="font-medium">
-                Онлайн суралцагчид: <b className="text-emerald-600">127</b>
-              </span>
-              <Activity
-                className="w-3 h-3 text-emerald-500 animate-pulse-dot"
-                style={{ animationDuration: "2.6s" }}
-              />
-            </span>
-          </div>
-
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-800 tracking-tight leading-tight mb-4 stagger-children">
-            <span
-              className="animate-fade-in-shimmer"
-              style={{ animationDelay: "0.1s" }}
-            >
-              Өөрийн чадвараа зааж,{" "}
-            </span>
-            <br />
-            <span
-              className="bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent animate-fade-in-shimmer"
-              style={{ animationDelay: "0.2s" }}
-            >
-              хүссэн бүхнээ
-            </span>
-            <span
-              className="animate-fade-in-shimmer"
-              style={{ animationDelay: "0.3s" }}
-            >
-              {" "}
-              үнэгүй сур.
-            </span>
+          <h1 className="max-w-[760px] text-5xl font-black leading-[1.12] tracking-[-0.045em] text-[#243b63] sm:text-6xl lg:text-[76px]">
+            Мэдлэгээ хуваалц.
+            <span className="block text-[#456b9c]">Шинэ зүйл сур.</span>
           </h1>
-
-          <p
-            className="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto mb-8 font-normal leading-relaxed animate-fade-in-up"
-            style={{ animationDelay: "0.4s" }}
-          >
-            Програмчлал заагаад Япон хэл сурах, Дизайн заагаад Гитар тоглож
-            сурах зэргээр бие биедээ 1-on-1 туслан хамтдаа хөгжье.
+          <p className="mt-7 max-w-[720px] text-lg leading-[1.8] text-[#49688f] sm:text-[21px]">
+            Мэддэг зүйлээ бусадтай хуваалцаж, сурахыг хүссэн чадвараа заадаг хүнээ олоорой.
           </p>
-
-          {/* Minimal Search Bar */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <form
-              onSubmit={handleQuickSearch}
-              className="glass-panel p-2 rounded-2xl flex flex-col sm:flex-row items-center gap-2"
-            >
-              <div className="flex-1 w-full flex items-center gap-2 px-3 py-2 bg-slate-100 rounded-xl">
-                <span className="text-xs font-semibold text-violet-600 shrink-0">
-                  Би заана:
-                </span>
-                <input
-                  type="text"
-                  placeholder="ж нь: Python, Дизайн..."
-                  value={searchTeach}
-                  onChange={(e) => setSearchTeach(e.target.value)}
-                  className="w-full bg-transparent text-xs text-slate-700 placeholder-slate-400 focus:outline-none"
-                />
-              </div>
-
-              <div className="flex-1 w-full flex items-center gap-2 px-3 py-2 bg-slate-100 rounded-xl">
-                <span className="text-xs font-semibold text-sky-600 shrink-0">
-                  Би сурна:
-                </span>
-                <input
-                  type="text"
-                  placeholder="ж нь: Япон хэл, Гитар..."
-                  value={searchLearn}
-                  onChange={(e) => setSearchLearn(e.target.value)}
-                  className="w-full bg-transparent text-xs text-slate-700 placeholder-slate-400 focus:outline-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full sm:w-auto px-5 py-2.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-violet-600 hover:to-fuchsia-600 glow-accent text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-md"
-              >
-                <Search className="w-3.5 h-3.5" />
-                <span>Хайх</span>
-              </button>
-            </form>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center justify-center gap-3 text-xs font-bold">
-            <Link
-              to="/recommendations"
-              className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white flex items-center gap-2 transition-colors animate-fade-in-up shadow-sm"
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>Танд тохирох чадвараа олох</span>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Link to="/explore" className="inline-flex min-h-[72px] items-center justify-center gap-3 rounded-2xl bg-[#456b9c] px-7 text-lg font-extrabold text-white shadow-[0_12px_24px_-12px_#456b9c99] transition hover:-translate-y-0.5 hover:bg-[#365984]">
+              <Search className="h-6 w-6" /> Тохирох хүн хайх <ArrowRight className="h-5 w-5" />
             </Link>
-            <Link
-              to="/chatbot"
-              className="px-4 py-2 rounded-xl bg-white/80 hover:bg-violet-50 border border-slate-200 text-slate-700 flex items-center gap-2 transition-colors animate-fade-in-up shadow-sm"
-            >
-              <Bot className="w-4 h-4 text-violet-500" />
-              <span>AI-аар тохирох хүн хайх</span>
-            </Link>
-            <Link
-              to="/explore"
-              className="px-4 py-2 rounded-xl text-slate-500 hover:text-violet-600 transition-colors animate-fade-in-up"
-            >
-              Бүх хэрэглэгчид →
+            <Link to="/assessment" className="inline-flex min-h-[72px] items-center justify-center gap-3 rounded-2xl border border-[#c7d7ed] bg-white px-7 text-lg font-bold text-[#29466f] transition hover:bg-[#edf3fb]">
+              <Compass className="h-6 w-6 text-[#456b9c]" /> Сонирхлоо тодорхойлох
             </Link>
           </div>
-        </section>
+          <p className="mt-6 text-base text-[#5d789d]">Шинээр орж ирэв үү? <Link className="font-extrabold text-[#456b9c] hover:underline" to="/register">Бүртгүүлэх</Link></p>
+        </div>
 
-        {/* Category Pills */}
-        <section className="max-w-4xl mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-2 stagger-children">
-            {categories.map((cat, idx) => (
-              <Link
-                key={idx}
-                to={`/explore?category=${encodeURIComponent(cat)}`}
-                className="px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-violet-50 text-slate-600 hover:text-violet-600 text-xs font-medium border border-slate-200 transition-colors"
-              >
-                {cat}
-              </Link>
-            ))}
+        <div className="relative mx-auto w-full max-w-[780px] rounded-[48px] border border-[#d0def0] bg-white/65 p-7 shadow-[0_28px_80px_-50px_#29466f55] backdrop-blur-sm sm:p-10 lg:p-12">
+          <div className="inline-flex items-center gap-3 rounded-full bg-[#f5f8fc] px-5 py-3 text-base font-extrabold text-[#29466f]">
+            <ArrowRightLeft className="h-5 w-5" /> ЖИШЭЭ СОЛИЛЦОО
           </div>
-        </section>
+          <h2 className="mt-7 text-3xl font-black leading-tight tracking-tight text-[#243b63] sm:text-[36px]">Хүн бүр мэдлэг, чадвараа хуваалцана.</h2>
 
-        <section id="how-it-works" className="max-w-5xl mx-auto px-4 w-full">
-          <div className="rounded-3xl border border-violet-100 bg-gradient-to-br from-white via-violet-50/70 to-sky-50/70 p-6 sm:p-9 shadow-sm">
-            <div className="max-w-2xl mx-auto text-center mb-7">
-              <p className="text-[10px] font-extrabold tracking-[0.18em] text-violet-600">ЭНГИЙН 3 АЛХАМ</p>
-              <h2 className="mt-2 text-xl sm:text-2xl font-black text-slate-800">SkillSwap хэрхэн ажилладаг вэ?</h2>
-              <p className="mt-2 text-xs sm:text-sm text-slate-500">Мэдлэгээ хуваалцаад, хүссэн чадвараа түнштэйгээ хамт сураарай.</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {[
-                { number: '01', title: 'Профайлаа бүрдүүл', description: 'Заах чадвар болон сурахыг хүссэн чадвараа нэм.' },
-                { number: '02', title: 'Түншээ сонго', description: 'Хайлт, зөвлөмжөөр тохирох хүнээ олоод санал илгээ.' },
-                { number: '03', title: 'Хамтдаа суралц', description: 'Чат эсвэл видео уулзалтаар цагаа товлоод чадвараа солилц.' },
-              ].map((step) => (
-                <article key={step.number} className="rounded-2xl border border-white bg-white/85 p-4 sm:p-5 shadow-sm">
-                  <span className="inline-flex w-9 h-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-100 to-sky-100 text-xs font-black text-violet-700">{step.number}</span>
-                  <h3 className="mt-3 text-sm font-extrabold text-slate-800">{step.title}</h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-slate-500">{step.description}</p>
-                </article>
-              ))}
-            </div>
-            <div className="mt-6 flex justify-center">
-              <Link to="/explore" className="rounded-xl bg-violet-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-violet-700">Хүн хайж эхлэх</Link>
-            </div>
+          <div className="mt-8 rounded-[26px] border border-[#d0def0] bg-white px-7 py-7 shadow-[0_10px_30px_-24px_#29466f55] sm:px-8">
+            <p className="text-sm font-extrabold tracking-wide text-[#456b9c]">БИ ХУВААЛЦАНА</p>
+            <p className="mt-2 text-2xl font-extrabold text-[#29466f]">Англи хэл</p>
+            <p className="mt-2 text-lg text-[#5d789d]">Ярианы дадлага, шинэ үгс</p>
           </div>
-        </section>
-
-        {/* Recommended Partners */}
-        <section className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-lg font-bold text-slate-800">
-                Санал болгож буй суралцагчид
-              </h2>
-              <p className="text-xs text-slate-500">
-                Өндөр тохиролтой хүмүүс рүү шууд санал илгээнэ үү
-              </p>
-            </div>
-            <Link
-              to="/explore"
-              className="text-xs font-bold text-violet-500 hover:text-violet-700 hover:underline flex items-center gap-1 animate-fade-in-up"
-            >
-              <span>Бүгдийг харах</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+          <div className="flex h-16 items-center justify-center text-[#7892b4]" aria-hidden="true"><ArrowRightLeft className="h-7 w-7 rotate-90" /></div>
+          <div className="rounded-[26px] border border-[#d0def0] bg-white px-7 py-7 shadow-[0_10px_30px_-24px_#29466f55] sm:px-8">
+            <p className="text-sm font-extrabold tracking-wide text-[#456b9c]">БИ СУРНА</p>
+            <p className="mt-2 text-2xl font-extrabold text-[#29466f]">Вэб дизайн</p>
+            <p className="mt-2 text-lg text-[#5d789d]">Эхний загвараа бүтээх</p>
           </div>
+          <div className="mt-7 flex items-center gap-3 text-base font-medium text-[#29466f]"><CheckCircle2 className="h-6 w-6 shrink-0" /> Хоёр талдаа суралцах боломж</div>
+          <div className="mt-4 flex items-center gap-3 text-base font-medium text-[#29466f]"><CheckCircle2 className="h-6 w-6 shrink-0" /> Мөнгө төлөхгүй, чадвараараа солилцоно</div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
-            {featuredUsers.map((u) => (
-              <UserCard
-                key={u.id}
-                user={u}
-                onRequestSwap={(target) => setSelectedUserForSwap(target)}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* Request Modal */}
-        {selectedUserForSwap && (
-          <MatchRequestModal
-            isOpen={!!selectedUserForSwap}
-            targetUser={selectedUserForSwap}
-            onClose={() => setSelectedUserForSwap(null)}
-            onSuccess={() => setSelectedUserForSwap(null)}
-          />
-        )}
-      </div>
-
-      {/* Floating decorative elements */}
-      <div className="pointer-events-none absolute top-0 right-0 -ml-10 -mr-10 opacity-50">
-        <div className="w-64 h-64 rounded-full bg-emerald-500/10 border border-emerald-500/20 animate-float animate-gentle-bob md:top-20 md:right-10 lg:top-32 lg:right-20"></div>
-        <div
-          className="w-32 h-32 rounded-full bg-sky-500/10 border border-sky-500/20 animate-float animate-gentle-bob lg:top-40 lg:right-40"
-          style={{ animationDelay: "2s" }}
-        ></div>
-        <div
-          className="w-20 h-20 rounded-full bg-emerald-500/20 border border-emerald-500/30 animate-float animate-gentle-bob lg:top-60 lg:right-60"
-          style={{ animationDelay: "3s" }}
-        ></div>
-        <svg
-          className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-emerald-500/20 animate-wave"
-          viewBox="0 0 100 30"
-        >
-          <path d="M0,5 Q20,0 Q40,20 Q60,5 Q80,25 Q100,5" fill="currentColor" />
-        </svg>
-      </div>
-    </>
+      <section id="how-it-works" className="mx-auto w-full max-w-[1440px] px-6 pb-20 pt-12 sm:px-10 lg:px-12">
+        <div className="mb-8 text-center">
+          <p className="text-xs font-black tracking-[.2em] text-[#5277aa]">ЭНГИЙН 3 АЛХАМ</p>
+          <h2 className="mt-3 text-3xl font-black text-[#243b63]">SkillSwap хэрхэн ажилладаг вэ?</h2>
+        </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          {steps.map((step) => <article key={step.number} className="rounded-3xl border border-[#d5e0ef] bg-white p-7 shadow-sm"><span className="text-sm font-black text-[#5277aa]">{step.number}</span><h3 className="mt-3 text-lg font-extrabold">{step.title}</h3><p className="mt-2 text-sm leading-6 text-[#5d789d]">{step.description}</p></article>)}
+        </div>
+        <div className="mt-16">
+          <div className="mb-6 flex items-center justify-between gap-4"><div><h2 className="text-2xl font-black">Санал болгож буй суралцагчид</h2><p className="mt-1 text-sm text-[#5d789d]">Тохирох хүнээ сонгоод солилцооны санал илгээгээрэй.</p></div><Link to="/explore" className="inline-flex items-center gap-2 font-bold text-[#456b9c]">Бүгдийг харах <ArrowRight className="h-4 w-4" /></Link></div>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">{featuredUsers.map((user) => <UserCard key={user.id} user={user} onRequestSwap={setSelectedUserForSwap} />)}</div>
+        </div>
+      </section>
+      {selectedUserForSwap && <MatchRequestModal isOpen targetUser={selectedUserForSwap} onClose={() => setSelectedUserForSwap(null)} onSuccess={() => setSelectedUserForSwap(null)} />}
+    </div>
   );
 };
 
 export default Home;
+
