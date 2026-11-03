@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import LanguageSwitcher from './LanguageSwitcher';
+import BrandLogo from './BrandLogo';
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -36,9 +37,8 @@ const Navbar = () => {
         <div className="flex h-[68px] items-center justify-between sm:h-[76px]">
           
           {/* Logo */}
-          <Link to="/" className="group flex shrink-0 items-center gap-3" aria-label="SkillSwap нүүр хуудас">
-            <span className="grid h-10 w-10 place-items-center rounded-[13px] bg-[#a9c1e2] text-white shadow-md transition group-hover:scale-105 sm:h-11 sm:w-11"><ArrowRightLeft className="h-5 w-5" /></span>
-            <span className="text-lg font-black tracking-tight text-[#29466f] sm:text-xl">Skill<span className="text-[#7897bf]">Swap</span></span>
+          <Link to="/" className="group flex shrink-0 items-center" aria-label="SkillSwap нүүр хуудас">
+            <BrandLogo className="h-12 w-auto max-w-[190px] transition-transform group-hover:scale-[1.03] sm:h-14" />
           </Link>
 
           {/* Desktop Links */}
@@ -125,7 +125,7 @@ const Navbar = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white/95 border-b border-indigo-100 px-4 py-3 space-y-1">
+        <div className="lg:hidden rounded-3xl border-t border-white/70 bg-white/90 px-4 py-3 shadow-inner backdrop-blur-xl space-y-1">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = location.pathname === link.path;
@@ -135,7 +135,7 @@ const Navbar = () => {
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold ${
-                  isActive ? 'bg-violet-50 text-violet-600' : 'text-slate-600'
+                  isActive ? 'bg-[#e7eef8] text-[#29466f]' : 'text-[#385779]'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
@@ -183,7 +183,7 @@ const Navbar = () => {
                 <Link
                   to="/register"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex-1 py-1.5 text-center text-xs font-bold bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white rounded-xl"
+                  className="flex-1 rounded-xl bg-[#5277aa] py-2 text-center text-xs font-bold text-white"
                 >
                   Бүртгүүлэх
                 </Link>
