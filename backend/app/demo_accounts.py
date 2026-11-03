@@ -123,23 +123,24 @@ def ensure_demo_accounts() -> int:
             created += 1
             demo_users.append(user)
 
-        # A pending request ring makes both incoming and sent-request views useful
-        # from every demo login. Insert only when no request exists either way.
-        for index, sender in enumerate(demo_users):
-            receiver = demo_users[(index + 1) % len(demo_users)]
-            pair_filter = or_(
-                and_(MatchRequest.sender_id == sender.id, MatchRequest.receiver_id == receiver.id),
-                and_(MatchRequest.sender_id == receiver.id, MatchRequest.receiver_id == sender.id),
-            )
-            if not db.query(MatchRequest.id).filter(pair_filter).first():
-                db.add(MatchRequest(
-                    sender_id=sender.id,
-                    receiver_id=receiver.id,
-                    offered_skill_name=sender.skills_offered[0].skill_name if sender.skills_offered else "Skill exchange",
-                    wanted_skill_name=receiver.skills_offered[0].skill_name if receiver.skills_offered else "New skill",
-                    message="Hi! I can share what I know about this skill. Would you like to exchange lessons?",
-                    status="pending",
-                ))
+        # Three incoming and three outgoing pending requests make both tabs
+        # useful from every demo login. Insert only when no request exists either way.
+        for offset in (1, 2, 3):
+            for index, sender in enumerate(demo_users):
+                receiver = demo_users[(index + offset) % len(demo_users)]
+                pair_filter = or_(
+                    and_(MatchRequest.sender_id == sender.id, MatchRequest.receiver_id == receiver.id),
+                    and_(MatchRequest.sender_id == receiver.id, MatchRequest.receiver_id == sender.id),
+                )
+                if not db.query(MatchRequest.id).filter(pair_filter).first():
+                    db.add(MatchRequest(
+                        sender_id=sender.id,
+                        receiver_id=receiver.id,
+                        offered_skill_name=sender.skills_offered[0].skill_name if sender.skills_offered else "Skill exchange",
+                        wanted_skill_name=receiver.skills_offered[0].skill_name if receiver.skills_offered else "New skill",
+                        message="Hi! I can share what I know about this skill. Would you like to exchange lessons?",
+                        status="pending",
+                    ))
 
         # Add four accepted connections, plus one two-way sample conversation
         # for each pair, so the Requests and Chat pages have realistic content.
