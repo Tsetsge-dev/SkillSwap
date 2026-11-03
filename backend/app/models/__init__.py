@@ -46,11 +46,7 @@ class User(Base):
     hashed_password = Column(String(255), nullable=False)
     full_name = Column(String(100), nullable=False)
     avatar = Column(String(500), nullable=True)
-<<<<<<< HEAD
     headline = Column(String(255), default="Eager to teach & learn")
-=======
-    headline = Column(String(255), default="Чадвараа хуваалцаж, шинэ зүйл сурахад бэлэн")
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     bio = Column(Text, default="")
     location = Column(String(100), default="Remote / Global")
     timezone = Column(String(50), default="UTC")

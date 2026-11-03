@@ -1,17 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 import { Bot, X, Send, Sparkles, ArrowRightLeft } from 'lucide-react';
 import { chatbotAPI } from '../services/api';
 import MatchRequestModal from './MatchRequestModal';
-=======
-import { Bot, X, Send } from 'lucide-react';
-import { chatbotAPI } from '../services/api';
-import MatchRequestModal from './MatchRequestModal';
-import AuthPromptModal from './AuthPromptModal';
-import ChatbotText from './ChatbotText';
-import { useAuth } from '../context/AuthContext';
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
 const ChatBotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,29 +10,15 @@ const ChatBotWidget = () => {
     {
       id: 1,
       sender: 'bot',
-<<<<<<< HEAD
       text: "👋 Сайн байна уу! Би SkillSwap-ийн **AI Туслах** байна. Заах болон сурах чадвараа бичээд тохирох найзууд болон хамтран суралцагчдаа (Study Buddy) олоорой!",
       recommendations: [],
-=======
-      text: "👋 Сайн байна уу! Би SkillSwap-ийн AI туслах. Зааж чадах болон сурахыг хүссэн чадвараа бичвэл тохирох хүн хайхад тань тусална. Платформын талаар чөлөөтэй асуугаарай.",
-      recommendations: [],
-      isIntro: true,
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     },
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [selectedUserForSwap, setSelectedUserForSwap] = useState(null);
-<<<<<<< HEAD
 
   const messagesEndRef = useRef(null);
-=======
-  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
-
-  const messagesEndRef = useRef(null);
-  const sendLock = useRef(false);
-  const { isAuthenticated } = useAuth();
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
   useEffect(() => {
     if (isOpen) {
@@ -50,14 +27,8 @@ const ChatBotWidget = () => {
   }, [messages, isOpen, loading]);
 
   const handleSend = async (textToSend = null) => {
-<<<<<<< HEAD
     const query = textToSend || input;
     if (!query.trim() || loading) return;
-=======
-    const query = (textToSend ?? input).trim();
-    if (!query || sendLock.current) return;
-    sendLock.current = true;
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
     const userMsg = {
       id: Date.now(),
@@ -66,27 +37,17 @@ const ChatBotWidget = () => {
     };
 
     setMessages((prev) => [...prev, userMsg]);
-<<<<<<< HEAD
     if (!textToSend) setInput('');
     setLoading(true);
 
     try {
       const historyPayload = messages.slice(-6).map((m) => ({
-=======
-    setLoading(true);
-
-    try {
-      const historyPayload = messages.filter((m) => !m.isIntro).slice(-8).map((m) => ({
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         role: m.sender === 'user' ? 'user' : 'assistant',
         content: m.text,
       }));
 
       const res = await chatbotAPI.sendMessage(query, historyPayload);
-<<<<<<< HEAD
-=======
       if (!textToSend) setInput('');
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
       const botReply = {
         id: Date.now() + 1,
         sender: 'bot',
@@ -95,47 +56,27 @@ const ChatBotWidget = () => {
       };
 
       setMessages((prev) => [...prev, botReply]);
-<<<<<<< HEAD
     } catch (err) {
       console.error('Widget error:', err);
-=======
-    } catch {
-      console.warn('Chatbot widget request failed');
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now() + 1,
           sender: 'bot',
-<<<<<<< HEAD
           text: "Алдаа гарлаа. 'Би Python заана, Япон хэл сурмаар байна' эсвэл 'Надад найз хайж өг' гэж бичээрэй.",
           recommendations: [],
-=======
-          text: "Туслахтай холбогдож чадсангүй. Интернэтээ шалгаад асуултаа дахин илгээнэ үү.",
-          recommendations: [],
-          isIntro: true,
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         },
       ]);
     } finally {
       setLoading(false);
-<<<<<<< HEAD
-=======
       sendLock.current = false;
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     }
   };
 
   const starterPrompts = [
-<<<<<<< HEAD
     '🔍 Найз хайх',
     '🤝 Хамтран суралцах (Study Buddy)',
     '📹 Видео дуудлага хэрхэн хийх вэ?',
-=======
-    '🔍 Тохирох хүн хайх',
-    '🤝 Хамт суралцах хүн санал болгох',
-    '📹 Видео дуудлагыг хэрхэн эхлүүлэх вэ?',
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     '💡 SkillSwap гэж юу вэ?',
   ];
 
@@ -144,13 +85,7 @@ const ChatBotWidget = () => {
       {/* Floating Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-<<<<<<< HEAD
         className={`fixed bottom-5 right-5 z-40 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold p-3.5 rounded-full shadow-xl shadow-violet-500/30 transition-transform hover:scale-105 flex items-center gap-2 cursor-pointer ${
-=======
-        aria-expanded={isOpen}
-        aria-label={isOpen ? 'AI туслах хаах' : 'AI туслах нээх'}
-        className={`fixed bottom-5 right-5 z-40 glass-accent  text-white font-bold p-3.5 rounded-full shadow-xl shadow-violet-500/30 transition-transform hover:scale-105 flex items-center gap-2 cursor-pointer ${
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           !isOpen ? 'animate-bounce' : ''
         }`}
         title="AI Туслах"
@@ -161,25 +96,16 @@ const ChatBotWidget = () => {
 
       {/* Floating Assistant Drawer */}
       {isOpen && (
-<<<<<<< HEAD
         <div className="fixed bottom-20 right-4 sm:right-5 z-40 w-[92vw] max-w-[390px] h-[540px] bg-white border border-slate-200 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-fade-in">
           {/* Header */}
           <div className="p-3.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white flex items-center justify-between shadow-sm">
-=======
-        <div className="fixed bottom-20 right-4 sm:right-5 z-40 w-[92vw] max-w-[390px] h-[min(540px,calc(100dvh-6rem))] bg-white border border-slate-200 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-fade-in" role="dialog" aria-label="AI чадвар солилцооны туслах">
-          {/* Header */}
-          <div className="p-3.5 glass-accent text-white flex items-center justify-between shadow-sm">
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             <div className="flex items-center gap-2">
               <Bot className="w-4 h-4 text-white" />
               <h4 className="text-xs font-bold">AI Чадвар Солилцооны Туслах</h4>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-<<<<<<< HEAD
-=======
               aria-label="AI туслах хаах"
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
               className="text-white/80 hover:text-white p-1 rounded-lg hover:bg-white/10 cursor-pointer"
             >
               <X className="w-4 h-4" />
@@ -187,11 +113,7 @@ const ChatBotWidget = () => {
           </div>
 
           {/* Chat Messages */}
-<<<<<<< HEAD
           <div className="flex-1 overflow-y-auto p-3.5 space-y-3 bg-slate-50/50">
-=======
-          <div className="flex-1 overflow-y-auto p-3.5 space-y-3 bg-slate-50/50" role="log" aria-live="polite" aria-relevant="additions text">
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             {messages.map((m) => (
               <div
                 key={m.id}
@@ -200,19 +122,11 @@ const ChatBotWidget = () => {
                 <div
                   className={`p-3 rounded-2xl text-xs max-w-[88%] leading-relaxed ${
                     m.sender === 'user'
-<<<<<<< HEAD
                       ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-medium rounded-br-none shadow-md'
                       : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none shadow-2xs'
                   }`}
                 >
                   <p className="whitespace-pre-line">{m.text}</p>
-=======
-                      ? 'glass-accent text-white font-medium rounded-br-none shadow-md'
-                      : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none shadow-2xs'
-                  }`}
-                >
-                  {m.sender === 'bot' ? <ChatbotText text={m.text} /> : <div className="whitespace-pre-wrap break-words">{m.text}</div>}
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                 </div>
 
                 {/* Recommendations */}
@@ -238,7 +152,6 @@ const ChatBotWidget = () => {
                             </div>
                           </div>
                           <button
-<<<<<<< HEAD
                             onClick={() => setSelectedUserForSwap(rec)}
                             className="px-2.5 py-1 rounded-lg bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-[10px] shrink-0 cursor-pointer shadow-sm"
                           >
@@ -248,17 +161,6 @@ const ChatBotWidget = () => {
                         <div className="text-[10px] text-slate-500 bg-slate-50 p-1.5 rounded-lg border border-slate-100 flex justify-between">
                           <span>Заана: <b>{rec.offered_skill}</b></span>
                           <span>Сурна: <b>{rec.wanted_skill}</b></span>
-=======
-                            onClick={() => isAuthenticated ? setSelectedUserForSwap(rec) : setShowAuthPrompt(true)}
-                            className="px-2.5 py-1 rounded-lg glass-accent  text-white font-bold text-[10px] shrink-0 cursor-pointer shadow-sm"
-                          >
-                            Холбогдох хүсэлт илгээх
-                          </button>
-                        </div>
-                        <div className="text-[10px] text-slate-500 bg-slate-50 p-1.5 rounded-lg border border-slate-100 flex justify-between">
-                          <span>Заах чадвар: <b>{rec.offered_skill}</b></span>
-                          <span>Сурах чадвар: <b>{rec.wanted_skill}</b></span>
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                         </div>
                       </div>
                     ))}
@@ -270,11 +172,7 @@ const ChatBotWidget = () => {
             {loading && (
               <div className="text-[11px] text-slate-500 bg-white border border-slate-200 px-3 py-1.5 rounded-xl w-fit flex items-center gap-1.5 shadow-2xs">
                 <div className="w-2.5 h-2.5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin"></div>
-<<<<<<< HEAD
                 <span>AI хайж байна...</span>
-=======
-                <span>Танд тохирох хүн хайж байна…</span>
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
               </div>
             )}
             <div ref={messagesEndRef} />
@@ -286,12 +184,7 @@ const ChatBotWidget = () => {
               <button
                 key={idx}
                 onClick={() => handleSend(p)}
-<<<<<<< HEAD
                 className="whitespace-nowrap text-[10px] px-2.5 py-1 rounded-full bg-white hover:bg-violet-100 text-slate-700 font-medium border border-slate-200 shrink-0 cursor-pointer shadow-2xs"
-=======
-                disabled={loading}
-                className="whitespace-nowrap text-[10px] px-2.5 py-1 rounded-full bg-white hover:bg-violet-100 text-slate-700 font-medium border border-slate-200 shrink-0 cursor-pointer shadow-2xs disabled:opacity-50 disabled:cursor-wait"
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
               >
                 {p}
               </button>
@@ -310,23 +203,13 @@ const ChatBotWidget = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-<<<<<<< HEAD
               placeholder="Асуух эсвэл хайх чадвараа бичнэ үү..."
-=======
-              maxLength={2000}
-              aria-label="AI туслахад асуулт бичих"
-              placeholder="Асуултаа бичих эсвэл заах, сурах чадвараа оруулна уу..."
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
               className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:bg-white"
             />
             <button
               type="submit"
               disabled={loading || !input.trim()}
-<<<<<<< HEAD
               className="p-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white rounded-xl disabled:opacity-40 cursor-pointer shadow-sm"
-=======
-              className="p-2 glass-accent  text-white rounded-xl disabled:opacity-40 cursor-pointer shadow-sm"
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             >
               <Send className="w-3.5 h-3.5" />
             </button>
@@ -343,8 +226,6 @@ const ChatBotWidget = () => {
           onSuccess={() => setSelectedUserForSwap(null)}
         />
       )}
-<<<<<<< HEAD
-=======
       {showAuthPrompt && (
         <AuthPromptModal
           isOpen={showAuthPrompt}
@@ -352,7 +233,6 @@ const ChatBotWidget = () => {
           message="Санал илгээхийн тулд эхлээд SkillSwap-д нэвтэрнэ үү."
         />
       )}
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     </>
   );
 };

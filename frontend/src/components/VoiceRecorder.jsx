@@ -52,13 +52,8 @@ const VoiceRecorder = ({ onSendVoiceNote, onCancel }) => {
         setDuration((prev) => prev + 1);
       }, 1000);
     } catch (err) {
-<<<<<<< HEAD
       console.error('Error accessing microphone:', err);
       alert('Microphone access is required to record voice notes.');
-=======
-      console.error('Микрофонд хандах үед алдаа гарлаа:', err);
-      alert('Дуут тэмдэглэл бичихийн тулд микрофон ашиглах зөвшөөрөл хэрэгтэй.');
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
       onCancel();
     }
   };
@@ -108,13 +103,8 @@ const VoiceRecorder = ({ onSendVoiceNote, onCancel }) => {
         msg_type: 'audio',
       });
     } catch (err) {
-<<<<<<< HEAD
       console.error('Failed to upload voice note:', err);
       alert('Failed to send voice note.');
-=======
-      console.error('Дуут тэмдэглэл илгээхэд алдаа гарлаа:', err);
-      alert('Дуут тэмдэглэл илгээж чадсангүй.');
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     } finally {
       setUploading(false);
     }
@@ -135,11 +125,7 @@ const VoiceRecorder = ({ onSendVoiceNote, onCancel }) => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-red-500"></span>
             </span>
-<<<<<<< HEAD
             <span className="text-sm font-semibold text-red-400">Recording Voice Note...</span>
-=======
-            <span className="text-sm font-semibold text-red-400">Дуут зурвас бичиж байна…</span>
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             <span className="text-xs font-mono bg-slate-100 px-2 py-0.5 rounded text-slate-600">
               {formatTime(duration)}
             </span>
@@ -149,11 +135,7 @@ const VoiceRecorder = ({ onSendVoiceNote, onCancel }) => {
             <button
               onClick={onCancel}
               className="p-2 text-slate-600 hover:text-red-500 transition-colors rounded-xl hover:bg-red-50"
-<<<<<<< HEAD
               title="Cancel"
-=======
-              title="Цуцлах"
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             >
               <Trash2 className="w-4 h-4" />
             </button>
@@ -162,11 +144,7 @@ const VoiceRecorder = ({ onSendVoiceNote, onCancel }) => {
               className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-xl transition-all flex items-center gap-1.5 text-xs font-bold shadow-md cursor-pointer"
             >
               <Square className="w-3.5 h-3.5 fill-white" />
-<<<<<<< HEAD
               Stop
-=======
-              Зогсоох
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             </button>
           </div>
         </div>
@@ -193,11 +171,7 @@ const VoiceRecorder = ({ onSendVoiceNote, onCancel }) => {
             <button
               onClick={onCancel}
               className="p-2 text-slate-600 hover:text-red-500 transition-colors rounded-xl hover:bg-red-50"
-<<<<<<< HEAD
               title="Discard"
-=======
-              title="Устгах"
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             >
               <Trash2 className="w-4 h-4" />
             </button>
@@ -211,11 +185,7 @@ const VoiceRecorder = ({ onSendVoiceNote, onCancel }) => {
               ) : (
                 <>
                   <Send className="w-3.5 h-3.5" />
-<<<<<<< HEAD
                   Send Note
-=======
-                  Илгээх
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                 </>
               )}
             </button>

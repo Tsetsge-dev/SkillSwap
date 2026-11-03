@@ -25,13 +25,8 @@ def register_user(user_in: UserRegister, db: Session = Depends(get_db)):
         email=user_in.email.lower(),
         hashed_password=get_password_hash(user_in.password),
         full_name=user_in.full_name,
-<<<<<<< HEAD
         headline=user_in.headline or "Eager to teach & learn",
         location=user_in.location or "Remote / Global",
-=======
-        headline=user_in.headline or "Чадвараа хуваалцаж, шинэ зүйл сурахад бэлэн",
-        location=user_in.location or "Алсын зайнаас",
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         timezone=user_in.timezone or "UTC",
         avatar=avatar_url
     )

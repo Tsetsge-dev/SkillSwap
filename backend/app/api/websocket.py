@@ -56,7 +56,6 @@ manager = ConnectionManager()
 
 @router.websocket("/ws/{user_id}")
 async def websocket_endpoint(websocket: WebSocket, user_id: int):
-<<<<<<< HEAD
     # Optional token verification from query params
     token = websocket.query_params.get("token")
     if token:
@@ -64,27 +63,6 @@ async def websocket_endpoint(websocket: WebSocket, user_id: int):
         if token_sub and int(token_sub) != user_id:
             await websocket.close(code=4003)
             return
-=======
-    # Browser WebSocket cannot set Authorization headers, so verify its query token.
-    token = websocket.query_params.get("token")
-    token_sub = decode_access_token(token) if token else None
-    try:
-        authenticated_id = int(token_sub) if token_sub is not None else None
-    except (TypeError, ValueError):
-        authenticated_id = None
-    if authenticated_id != user_id:
-        await websocket.close(code=4401)
-        return
-
-    auth_db = SessionLocal()
-    try:
-        account = auth_db.query(User.id).filter(User.id == user_id, User.is_active == True).first()
-    finally:
-        auth_db.close()
-    if account is None:
-        await websocket.close(code=4403)
-        return
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
     await manager.connect(user_id, websocket)
     try:
@@ -96,37 +74,11 @@ async def websocket_endpoint(websocket: WebSocket, user_id: int):
                 continue
 
             event_type = data.get("type")
-<<<<<<< HEAD
             target_id = data.get("target_id") or data.get("receiver_id")
 
             # 1. Direct Chat Message
             if event_type == "chat_message":
                 receiver_id = int(data.get("receiver_id"))
-=======
-            raw_target_id = data.get("target_id") or data.get("receiver_id")
-            try:
-                target_id = int(raw_target_id) if raw_target_id is not None else None
-            except (TypeError, ValueError):
-                continue
-            if target_id == user_id:
-                continue
-
-            # 1. Direct Chat Message
-            if event_type == "chat_message":
-                try:
-                    receiver_id = int(data.get("receiver_id"))
-                except (TypeError, ValueError):
-                    continue
-                message_db = SessionLocal()
-                try:
-                    recipient_exists = message_db.query(User.id).filter(
-                        User.id == receiver_id, User.is_active == True
-                    ).first()
-                finally:
-                    message_db.close()
-                if recipient_exists is None:
-                    continue
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                 content = data.get("content")
                 msg_type = data.get("msg_type", "text")
                 file_url = data.get("file_url")
@@ -193,8 +145,6 @@ async def websocket_endpoint(websocket: WebSocket, user_id: int):
                 "call-end"
             ]:
                 if target_id:
-<<<<<<< HEAD
-=======
                     signal_db = SessionLocal()
                     try:
                         recipient_exists = signal_db.query(User.id).filter(
@@ -204,7 +154,6 @@ async def websocket_endpoint(websocket: WebSocket, user_id: int):
                         signal_db.close()
                     if recipient_exists is None:
                         continue
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
                     forward_payload = {
                         **data,
                         "sender_id": user_id

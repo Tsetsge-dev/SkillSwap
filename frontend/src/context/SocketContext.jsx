@@ -1,18 +1,11 @@
-<<<<<<< HEAD
 import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
-=======
-import React, { createContext, useContext, useEffect, useState, useRef, useCallback, useMemo } from 'react';
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 import { useAuth } from './AuthContext';
 
 const SocketContext = createContext(null);
 
 export const SocketProvider = ({ children }) => {
   const { user, token } = useAuth();
-<<<<<<< HEAD
-=======
   const userId = user?.id;
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
   const [socket, setSocket] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState(new Set());
@@ -21,26 +14,11 @@ export const SocketProvider = ({ children }) => {
   const [incomingMessages, setIncomingMessages] = useState([]);
   const [typingUsers, setTypingUsers] = useState({});
   const listenersRef = useRef(new Map());
-<<<<<<< HEAD
 
   useEffect(() => {
     if (!user || !token) {
       if (socket) {
         socket.close();
-=======
-  const socketRef = useRef(null);
-
-  const dispatchCustomEvent = useCallback((eventName, data) => {
-    const callbacks = listenersRef.current.get(eventName) || [];
-    callbacks.forEach((cb) => cb(data));
-  }, []);
-
-  useEffect(() => {
-    if (!userId || !token) {
-      if (socketRef.current) {
-        socketRef.current.close();
-        socketRef.current = null;
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         setSocket(null);
         setIsConnected(false);
       }
@@ -49,11 +27,7 @@ export const SocketProvider = ({ children }) => {
 
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     const host = window.location.host;
-<<<<<<< HEAD
     const wsUrl = `${protocol}//${host}/ws/${user.id}?token=${token}`;
-=======
-    const wsUrl = `${protocol}//${host}/ws/${userId}?token=${token}`;
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
     let ws = null;
     try {
@@ -62,10 +36,7 @@ export const SocketProvider = ({ children }) => {
       console.error('Failed to create WebSocket:', e);
       return;
     }
-<<<<<<< HEAD
-=======
     socketRef.current = ws;
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
     ws.onopen = () => {
       console.log('⚡ Connected to SkillSwap Real-time WebSocket');
@@ -140,16 +111,12 @@ export const SocketProvider = ({ children }) => {
 
     ws.onclose = () => {
       console.log('WebSocket disconnected');
-<<<<<<< HEAD
-=======
       if (socketRef.current === ws) socketRef.current = null;
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
       setSocket(null);
       setIsConnected(false);
     };
 
     return () => {
-<<<<<<< HEAD
       ws.close();
     };
   }, [user?.id, token]);
@@ -160,14 +127,6 @@ export const SocketProvider = ({ children }) => {
   };
 
   const subscribe = (eventName, callback) => {
-=======
-      if (socketRef.current === ws) socketRef.current = null;
-      ws.close();
-    };
-  }, [userId, token, dispatchCustomEvent]);
-
-  const subscribe = useCallback((eventName, callback) => {
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     if (!listenersRef.current.has(eventName)) {
       listenersRef.current.set(eventName, []);
     }
@@ -180,7 +139,6 @@ export const SocketProvider = ({ children }) => {
         callbacks.filter((cb) => cb !== callback)
       );
     };
-<<<<<<< HEAD
   };
 
   const emit = (data) => {
@@ -192,35 +150,15 @@ export const SocketProvider = ({ children }) => {
   };
 
   const sendChatMessage = (receiverId, content, media = {}) => {
-=======
-  }, []);
-
-  const emit = useCallback((data) => {
-    const activeSocket = socketRef.current;
-    if (activeSocket && activeSocket.readyState === WebSocket.OPEN) {
-      activeSocket.send(JSON.stringify(data));
-      return true;
-    }
-    return false;
-  }, []);
-
-  const sendChatMessage = useCallback((receiverId, content, media = {}) => {
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     return emit({
       type: 'chat_message',
       receiver_id: receiverId,
       content,
       ...media,
     });
-<<<<<<< HEAD
   };
 
   const sendMessage = (dataOrReceiverId, content, media = {}) => {
-=======
-  }, [emit]);
-
-  const sendMessage = useCallback((dataOrReceiverId, content, media = {}) => {
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     if (typeof dataOrReceiverId === 'object') {
       const d = dataOrReceiverId;
       if (d.type === 'chat' || d.type === 'chat_message') {
@@ -234,35 +172,21 @@ export const SocketProvider = ({ children }) => {
       return emit(d);
     }
     return sendChatMessage(dataOrReceiverId, content, media);
-<<<<<<< HEAD
   };
 
   const sendTyping = (targetId, isTyping) => {
-=======
-  }, [emit, sendChatMessage]);
-
-  const sendTyping = useCallback((targetId, isTyping) => {
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     emit({
       type: isTyping ? 'typing_start' : 'typing_stop',
       target_id: targetId,
     });
-<<<<<<< HEAD
   };
 
   const sendCallSignal = (targetId, type, extra = {}) => {
     emit({
-=======
-  }, [emit]);
-
-  const sendCallSignal = useCallback((targetId, type, extra = {}) => {
-    return emit({
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
       type,
       target_id: targetId,
       ...extra,
     });
-<<<<<<< HEAD
   };
 
   const isUserOnline = (userId) => {
@@ -289,34 +213,6 @@ export const SocketProvider = ({ children }) => {
         subscribe,
       }}
     >
-=======
-  }, [emit]);
-
-  const isUserOnline = useCallback((userId) => {
-    return onlineUsers.has(Number(userId));
-  }, [onlineUsers]);
-
-  const contextValue = useMemo(() => ({
-    socket,
-    isConnected,
-    onlineUsers,
-    isUserOnline,
-    incomingCall,
-    setIncomingCall,
-    activeCall,
-    setActiveCall,
-    incomingMessages,
-    typingUsers,
-    sendChatMessage,
-    sendMessage,
-    sendTyping,
-    sendCallSignal,
-    subscribe,
-  }), [socket, isConnected, onlineUsers, isUserOnline, incomingCall, activeCall, incomingMessages, typingUsers, sendChatMessage, sendMessage, sendTyping, sendCallSignal, subscribe]);
-
-  return (
-    <SocketContext.Provider value={contextValue}>
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
       {children}
     </SocketContext.Provider>
   );

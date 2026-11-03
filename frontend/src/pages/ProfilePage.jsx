@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Save, Plus, Trash2, User, MapPin, Globe, Code2, ExternalLink } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-<<<<<<< HEAD
 import { usersAPI } from '../services/api';
-=======
-import { usersAPI, authAPI } from '../services/api';
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 import SkillBadge from '../components/SkillBadge';
 
 const PROFICIENCY_OPTIONS = [
@@ -15,18 +11,21 @@ const PROFICIENCY_OPTIONS = [
   { value: 'expert', label: 'Мэргэшсэн' },
 ];
 
+const getSkillErrorMessage = (error, fallback) => {
+  const detail = error.response?.data?.detail;
+  return typeof detail === 'string' ? detail : fallback;
+};
+
 const ProfilePage = () => {
-<<<<<<< HEAD
   const { user, refreshUser } = useAuth();
-=======
-  const { user, setUser } = useAuth();
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
   const [form, setForm] = useState({ full_name: '', headline: '', bio: '', location: '', timezone: '', github_url: '', portfolio_url: '' });
   const [skillsOffered, setSkillsOffered] = useState([]);
   const [skillsWanted, setSkillsWanted] = useState([]);
   const [newOffered, setNewOffered] = useState({ skill_name: '', proficiency_level: 'intermediate' });
   const [newWanted, setNewWanted] = useState({ skill_name: '', target_level: 'beginner' });
   const [saving, setSaving] = useState(false);
+  const [addingOffered, setAddingOffered] = useState(false);
+  const [addingWanted, setAddingWanted] = useState(false);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -46,12 +45,7 @@ const ProfilePage = () => {
     setMessage('');
     try {
       await usersAPI.updateProfile(form);
-<<<<<<< HEAD
       const updated = await refreshUser();
-=======
-      const res = await authAPI.getMe();
-      setUser(res.data);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
       setMessage('Амжилттай хадгалагдлаа!');
       setTimeout(() => setMessage(''), 3000);
     } catch (err) {
@@ -62,74 +56,66 @@ const ProfilePage = () => {
   };
 
   const addOfferedSkill = async () => {
-    if (!newOffered.skill_name.trim()) return;
+    const skillName = newOffered.skill_name.trim();
+    if (!skillName || addingOffered) return;
+    setAddingOffered(true);
+    setMessage('');
     try {
-      await usersAPI.addOfferedSkill(newOffered);
-<<<<<<< HEAD
-      const updated = await refreshUser();
-      setSkillsOffered(updated?.skills_offered || []);
-=======
-      const res = await authAPI.getMe();
-      setUser(res.data);
-      setSkillsOffered(res.data.skills_offered);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
+      const { data: addedSkill } = await usersAPI.addOfferedSkill({ ...newOffered, skill_name: skillName });
+      setSkillsOffered((current) => [...current, addedSkill]);
+      await refreshUser();
       setNewOffered({ skill_name: '', proficiency_level: 'intermediate' });
-    } catch {}
+      setMessage('Амжилттай нэмэгдлээ.');
+    } catch (err) {
+      setMessage(getSkillErrorMessage(err, 'Чадвар нэмэхэд алдаа гарлаа. Дахин оролдоно уу.'));
+    } finally {
+      setAddingOffered(false);
+    }
   };
 
   const removeOfferedSkill = async (skillId) => {
     try {
       await usersAPI.deleteOfferedSkill(skillId);
-<<<<<<< HEAD
-      const updated = await refreshUser();
-      setSkillsOffered(updated?.skills_offered || []);
-=======
-      const res = await authAPI.getMe();
-      setUser(res.data);
-      setSkillsOffered(res.data.skills_offered);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
-    } catch {}
+      setSkillsOffered((current) => current.filter((skill) => skill.id !== skillId));
+      await refreshUser();
+    } catch (err) {
+      setMessage(getSkillErrorMessage(err, 'Чадвар хасахад алдаа гарлаа. Дахин оролдоно уу.'));
+    }
   };
 
   const addWantedSkill = async () => {
-    if (!newWanted.skill_name.trim()) return;
+    const skillName = newWanted.skill_name.trim();
+    if (!skillName || addingWanted) return;
+    setAddingWanted(true);
+    setMessage('');
     try {
-      await usersAPI.addWantedSkill(newWanted);
-<<<<<<< HEAD
-      const updated = await refreshUser();
-      setSkillsWanted(updated?.skills_wanted || []);
+      const { data: addedSkill } = await usersAPI.addWantedSkill({ ...newWanted, skill_name: skillName });
+      setSkillsWanted((current) => [...current, addedSkill]);
+      await refreshUser();
       setNewWanted({ skill_name: '', target_level: 'beginner' });
-=======
-      const res = await authAPI.getMe();
-      setUser(res.data);
-      setSkillsWanted(res.data.skills_wanted);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
-    } catch {}
+      setMessage('Амжилттай нэмэгдлээ.');
+    } catch (err) {
+      setMessage(getSkillErrorMessage(err, 'Сурах чадвар нэмэхэд алдаа гарлаа. Дахин оролдоно уу.'));
+    } finally {
+      setAddingWanted(false);
+    }
   };
 
   const removeWantedSkill = async (skillId) => {
     try {
       await usersAPI.deleteWantedSkill(skillId);
-<<<<<<< HEAD
-      const updated = await refreshUser();
-      setSkillsWanted(updated?.skills_wanted || []);
-=======
-      const res = await authAPI.getMe();
-      setUser(res.data);
-      setSkillsWanted(res.data.skills_wanted);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
-    } catch {}
+      setSkillsWanted((current) => current.filter((skill) => skill.id !== skillId));
+      await refreshUser();
+    } catch (err) {
+      setMessage(getSkillErrorMessage(err, 'Чадвар хасахад алдаа гарлаа. Дахин оролдоно уу.'));
+    }
   };
 
   const inputClass = "w-full bg-slate-100 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500";
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 space-y-5">
-<<<<<<< HEAD
       <h1 className="text-xl font-bold text-slate-800">Миний Профайл</h1>
-=======
-      <h1 className="text-xl font-bold text-slate-800">Миний профайл</h1>
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
       {message && (
         <div className={`p-2.5 rounded-xl text-xs font-medium ${message.includes('Амжилт') ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-600' : 'bg-red-500/10 border border-red-500/20 text-red-700'}`}>
@@ -141,7 +127,6 @@ const ProfilePage = () => {
       <div className="glass-panel rounded-2xl p-5 space-y-3">
         <h2 className="text-sm font-bold text-slate-800 flex items-center gap-2"><User className="w-4 h-4 text-emerald-600" /> Ерөнхий мэдээлэл</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-<<<<<<< HEAD
           <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Нэр</label>
             <input type="text" value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} placeholder="Бүтэн нэр" className={inputClass} /></div>
           <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Гарчиг</label>
@@ -149,15 +134,6 @@ const ProfilePage = () => {
         </div>
         <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Танилцуулга</label>
           <textarea value={form.bio} onChange={(e) => setForm({...form, bio: e.target.value})} placeholder="Өөрийнхөө тухай товч..." rows={3} className={inputClass + " resize-none"} /></div>
-=======
-          <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Овог, нэр</label>
-            <input type="text" value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} placeholder="Овог, нэрээ оруулна уу" className={inputClass} /></div>
-          <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Профайлын гарчиг</label>
-            <input type="text" value={form.headline} onChange={(e) => setForm({...form, headline: e.target.value})} placeholder="Жишээ нь: Python хөгжүүлэгч" className={inputClass} /></div>
-        </div>
-          <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Өөрийн тухай</label>
-          <textarea value={form.bio} onChange={(e) => setForm({...form, bio: e.target.value})} placeholder="Өөрийн туршлага, сонирхлоо товч бичээрэй." rows={3} className={inputClass + " resize-none"} /></div>
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-1"><label className="text-[11px] font-semibold text-slate-500">Байршил</label>
             <input type="text" value={form.location} onChange={(e) => setForm({...form, location: e.target.value})} placeholder="Улаанбаатар" className={inputClass} /></div>
@@ -178,65 +154,41 @@ const ProfilePage = () => {
 
       {/* Skills Offered */}
       <div className="glass-panel rounded-2xl p-5 space-y-3">
-<<<<<<< HEAD
         <h2 className="text-sm font-bold text-emerald-600">Заадаг чадварууд</h2>
-=======
-        <h2 className="text-sm font-bold text-emerald-600">Зааж чадах чадварууд</h2>
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         <div className="flex flex-wrap gap-1.5">
           {skillsOffered.map((s) => (
             <SkillBadge key={s.id} name={s.skill_name} type="offered" proficiency={s.proficiency_level} onDelete={() => removeOfferedSkill(s.id)} />
           ))}
-<<<<<<< HEAD
           {skillsOffered.length === 0 && <span className="text-xs text-slate-500 italic">Чадвар нэмээгүй</span>}
         </div>
         <div className="flex items-center gap-2">
           <input type="text" value={newOffered.skill_name} onChange={(e) => setNewOffered({...newOffered, skill_name: e.target.value})}
             placeholder="Чадвар нэмэх..." className={inputClass + " flex-1"} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addOfferedSkill())} />
-=======
-          {skillsOffered.length === 0 && <span className="text-xs text-slate-500 italic">Одоогоор чадвар нэмээгүй байна.</span>}
-        </div>
-        <div className="flex items-center gap-2">
-          <input type="text" value={newOffered.skill_name} onChange={(e) => setNewOffered({...newOffered, skill_name: e.target.value})}
-            placeholder="Зааж чадах чадвараа нэмэх..." className={inputClass + " flex-1"} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addOfferedSkill())} />
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           <select value={newOffered.proficiency_level} onChange={(e) => setNewOffered({...newOffered, proficiency_level: e.target.value})}
             className="bg-slate-100 border border-slate-200 rounded-xl px-2 py-2 text-xs text-slate-600 focus:outline-none">
             {PROFICIENCY_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
-          <button onClick={addOfferedSkill} className="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-xl cursor-pointer"><Plus className="w-3.5 h-3.5" /></button>
+          <button onClick={addOfferedSkill} disabled={addingOffered || !newOffered.skill_name.trim()} aria-label="Заах чадвар нэмэх" className="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"><Plus className="w-3.5 h-3.5" /></button>
         </div>
       </div>
 
       {/* Skills Wanted */}
       <div className="glass-panel rounded-2xl p-5 space-y-3">
-<<<<<<< HEAD
         <h2 className="text-sm font-bold text-sky-600">Сурах хүсэлтэй чадварууд</h2>
-=======
-        <h2 className="text-sm font-bold text-sky-600">Сурахыг хүссэн чадварууд</h2>
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         <div className="flex flex-wrap gap-1.5">
           {skillsWanted.map((s) => (
             <SkillBadge key={s.id} name={s.skill_name} type="wanted" proficiency={s.target_level} onDelete={() => removeWantedSkill(s.id)} />
           ))}
-<<<<<<< HEAD
           {skillsWanted.length === 0 && <span className="text-xs text-slate-500 italic">Чадвар нэмээгүй</span>}
         </div>
         <div className="flex items-center gap-2">
           <input type="text" value={newWanted.skill_name} onChange={(e) => setNewWanted({...newWanted, skill_name: e.target.value})}
             placeholder="Сурах чадвар нэмэх..." className={inputClass + " flex-1"} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addWantedSkill())} />
-=======
-          {skillsWanted.length === 0 && <span className="text-xs text-slate-500 italic">Одоогоор чадвар нэмээгүй байна.</span>}
-        </div>
-        <div className="flex items-center gap-2">
-          <input type="text" value={newWanted.skill_name} onChange={(e) => setNewWanted({...newWanted, skill_name: e.target.value})}
-            placeholder="Сурахыг хүссэн чадвараа нэмэх..." className={inputClass + " flex-1"} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addWantedSkill())} />
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
           <select value={newWanted.target_level} onChange={(e) => setNewWanted({...newWanted, target_level: e.target.value})}
             className="bg-slate-100 border border-slate-200 rounded-xl px-2 py-2 text-xs text-slate-600 focus:outline-none">
             {PROFICIENCY_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
-          <button onClick={addWantedSkill} className="p-2 bg-sky-50 hover:bg-sky-100 text-sky-600 rounded-xl cursor-pointer"><Plus className="w-3.5 h-3.5" /></button>
+          <button onClick={addWantedSkill} disabled={addingWanted || !newWanted.skill_name.trim()} aria-label="Сурах чадвар нэмэх" className="p-2 bg-sky-50 hover:bg-sky-100 text-sky-600 rounded-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"><Plus className="w-3.5 h-3.5" /></button>
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 Gemini-Powered Chatbot Engine for SkillSwap.
 
@@ -20,14 +19,6 @@ import os
 import re
 import json
 import pickle
-=======
-"""Gemini conversation and local database-backed SkillSwap matching."""
-
-import os
-import logging
-import re
-import requests
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 from typing import Optional, List, Dict, Any
 
 from sqlalchemy.orm import Session
@@ -37,17 +28,13 @@ from app.models import User
 from app.ml.matcher import skill_matcher
 from app.ml.taxonomy import normalize_skill
 from app.ml.train_model import SUBJECT_KNOWLEDGE
-<<<<<<< HEAD
-=======
 from app.ml.chatbot_utils import build_gemini_contents, parse_gemini_payload
 from app.ml.mongolian_text import normalize_mongolian_latin
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
 # Load environment variables
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '..', '.env'))
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-<<<<<<< HEAD
 
 # --- Gemini client setup ---
 _gemini_client = None
@@ -69,25 +56,13 @@ def _get_gemini_client():
     except Exception as e:
         print(f"Gemini init error: {e}")
         return None
-=======
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash").strip()
-if not re.fullmatch(r"[A-Za-z0-9._-]{1,100}", GEMINI_MODEL):
-    GEMINI_MODEL = "gemini-3.8-flash"
-GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
-logger = logging.getLogger(__name__)
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
 
 # ============================================================
 # SYSTEM PROMPT — Gemini-д SkillSwap-ийн бүх мэдлэгийг өгнө
 # ============================================================
 _SYSTEM_PROMPT = """
-<<<<<<< HEAD
 Та SkillSwap платформын AI Ухаалаг Туслах байна. Та монголоор хариулдаг (хэрэглэгч англиар бичвэл англиар хариул).
-=======
-Та SkillSwap-ийн туслах. Хэрэглэгчтэй хүн шиг дулаан, энгийн, шууд ярь. Монгол хэлээр хариулж, Монгол бичвэрийг кириллээр гарга.
-Хэрэглэгч Монгол хэлийг латин үсгээр галиглан, товчилж бичсэн байж болно. Жишээ нь “sain bna uu”, “bi python zaana, solongos hel surmaar bna”. Үгийн алдаа болон галигийн хувилбарыг утгаар нь тааж ойлго; ойлгосноо байнга тайлбарлаж, өөрийгөө AI гэж давтан танилцуулах хэрэггүй.
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
 ## Тан тухай
 - Та SkillSwap-ийн хэрэглэгчдэд тусладаг чадварлаг AI туслах.
@@ -111,37 +86,25 @@ _SYSTEM_PROMPT = """
 1. **Skill Extraction**: Хэрэглэгчийн мессежнээс OFFERED болон WANTED чадваруудыг ялгаж JSON гаргана.
 2. **Roadmap / Зөвлөгөө**: Хэрэглэгч ямар нэгэн чадвар яаж сурах тухай асуувал дэлгэрэнгүй, практик алхамуудтай roadmap өгнө.
 3. **Платформын тусламж**: Ямар ч функцийн талаар асуувал тайлбарлана.
-<<<<<<< HEAD
 4. **Чат**: Урам зориг өгөх, зөвлөгөө өгөх, асуултад хариулах.
 
 ## JSON Output Format (ЗААВАЛ дагах ёстой)
 Хэрэглэгчийн мессеж хүлээн авахдаа ЗААВАЛ дараах JSON форматаар хариулна:
 
 ```json
-=======
-4. **Ерөнхий асуулт**: Шинжлэх ухаан, технологи, хэл, өдөр тутмын сэдэв, бичвэр найруулах зэрэг асуултад өөрийн мэдлэгээр хариул. SkillSwap-ийн тухай мэдээлэл биш бол зөвхөн платформоор хязгаарлагдахгүй.
-5. **Харилцан яриа**: Өмнөх ярианы утгыг санаж, хэрэгтэй үед нэг тодруулах асуулт асуу. Хариултыг асуултынхаа төвөгтэй байдалд тааруул; хиймэл магтаал, давтагдсан мэндчилгээ бүү хэрэглэ.
-
-## Хариултын бүтэц
-Зөвхөн дараах JSON бүтэцтэй хариул:
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 {
   "reply": "Хэрэглэгчид харуулах монгол хариулт текст энд байна. Markdown ашиглаж болно.",
   "offered_skills": ["Skill1", "Skill2"],
   "wanted_skills": ["Skill3"],
   "intent": "one of: find_friend | co_learning | how_to_learn | skill_exchange | video_call_help | chat_help | request_help | session_help | about_platform | greeting | general"
 }
-<<<<<<< HEAD
 ```
-=======
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
 ### Чухал дүрмүүд:
 - `offered_skills`: Хэрэглэгч ЗААЖ чадна гэж хэлсэн чадваруудын жагсаалт (монгол эсвэл англиар хэвийнчлэн бич, жишээ: "Python", "Япон хэл")
 - `wanted_skills`: Хэрэглэгч СУРМААР байна гэж хэлсэн чадваруудын жагсаалт
 - Хэрэв skill дурдаагүй бол хоосон массив [] байна
 - `reply` нь заавал байх ёстой, дор хаяж 1 өгүүлбэр
-<<<<<<< HEAD
 - Зөвхөн цэвэр JSON илгээ, бусад текст нэмж болохгүй
 """.strip()
 
@@ -164,25 +127,6 @@ def _extract_json_from_response(text: str) -> Optional[Dict]:
             except Exception:
                 pass
     return None
-=======
-- JSON-оос өөр текст нэмж болохгүй.
-- Товч бөгөөд хэрэгтэй байдлаар хариул; дэлгэрэнгүйг хүсвэл алхамчил. Эргэлзээтэй эсвэл цаг хугацаанаас хамаарах баримтыг баттай мэт бүү хэл, таамгаа ил тод тэмдэглэ. Гадаад эх сурвалжаас шалгасан мэт бүү дүр эсгэ.
-- SkillSwap-ийн одоогийн боломжийн талаар системийн зааварт байхгүй зүйлийг амласан мэт бүү хэл.
-- Тохирох хэрэглэгч санал болгохдоо зөвхөн backend-ийн бодит зөвлөмжийн жагсаалт ашиглагдана гэдгийг анхаар; өөрөө нэр, хэрэглэгч зохиож болохгүй.
-""".strip()
-
-
-def _mongolian_model_context(text: str) -> str:
-    normalized = normalize_mongolian_latin(text)
-    if normalized == text:
-        return text
-    return (
-        "Хэрэглэгчийн эх бичвэр (латин галигтай Монгол байж болно):\n"
-        f"{text}\n\n"
-        "Түгээмэл үгийн галигийг кириллээр ойролцуулсан хувилбар (утгыг эх бичвэртэй тулгаж ойлго):\n"
-        f"{normalized}"
-    )
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
 
 def _find_matches_in_db(
@@ -322,7 +266,6 @@ def _find_matches_in_db(
 
 
 def _fallback_local_response(user_message: str, current_user: Optional[User]) -> Dict[str, Any]:
-<<<<<<< HEAD
     """
     Fallback when Gemini API key is not configured.
     Uses the local ML pipeline from extractor + basic responses.
@@ -366,141 +309,6 @@ class GeminiChatbotEngine:
         if user_id not in self._chat_sessions:
             self._chat_sessions[user_id] = client.start_chat(history=[])
         return self._chat_sessions[user_id]
-=======
-    """Useful local answers when Gemini is unavailable or not configured."""
-    from app.ml.extractor import skill_extractor
-
-    normalized_message = normalize_mongolian_latin(user_message)
-    parsed = skill_extractor.parse_conversation(normalized_message)
-    intent = parsed["intent"]
-    offered = parsed["offered_skills"]
-    wanted = parsed["wanted_skills"]
-    lower = normalized_message.lower()
-
-    learning_question = any(phrase in lower for phrase in (
-        "яаж сурах", "яаж сур", "суралцаж эхлэх", "сурах төлөвлөгөө", "roadmap", "how to learn"
-    ))
-    if learning_question:
-        intent = "how_to_learn"
-        if not wanted:
-            wanted = skill_extractor.extract_skills_from_text(user_message)
-
-    if intent == "how_to_learn" or learning_question:
-        topic = wanted[0] if wanted else None
-        knowledge = None
-        if topic:
-            normalized_topic = normalize_skill(topic).casefold()
-            for key, value in SUBJECT_KNOWLEDGE.items():
-                if normalize_skill(key).casefold() == normalized_topic:
-                    knowledge = value
-                    break
-        if knowledge:
-            reply = (
-                f"{knowledge['title']}\n{knowledge['description']}\n\n"
-                f"Сурах дараалал:\n" + "\n".join(knowledge["roadmap"]) +
-                f"\n\nДадлагын зөвлөгөө: {knowledge['tip']}"
-            )
-        elif topic:
-            reply = (
-                f"{topic}-ийг эхлүүлэх энгийн төлөвлөгөө:\n"
-                "1. Суурь ойлголт, түгээмэл нэр томьёог судал.\n"
-                "2. Өдөр бүр 20–30 минутын богино дадлага хий.\n"
-                "3. Долоо хоног бүр сурсан зүйлээ ашигласан жижиг төсөл эсвэл даалгавар хий.\n"
-                "4. Өөрийн ахицыг тэмдэглэж, мэддэг хүнээс санал хүс.\n\n"
-                "Хэрэв түвшин болон зорилгоо хэлбэл төлөвлөгөөг илүү нарийвчилж өгнө."
-            )
-        else:
-            reply = "Ямар чадвар сурахыг хүсэж байгаагаа бичээрэй. Жишээ нь: “Япон хэл яаж сурах вэ?”"
-        return {"reply": reply, "offered_skills": offered, "wanted_skills": wanted, "intent": intent}
-
-    simple_responses = {
-        "video_call_help": "Видео дуудлага хийхдээ хамтрагчтайгаа чатыг нээгээд дээд хэсгийн видео дуудлагын товчийг дарна. Хөтөч микрофон, камер ашиглах зөвшөөрөл асууж болно.",
-        "chat_help": "Чат хэсэгт бодит цагийн зурвас илгээж, файл, зураг эсвэл дуут зурвас хавсаргаж болно.",
-        "request_help": "Суралцагч хайх хэсгээс профайл сонгоод “Санал илгээх” товчийг дарна. Хүлээн авсан хариуг “Хүсэлтүүд” хэсгээс харна.",
-        "session_help": "Холбогдсон хэрэглэгчтэйгээ “Хуваарь” хэсгээс хичээлийн цаг тохируулж болно.",
-        "about_platform": "SkillSwap нь суралцагчид мэддэг чадвараа зааж, өөр чадвар сурах түншээ олох платформ юм.",
-        "greeting": "Сайн байна уу! Би SkillSwap-ийн туслах. Заах эсвэл сурахыг хүссэн чадвараа бичвэл тохирох суралцагч хайж өгнө.",
-        "find_friend": "Танд тохирох хүн хайхад тусалъя. Сурах эсвэл заах чадвараа нэрлэж бичээрэй.",
-        "co_learning": "Хамтран суралцах хүн хайхад тусална. Ямар чадварыг хэнтэй хамт сурахыг хүсэж байгаагаа хэлнэ үү.",
-        "skill_exchange": "Солилцох хоёр чадвараа бичээрэй. Жишээ нь: “Би Python заана, Япон хэл сурмаар байна.”",
-    }
-
-    reply = simple_responses.get(intent)
-    if not reply and (offered or wanted):
-        details = []
-        if offered:
-            details.append("Заах чадвар: " + ", ".join(offered))
-        if wanted:
-            details.append("Сурах хүсэл: " + ", ".join(wanted))
-        reply = "Ойлголоо. " + ". ".join(details) + ". Тохирох бодит хэрэглэгч байгаа эсэхийг хайж байна."
-    if not reply:
-        reply = "Энэ асуултад ерөнхий мэдлэгээр хариулахын тулд серверийн Gemini тохиргоо хэрэгтэй байна. SkillSwap-ийн хэрэглээний талаар асуултаа бичвэл одоогийн туслах боломжтой мэдээллээр тусалъя."
-    return {"reply": reply, "offered_skills": offered, "wanted_skills": wanted, "intent": intent}
-
-
-def _generate_gemini_response(
-    user_message: str,
-    chat_history: Optional[List[Dict[str, str]]],
-    current_user: Optional[User],
-) -> Optional[Dict[str, Any]]:
-    if not GEMINI_API_KEY or GEMINI_API_KEY == "your_gemini_api_key_here":
-        return None
-
-    system_instruction = _SYSTEM_PROMPT
-    if current_user:
-        offered = [skill.skill_name for skill in current_user.skills_offered[:10]]
-        wanted = [skill.skill_name for skill in current_user.skills_wanted[:10]]
-        if offered or wanted:
-            system_instruction += (
-                "\n\nНэвтэрсэн хэрэглэгчийн профайлын чадварын мэдээлэл. "
-                "Нэр, имэйл зэрэг шаардлагагүй хувийн мэдээлэл бүү асуу. "
-                f"Заах чадвар: {', '.join(offered) or 'байхгүй'}. "
-                f"Сурах хүсэл: {', '.join(wanted) or 'байхгүй'}."
-            )
-
-    payload = {
-        "system_instruction": {"parts": [{"text": system_instruction}]},
-        "contents": build_gemini_contents(chat_history, user_message),
-        "generationConfig": {
-            "responseMimeType": "application/json",
-            "temperature": 0.7,
-            "maxOutputTokens": 1600,
-        },
-    }
-    try:
-        normalized_history = []
-        for turn in chat_history or []:
-            normalized_turn = dict(turn)
-            if normalized_turn.get("role") == "user" and isinstance(normalized_turn.get("content"), str):
-                normalized_turn["content"] = _mongolian_model_context(normalized_turn["content"])
-            normalized_history.append(normalized_turn)
-
-        response = requests.post(
-            GEMINI_API_URL,
-            headers={"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"},
-            json={
-                **payload,
-                "contents": build_gemini_contents(normalized_history, _mongolian_model_context(user_message)),
-            },
-            timeout=(5, 30),
-        )
-        if response.status_code >= 400:
-            logger.warning("Gemini API returned HTTP %s", response.status_code)
-            return None
-        parsed = parse_gemini_payload(response.json())
-        if parsed is None:
-            logger.warning("Gemini API response did not match the chatbot contract")
-        return parsed
-    except requests.RequestException as error:
-        logger.warning("Gemini request failed (%s)", type(error).__name__)
-    except (TypeError, ValueError):
-        logger.warning("Gemini returned an unreadable response")
-    return None
-
-
-class GeminiChatbotEngine:
-    """Gemini conversation with stateless request-local context and local matching."""
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 
     def process_message(
         self,
@@ -509,7 +317,6 @@ class GeminiChatbotEngine:
         user_message: str,
         chat_history: Optional[List[Dict[str, str]]] = None
     ) -> Dict[str, Any]:
-<<<<<<< HEAD
         client = _get_gemini_client()
 
         # === PATH 1: Gemini API available ===
@@ -581,31 +388,6 @@ class GeminiChatbotEngine:
             "recommendations": recommendations,
             "intent": local["intent"],
             "powered_by": "local_ml"
-=======
-        ai_result = _generate_gemini_response(user_message, chat_history, current_user)
-        response_source = "gemini" if ai_result else "local_ml"
-        result = ai_result or _fallback_local_response(user_message, current_user)
-
-        try:
-            recommendations = _find_matches_in_db(
-                db=db,
-                current_user=current_user,
-                offered_skills=result["offered_skills"],
-                wanted_skills=result["wanted_skills"],
-                intent=result["intent"],
-            )
-        except Exception:
-            logger.exception("SkillSwap chatbot recommendations failed")
-            recommendations = []
-
-        return {
-            "reply": result["reply"],
-            "extracted_skills_offered": result["offered_skills"],
-            "extracted_skills_wanted": result["wanted_skills"],
-            "recommendations": recommendations,
-            "intent": result["intent"],
-            "powered_by": response_source,
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
         }
 
 

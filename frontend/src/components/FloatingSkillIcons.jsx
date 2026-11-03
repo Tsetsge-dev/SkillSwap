@@ -33,11 +33,7 @@ const FloatingSkillIcons = () => {
           }}
         >
           <span
-<<<<<<< HEAD
             className="inline-block animate-drift-float drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]"
-=======
-            className="inline-block animate-drift-float drop-shadow-[0_0_6px_rgba(232,235,242,0.6)]"
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
             style={{ animationDelay: `${node.delay}s` }}
           >
             {node.icon}
