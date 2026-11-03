@@ -243,6 +243,7 @@ def _fallback_local_response(
     user_message: str,
     current_user: Optional[User],
     chat_history: Optional[List[Dict[str, str]]] = None,
+    language: str = "mn",
 ) -> Dict[str, Any]:
     """
     Fallback when Gemini API key is not configured.
@@ -256,9 +257,9 @@ def _fallback_local_response(
     wanted = parsed["wanted_skills"]
 
     lower = normalized_message.casefold()
-    english_request = not re.search(r"[А-Яа-яЁёӨөҮү]", normalized_message) and any(
+    english_request = language == "en" or (not re.search(r"[А-Яа-яЁёӨөҮү]", normalized_message) and any(
         marker in lower for marker in ("how ", "what ", "where ", "hello", "hi ", "i ", "can you", "please", "looking for", "want to")
-    )
+    ))
     previous_user_text = " ".join(
         normalize_mongolian_latin(turn.get("content", ""))
         for turn in (chat_history or [])[-8:]
@@ -373,7 +374,8 @@ class GeminiChatbotEngine:
         db: Session,
         current_user: Optional[User],
         user_message: str,
-        chat_history: Optional[List[Dict[str, str]]] = None
+        chat_history: Optional[List[Dict[str, str]]] = None,
+        language: str = "mn",
     ) -> Dict[str, Any]:
         # === PATH 1: Gemini API available ===
         if _has_gemini_key():
@@ -398,11 +400,17 @@ class GeminiChatbotEngine:
                     normalized_history,
                     normalize_mongolian_latin(user_message) + user_context,
                 )
+                system_prompt = _SYSTEM_PROMPT
+                if language == "en":
+                    system_prompt = system_prompt.replace(
+                        "Та монголоор хариулдаг (хэрэглэгч англиар бичвэл англиар хариул).",
+                        "When the interface language is English, respond only in clear, natural English, regardless of the language used in the user's message. Keep names and skill names unchanged.",
+                    )
                 response = requests.post(
                     f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent",
                     headers={"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"},
                     json={
-                        "systemInstruction": {"parts": [{"text": _SYSTEM_PROMPT}]},
+                        "systemInstruction": {"parts": [{"text": system_prompt}] },
                         "contents": model_contents,
                         "generationConfig": {
                             "responseMimeType": "application/json",
@@ -430,7 +438,8 @@ class GeminiChatbotEngine:
                     intent=intent
                 )
                 if (offered or wanted or intent in {"find_friend", "co_learning", "skill_exchange"}) and not recommendations:
-                    reply += "\n\nОдоогоор чадварын мэдээлэл таарсан идэвхтэй хүн олдсонгүй. Explore хэсгээс хайлтаа өргөжүүлж болно."
+                    reply += ("\n\nNo active members matched those skills. Try broadening your search on the Explore page."
+                              if language == "en" else "\n\nОдоогоор чадварын мэдээлэл таарсан идэвхтэй хүн олдсонгүй. Explore хэсгээс хайлтаа өргөжүүлж болно.")
 
                 return {
                     "reply": reply,
@@ -446,7 +455,7 @@ class GeminiChatbotEngine:
                 # Fall through to local fallback
 
         # === PATH 2: Fallback to local ML pipeline ===
-        local = _fallback_local_response(user_message, current_user, chat_history)
+        local = _fallback_local_response(user_message, current_user, chat_history, language)
         recommendations = _find_matches_in_db(
             db=db,
             current_user=current_user,
@@ -455,7 +464,7 @@ class GeminiChatbotEngine:
             intent=local["intent"]
         )
         if (local["offered_skills"] or local["wanted_skills"] or local["intent"] in {"find_friend", "co_learning", "skill_exchange"}) and not recommendations:
-            if re.search(r"[A-Za-z]", user_message) and not re.search(r"[А-Яа-яЁёӨөҮү]", user_message):
+            if language == "en" or (re.search(r"[A-Za-z]", user_message) and not re.search(r"[А-Яа-яЁёӨөҮү]", user_message)):
                 local["reply"] += "\n\nI couldn't find an active member with matching skill details yet. Try broadening your search on Explore."
             else:
                 local["reply"] += "\n\nОдоогоор чадварын мэдээлэл таарсан идэвхтэй хүн олдсонгүй. Explore хэсгээс хайлтаа өргөжүүлж болно."
