@@ -29,11 +29,11 @@ const Home = () => {
             <ArrowRightLeft className="h-5 w-5" />
             Ур чадвараа харилцан солилцох нийгэмлэг
           </div>
-          <h1 className="max-w-none text-5xl font-black leading-[1.12] tracking-[-0.045em] text-[#243b63] sm:text-6xl lg:text-[58px]">
+          <h1 className="max-w-none text-4xl font-black leading-[1.12] tracking-[-0.045em] text-[#243b63] sm:text-5xl lg:text-[52px]">
             Мэдлэгээ хуваалц.
             <span className="block text-[#456b9c]">Шинэ зүйл сур.</span>
           </h1>
-          <p className="mt-6 max-w-[720px] text-base leading-[1.75] text-[#3f5f89] sm:text-lg">
+          <p className="mt-5 max-w-[720px] text-sm leading-[1.75] text-[#3f5f89] sm:text-base">
             Мэддэг зүйлээ бусадтай хуваалцаж, сурахыг хүссэн чадвараа заадаг хүнээ олоорой.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -44,7 +44,7 @@ const Home = () => {
               <Compass className="h-5 w-5 text-[#456b9c]" /> Сонирхлоо тодорхойлох
             </Link>
           </div>
-          <p className="mt-5 text-sm text-[#456488]">Шинээр орж ирэв үү? <Link className="font-extrabold text-[#365984] hover:underline" to="/register">Бүртгүүлэх</Link></p>
+          <p className="mt-5 flex items-center gap-2 text-sm text-[#456488]">Бүртгэлгүй юу? <Link className="rounded-full bg-[#5277aa] px-3 py-1.5 font-extrabold text-white shadow-sm transition hover:bg-[#365984]" to="/register">Бүртгүүлэх</Link></p>
         </div>
 
         <div className="home-liquid-panel relative mx-auto w-full max-w-[780px] rounded-[38px] p-6 sm:p-8 lg:p-10">
