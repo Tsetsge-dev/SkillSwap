@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, ArrowRightLeft, Bot, CheckCircle2, Compass, Search, Users } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight, ArrowRightLeft, CheckCircle2, Compass, Search } from "lucide-react";
 import { matchesAPI } from "../services/api";
 import UserCard from "../components/UserCard";
 import MatchRequestModal from "../components/MatchRequestModal";
 
 const Home = () => {
-  const navigate = useNavigate();
   const [featuredUsers, setFeaturedUsers] = useState([]);
   const [selectedUserForSwap, setSelectedUserForSwap] = useState(null);
 
@@ -25,48 +24,48 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-[#f4f7fc] text-[#243b63]">
       <section className="mx-auto grid min-h-[calc(100svh-100px)] w-full max-w-[1660px] grid-cols-1 items-center gap-12 px-6 py-12 sm:px-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:px-12 lg:py-16">
-        <div className="max-w-[760px] lg:pl-0">
-          <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-[#cbdaf0] bg-white/80 px-5 py-3 text-sm font-bold text-[#456b9c] shadow-sm">
+        <div className="max-w-[900px] lg:pl-0">
+          <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-[#cbdaf0] bg-white/80 px-5 py-3 text-sm font-bold text-[#365984] shadow-sm">
             <ArrowRightLeft className="h-5 w-5" />
             Ур чадвараа харилцан солилцох нийгэмлэг
           </div>
-          <h1 className="max-w-[760px] text-5xl font-black leading-[1.12] tracking-[-0.045em] text-[#243b63] sm:text-6xl lg:text-[76px]">
+          <h1 className="max-w-none text-5xl font-black leading-[1.12] tracking-[-0.045em] text-[#243b63] sm:text-6xl lg:text-[58px]">
             Мэдлэгээ хуваалц.
             <span className="block text-[#456b9c]">Шинэ зүйл сур.</span>
           </h1>
-          <p className="mt-7 max-w-[720px] text-lg leading-[1.8] text-[#49688f] sm:text-[21px]">
+          <p className="mt-6 max-w-[720px] text-base leading-[1.75] text-[#3f5f89] sm:text-lg">
             Мэддэг зүйлээ бусадтай хуваалцаж, сурахыг хүссэн чадвараа заадаг хүнээ олоорой.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Link to="/explore" className="inline-flex min-h-[72px] items-center justify-center gap-3 rounded-2xl bg-[#456b9c] px-7 text-lg font-extrabold text-white shadow-[0_12px_24px_-12px_#456b9c99] transition hover:-translate-y-0.5 hover:bg-[#365984]">
-              <Search className="h-6 w-6" /> Тохирох хүн хайх <ArrowRight className="h-5 w-5" />
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link to="/explore" className="inline-flex min-h-[60px] items-center justify-center gap-3 rounded-2xl bg-[#456b9c] px-6 text-base font-extrabold text-white shadow-[0_12px_24px_-12px_#456b9c99] transition hover:-translate-y-0.5 hover:bg-[#365984]">
+              <Search className="h-5 w-5" /> Тохирох хүн хайх <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link to="/assessment" className="inline-flex min-h-[72px] items-center justify-center gap-3 rounded-2xl border border-[#c7d7ed] bg-white px-7 text-lg font-bold text-[#29466f] transition hover:bg-[#edf3fb]">
-              <Compass className="h-6 w-6 text-[#456b9c]" /> Сонирхлоо тодорхойлох
+            <Link to="/assessment" className="inline-flex min-h-[60px] items-center justify-center gap-3 rounded-2xl border border-[#c7d7ed] bg-white px-6 text-base font-bold text-[#29466f] transition hover:bg-[#edf3fb]">
+              <Compass className="h-5 w-5 text-[#456b9c]" /> Сонирхлоо тодорхойлох
             </Link>
           </div>
-          <p className="mt-6 text-base text-[#5d789d]">Шинээр орж ирэв үү? <Link className="font-extrabold text-[#456b9c] hover:underline" to="/register">Бүртгүүлэх</Link></p>
+          <p className="mt-5 text-sm text-[#456488]">Шинээр орж ирэв үү? <Link className="font-extrabold text-[#365984] hover:underline" to="/register">Бүртгүүлэх</Link></p>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[780px] rounded-[48px] border border-[#d0def0] bg-white/65 p-7 shadow-[0_28px_80px_-50px_#29466f55] backdrop-blur-sm sm:p-10 lg:p-12">
-          <div className="inline-flex items-center gap-3 rounded-full bg-[#f5f8fc] px-5 py-3 text-base font-extrabold text-[#29466f]">
+        <div className="relative mx-auto w-full max-w-[780px] rounded-[38px] border border-[#d0def0] bg-white/70 p-6 shadow-[0_28px_80px_-50px_#29466f55] backdrop-blur-sm sm:p-8 lg:p-10">
+          <div className="inline-flex items-center gap-3 rounded-full bg-[#f0f4fa] px-4 py-2.5 text-sm font-extrabold text-[#29466f]">
             <ArrowRightLeft className="h-5 w-5" /> ЖИШЭЭ СОЛИЛЦОО
           </div>
-          <h2 className="mt-7 text-3xl font-black leading-tight tracking-tight text-[#243b63] sm:text-[36px]">Хүн бүр мэдлэг, чадвараа хуваалцана.</h2>
+          <h2 className="mt-6 text-2xl font-black leading-tight tracking-tight text-[#243b63] sm:text-[28px]">Хүн бүр мэдлэг, чадвараа хуваалцана.</h2>
 
-          <div className="mt-8 rounded-[26px] border border-[#d0def0] bg-white px-7 py-7 shadow-[0_10px_30px_-24px_#29466f55] sm:px-8">
-            <p className="text-sm font-extrabold tracking-wide text-[#456b9c]">БИ ХУВААЛЦАНА</p>
-            <p className="mt-2 text-2xl font-extrabold text-[#29466f]">Англи хэл</p>
-            <p className="mt-2 text-lg text-[#5d789d]">Ярианы дадлага, шинэ үгс</p>
+          <div className="mt-7 rounded-[24px] border border-[#d0def0] bg-white px-6 py-5 shadow-[0_10px_30px_-24px_#29466f55] sm:px-7">
+            <p className="text-xs font-extrabold tracking-wide text-[#365984]">БИ ХУВААЛЦАНА</p>
+            <p className="mt-2 text-xl font-extrabold text-[#29466f]">Англи хэл</p>
+            <p className="mt-1.5 text-base text-[#456488]">Ярианы дадлага, шинэ үгс</p>
           </div>
-          <div className="flex h-16 items-center justify-center text-[#7892b4]" aria-hidden="true"><ArrowRightLeft className="h-7 w-7 rotate-90" /></div>
-          <div className="rounded-[26px] border border-[#d0def0] bg-white px-7 py-7 shadow-[0_10px_30px_-24px_#29466f55] sm:px-8">
-            <p className="text-sm font-extrabold tracking-wide text-[#456b9c]">БИ СУРНА</p>
-            <p className="mt-2 text-2xl font-extrabold text-[#29466f]">Вэб дизайн</p>
-            <p className="mt-2 text-lg text-[#5d789d]">Эхний загвараа бүтээх</p>
+          <div className="flex h-12 items-center justify-center text-[#5277aa]" aria-hidden="true"><ArrowRightLeft className="h-6 w-6 rotate-90" /></div>
+          <div className="rounded-[24px] border border-[#d0def0] bg-white px-6 py-5 shadow-[0_10px_30px_-24px_#29466f55] sm:px-7">
+            <p className="text-xs font-extrabold tracking-wide text-[#365984]">БИ СУРНА</p>
+            <p className="mt-2 text-xl font-extrabold text-[#29466f]">Вэб дизайн</p>
+            <p className="mt-1.5 text-base text-[#456488]">Эхний загвараа бүтээх</p>
           </div>
-          <div className="mt-7 flex items-center gap-3 text-base font-medium text-[#29466f]"><CheckCircle2 className="h-6 w-6 shrink-0" /> Хоёр талдаа суралцах боломж</div>
-          <div className="mt-4 flex items-center gap-3 text-base font-medium text-[#29466f]"><CheckCircle2 className="h-6 w-6 shrink-0" /> Мөнгө төлөхгүй, чадвараараа солилцоно</div>
+          <div className="mt-6 flex items-center gap-3 text-sm font-semibold text-[#29466f]"><CheckCircle2 className="h-5 w-5 shrink-0 text-[#456b9c]" /> Хоёр талдаа суралцах боломж</div>
+          <div className="mt-3 flex items-center gap-3 text-sm font-semibold text-[#29466f]"><CheckCircle2 className="h-5 w-5 shrink-0 text-[#456b9c]" /> Мөнгө төлөхгүй, чадвараараа солилцоно</div>
         </div>
       </section>
 
