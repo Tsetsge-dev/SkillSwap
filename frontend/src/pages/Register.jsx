@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus, Mail, Lock, User, ArrowLeft } from 'lucide-react';
-import { authAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import BrandLogo from '../components/BrandLogo';
 
 const Register = () => {
-  const { login } = useAuth();
+  const { register } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({ surname: '', givenName: '', email: '', password: '', confirmPassword: '' });
   const [error, setError] = useState('');
@@ -27,8 +26,7 @@ const Register = () => {
     }
     setLoading(true);
     try {
-      await authAPI.register({ full_name: `${form.surname.trim()} ${form.givenName.trim()}`, email: form.email, password: form.password });
-      await login(form.email, form.password);
+      await register({ full_name: `${form.surname.trim()} ${form.givenName.trim()}`, email: form.email, password: form.password });
       navigate('/profile');
     } catch (err) {
       const msg = err.response?.data?.detail;
