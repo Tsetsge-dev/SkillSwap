@@ -35,8 +35,8 @@ const ProfilePage = () => {
         location: user.location || '', timezone: user.timezone || '',
         github_url: user.github_url || '', portfolio_url: user.portfolio_url || ''
       });
-      setSkillsOffered(user.skills_offered || []);
-      setSkillsWanted(user.skills_wanted || []);
+      setSkillsOffered(Array.isArray(user.skills_offered) ? user.skills_offered : []);
+      setSkillsWanted(Array.isArray(user.skills_wanted) ? user.skills_wanted : []);
     }
   }, [user]);
 
@@ -112,6 +112,16 @@ const ProfilePage = () => {
   };
 
   const inputClass = "w-full bg-slate-100 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500";
+
+  if (!user) {
+    return (
+      <div className="mx-auto flex min-h-[60vh] max-w-xl flex-col items-center justify-center gap-3 px-6 text-center text-[#29466f]">
+        <h1 className="text-2xl font-extrabold">Профайл нээгдэж байна</h1>
+        <p className="text-sm text-[#526b8d]">Нэвтрэлтийг шалгаж байна. Хуудас харагдахгүй хэвээр байвал дахин нэвтэрнэ үү.</p>
+        <a href="/login" className="rounded-full bg-[#5277aa] px-5 py-2.5 text-sm font-bold text-white">Нэвтрэх</a>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 space-y-5">
@@ -196,3 +206,4 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
