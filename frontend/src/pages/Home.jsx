@@ -47,7 +47,7 @@ const Home = () => {
           <p className="mt-4 flex items-center gap-2 text-xs text-[#456488]">Бүртгэлгүй юу? <Link className="home-register-action rounded-full bg-[#5277aa] px-3 py-1.5 font-extrabold text-white shadow-sm transition hover:bg-[#365984]" to="/register">Бүртгүүлэх</Link></p>
         </div>
 
-        <div className="home-liquid-panel relative mx-auto w-full max-w-[780px] rounded-[38px] p-6 sm:p-8 lg:p-10">
+        <div className="home-liquid-panel relative mx-auto w-full max-w-[780px] origin-top-center scale-[0.85] rounded-[38px] p-6 sm:p-8 lg:p-10">
           <div className="home-liquid-badge inline-flex items-center gap-3 rounded-full px-4 py-2.5 text-sm font-extrabold text-[#29466f]">
             <ArrowRightLeft className="h-5 w-5" /> ЖИШЭЭ СОЛИЛЦОО
           </div>
