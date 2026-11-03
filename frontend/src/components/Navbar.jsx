@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
+  ArrowRightLeft,
+  Compass,
   Search,
   Sparkles,
   Bot,
@@ -15,7 +17,6 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { requestsAPI } from '../services/api';
 import LanguageSwitcher from './LanguageSwitcher';
-import BrandLogo from './BrandLogo';
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -34,9 +35,10 @@ const Navbar = () => {
   }, [isAuthenticated, location.pathname]);
 
   const navLinks = [
-    { name: 'Хайх & Match', path: '/explore', icon: Search },
-    { name: 'Чадварын зөвлөмж', path: '/recommendations', icon: Sparkles },
-    { name: 'AI Туслах', path: '/chatbot', icon: Bot, highlight: true },
+    { name: 'Нүүр', path: '/', icon: ArrowRightLeft },
+    { name: 'Хүмүүс', path: '/explore', icon: Search },
+    { name: 'Сонирхлоо тодорхойлох', path: '/assessment', icon: Compass },
+    { name: 'Чадварын туслах', path: '/chatbot', icon: Bot, highlight: true },
     {
       name: 'Хүсэлтүүд',
       path: '/requests',
@@ -53,17 +55,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-indigo-100/60 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
+    <nav className="sticky top-0 z-40 mx-auto mt-4 w-[calc(100%-2rem)] max-w-[1740px] rounded-full border border-[#d1def0] bg-white/90 px-4 shadow-[0_8px_30px_-22px_#243b6355] backdrop-blur-xl sm:mt-5 sm:w-[calc(100%-4rem)] sm:px-6 lg:px-10">
+      <div className="px-1">
+        <div className="flex h-[76px] items-center justify-between sm:h-[96px]">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center group">
-            <BrandLogo className="h-10 sm:h-11 w-auto max-w-[150px] group-hover:scale-105 transition-transform" />
+          <Link to="/" className="group flex shrink-0 items-center gap-3" aria-label="SkillSwap нүүр хуудас">
+            <span className="grid h-11 w-11 place-items-center rounded-[15px] bg-[#a9c1e2] text-white shadow-md transition group-hover:scale-105 sm:h-[54px] sm:w-[54px]"><ArrowRightLeft className="h-6 w-6" /></span>
+            <span className="text-xl font-black tracking-tight text-[#29466f] sm:text-2xl">Skill<span className="text-[#a8c0df]">Swap</span></span>
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {navLinks.map((link) => {
               const Icon = link.icon;
               const isActive = location.pathname === link.path;
@@ -71,10 +74,10 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                  className={`flex items-center gap-2 px-3.5 py-3 rounded-2xl text-sm font-semibold transition-all xl:px-4 ${
                     isActive
-                      ? 'bg-violet-600 text-white font-bold shadow-sm'
-                      : 'text-slate-500 hover:text-violet-600 hover:bg-violet-50'
+                      ? 'bg-[#e7eef8] text-[#29466f] font-bold shadow-sm'
+                      : 'text-[#49688f] hover:text-[#29466f] hover:bg-[#f3f7fc]'
                   } ${link.highlight && !isActive ? 'text-violet-500' : ''}`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -90,7 +93,7 @@ const Navbar = () => {
           </div>
 
           {/* Right Section */}
-          <div className="hidden md:flex items-center gap-2.5">
+          <div className="hidden lg:flex items-center gap-5">
             <LanguageSwitcher compact />
             {isAuthenticated ? (
               <div className="flex items-center gap-2">
@@ -120,13 +123,13 @@ const Navbar = () => {
               <div className="flex items-center gap-2">
                 <Link
                   to="/login"
-                  className="px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-violet-600 transition-colors"
+                  className="px-3 py-3 text-sm font-semibold text-[#49688f] transition-colors hover:text-[#29466f]"
                 >
                   Нэвтрэх
                 </Link>
                 <Link
                   to="/register"
-                  className="px-3.5 py-1.5 text-xs font-bold bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-violet-600 hover:to-fuchsia-600 text-white rounded-xl transition-all shadow-md"
+                  className="rounded-full bg-[#5277aa] px-6 py-3 text-sm font-extrabold text-white shadow-md transition hover:bg-[#456b9c]"
                 >
                   Бүртгүүлэх
                 </Link>
@@ -221,3 +224,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
