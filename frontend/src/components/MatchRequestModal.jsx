@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowRightLeft, Send, Sparkles, BookOpen, GraduationCap } from 'lucide-react';
 import { requestsAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
@@ -13,6 +13,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
   const [sent, setSent] = useState(false);
+  const busy = useRef(false);
 
   // Extract skills offered by current user
   const mySkills = user?.skills_offered || [];
@@ -28,6 +29,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
   // Pre-fill / reset values when modal opens or targetUser changes
   useEffect(() => {
     if (isOpen && targetUser) {
+      busy.current = false;
       setError('');
       setSent(false);
       setIsCustomOffered(false);
@@ -84,6 +86,7 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
       const detail = err.response?.data?.detail;
       setError(typeof detail === 'string' ? detail : 'Санал илгээхэд алдаа гарлаа. Дахин оролдоно уу.');
     } finally {
+      busy.current = false;
       setSending(false);
     }
   };
@@ -246,3 +249,4 @@ const MatchRequestModal = ({ isOpen, targetUser, onClose, onSuccess }) => {
 };
 
 export default MatchRequestModal;
+
