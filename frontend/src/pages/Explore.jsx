@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { Search, Sparkles, Users } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { matchesAPI } from '../services/api';
 import UserCard from '../components/UserCard';
 import MatchRequestModal from '../components/MatchRequestModal';
+import surveyProfiles from '../data/surveyProfiles.json';
 
 const CATEGORIES = [
   'Бүгд',
@@ -175,3 +176,4 @@ const Explore = () => {
 };
 
 export default Explore;
+
