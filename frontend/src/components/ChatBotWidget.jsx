@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Bot, X, Send, Sparkles, ArrowRightLeft } from 'lucide-react';
+import { Bot, X, Send } from 'lucide-react';
 import { chatbotAPI } from '../services/api';
 import MatchRequestModal from './MatchRequestModal';
+import AuthPromptModal from './AuthPromptModal';
+import { useAuth } from '../context/AuthContext';
 
 const ChatBotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,8 @@ const ChatBotWidget = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [selectedUserForSwap, setSelectedUserForSwap] = useState(null);
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   const messagesEndRef = useRef(null);
 
@@ -69,8 +72,15 @@ const ChatBotWidget = () => {
       ]);
     } finally {
       setLoading(false);
-      sendLock.current = false;
     }
+  };
+
+  const handleSwapRequest = (recommendation) => {
+    if (!isAuthenticated) {
+      setShowAuthPrompt(true);
+      return;
+    }
+    setSelectedUserForSwap(recommendation);
   };
 
   const starterPrompts = [
@@ -152,7 +162,7 @@ const ChatBotWidget = () => {
                             </div>
                           </div>
                           <button
-                            onClick={() => setSelectedUserForSwap(rec)}
+                            onClick={() => handleSwapRequest(rec)}
                             className="px-2.5 py-1 rounded-lg bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-[10px] shrink-0 cursor-pointer shadow-sm"
                           >
                             Санал илгээх

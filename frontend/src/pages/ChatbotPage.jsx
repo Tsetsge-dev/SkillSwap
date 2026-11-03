@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Bot, Send, ArrowRightLeft, Sparkles, Settings, Key, CheckCircle2, AlertCircle } from 'lucide-react';
 import { chatbotAPI } from '../services/api';
 import MatchRequestModal from '../components/MatchRequestModal';
+import AuthPromptModal from '../components/AuthPromptModal';
+import { useAuth } from '../context/AuthContext';
 
 const STARTER_PROMPTS = [
   '🔍 Надад тохирох найз хайж өг',
@@ -56,6 +58,8 @@ const ChatbotPage = () => {
   const [selectedUserForSwap, setSelectedUserForSwap] = useState(null);
   const [showApiSetup, setShowApiSetup] = useState(false);
   const [geminiStatus, setGeminiStatus] = useState(null); // 'active' | 'local' | null
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   const messagesEndRef = useRef(null);
 
@@ -110,8 +114,15 @@ const ChatbotPage = () => {
       ]);
     } finally {
       setLoading(false);
-      sendLock.current = false;
     }
+  };
+
+  const handleSwapRequest = (recommendation) => {
+    if (!isAuthenticated) {
+      setShowAuthPrompt(true);
+      return;
+    }
+    setSelectedUserForSwap(recommendation);
   };
 
   return (
@@ -285,7 +296,7 @@ const ChatbotPage = () => {
                           Үзэх
                         </Link>
                         <button
-                          onClick={() => setSelectedUserForSwap(rec)}
+                          onClick={() => handleSwapRequest(rec)}
                           className="flex-1 py-1.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-bold text-[11px] rounded-xl flex items-center justify-center gap-1 cursor-pointer shadow-sm"
                         >
                           <ArrowRightLeft className="w-3 h-3" />
