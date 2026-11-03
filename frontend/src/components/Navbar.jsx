@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   ArrowRightLeft,
   Compass,
   Search,
-  Sparkles,
   Bot,
-  UserCheck,
-  MessageSquare,
-  Calendar,
-  User as UserIcon,
   LogOut,
   Menu,
   X
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { requestsAPI } from '../services/api';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
@@ -23,30 +17,12 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [pendingCount, setPendingCount] = useState(0);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      requestsAPI
-        .getIncoming()
-        .then((res) => setPendingCount(res.data.length))
-        .catch(() => {});
-    }
-  }, [isAuthenticated, location.pathname]);
 
   const navLinks = [
     { name: 'Нүүр', path: '/', icon: ArrowRightLeft },
     { name: 'Хүмүүс', path: '/explore', icon: Search },
     { name: 'Сонирхлоо тодорхойлох', path: '/assessment', icon: Compass },
     { name: 'Чадварын туслах', path: '/chatbot', icon: Bot, highlight: true },
-    {
-      name: 'Хүсэлтүүд',
-      path: '/requests',
-      icon: UserCheck,
-      badge: pendingCount > 0 ? pendingCount : null,
-    },
-    { name: 'Зурвас', path: '/chat', icon: MessageSquare },
-    { name: 'Хуваарь', path: '/sessions', icon: Calendar },
   ];
 
   const handleLogout = () => {
@@ -55,14 +31,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-40 mx-auto mt-4 w-[calc(100%-2rem)] max-w-[1740px] rounded-full border border-[#d1def0] bg-white/90 px-4 shadow-[0_8px_30px_-22px_#243b6355] backdrop-blur-xl sm:mt-5 sm:w-[calc(100%-4rem)] sm:px-6 lg:px-10">
+    <nav className="sticky top-0 z-40 mx-auto mt-4 w-[calc(100%-3rem)] max-w-[1740px] rounded-full border border-[#d1def0] bg-white/90 px-4 shadow-[0_8px_30px_-22px_#243b6355] backdrop-blur-xl sm:mt-5 sm:w-[calc(100%-6rem)] sm:px-6 lg:px-8">
       <div className="px-1">
         <div className="flex h-[76px] items-center justify-between sm:h-[96px]">
           
           {/* Logo */}
           <Link to="/" className="group flex shrink-0 items-center gap-3" aria-label="SkillSwap нүүр хуудас">
-            <span className="grid h-11 w-11 place-items-center rounded-[15px] bg-[#a9c1e2] text-white shadow-md transition group-hover:scale-105 sm:h-[54px] sm:w-[54px]"><ArrowRightLeft className="h-6 w-6" /></span>
-            <span className="text-xl font-black tracking-tight text-[#29466f] sm:text-2xl">Skill<span className="text-[#a8c0df]">Swap</span></span>
+            <span className="grid h-10 w-10 place-items-center rounded-[13px] bg-[#a9c1e2] text-white shadow-md transition group-hover:scale-105 sm:h-12 sm:w-12"><ArrowRightLeft className="h-5 w-5" /></span>
+            <span className="text-lg font-black tracking-tight text-[#29466f] sm:text-xl">Skill<span className="text-[#a8c0df]">Swap</span></span>
           </Link>
 
           {/* Desktop Links */}
@@ -93,27 +69,24 @@ const Navbar = () => {
           </div>
 
           {/* Right Section */}
-          <div className="hidden lg:flex items-center gap-5">
+          <div className="hidden lg:flex items-center gap-2.5 xl:gap-4">
             <LanguageSwitcher compact />
             {isAuthenticated ? (
               <div className="flex items-center gap-2">
-                <Link
-                  to="/profile"
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-violet-50 border border-slate-200 transition-colors"
-                >
+                <Link to="/profile" className="flex items-center gap-2 rounded-full border border-[#d1def0] bg-white px-3 py-2 transition-colors hover:bg-[#f3f7fc]">
                   <img
                     src={user?.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.full_name}`}
                     alt={user?.full_name}
                     className="w-6 h-6 rounded-lg object-cover"
                   />
-                  <span className="text-xs font-semibold text-slate-700 truncate max-w-[100px]">
+                  <span className="max-w-[100px] truncate text-sm font-semibold text-[#29466f]">
                     {user?.full_name?.split(' ')[0]}
                   </span>
                 </Link>
 
                 <button
                   onClick={handleLogout}
-                  className="p-2 rounded-xl text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
+                  className="cursor-pointer rounded-full p-2 text-slate-400 transition-colors hover:bg-red-50 hover:text-red-500"
                   title="Гарах"
                 >
                   <LogOut className="w-4 h-4" />
@@ -138,7 +111,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <LanguageSwitcher compact />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
