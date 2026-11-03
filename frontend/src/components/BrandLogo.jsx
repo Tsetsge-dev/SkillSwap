@@ -2,10 +2,10 @@ import React from 'react';
 
 const BrandLogo = ({ className = '', style, ...props }) => (
   <img
-    src="/logo.jpg"
+    src="/skillswap-logo.svg"
     alt="SkillSwap"
-    className={`block object-contain mix-blend-multiply ${className}`.trim()}
-    style={{ filter: 'hue-rotate(-28deg) saturate(.76)', ...style }}
+    className={`block object-contain ${className}`.trim()}
+    style={style}
     {...props}
   />
 );
