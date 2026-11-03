@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div className="home-liquid-shell min-h-screen text-[#243b63]">
       <section className="-mt-4 mx-auto grid min-h-[calc(100svh-140px)] w-full max-w-[1660px] grid-cols-1 items-center gap-9 px-6 py-8 sm:px-10 lg:-mt-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-12 lg:px-12 lg:py-10">
-        <div className="max-w-[900px] lg:pl-0">
+        <div className="-translate-y-4 max-w-[900px] lg:-translate-y-8 lg:pl-0">
           <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-[#cbdaf0] bg-white/80 px-5 py-3 text-sm font-bold text-[#365984] shadow-sm">
             <ArrowRightLeft className="h-5 w-5" />
             Ур чадвараа харилцан солилцох нийгэмлэг
