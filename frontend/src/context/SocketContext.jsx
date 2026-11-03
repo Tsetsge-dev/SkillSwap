@@ -14,6 +14,7 @@ export const SocketProvider = ({ children }) => {
   const [incomingMessages, setIncomingMessages] = useState([]);
   const [typingUsers, setTypingUsers] = useState({});
   const listenersRef = useRef(new Map());
+  const socketRef = useRef(null);
 
   useEffect(() => {
     if (!user || !token) {
