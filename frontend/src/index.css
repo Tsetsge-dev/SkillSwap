@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-<<<<<<< HEAD
 @layer base {
   :root {
     --bg-primary: #ffffff;
@@ -24,7 +23,6 @@
       radial-gradient(circle at 75% 85%, rgba(45, 212, 191, 0.30), transparent 55%),
       radial-gradient(circle at 15% 85%, rgba(251, 191, 36, 0.25), transparent 50%),
       linear-gradient(135deg, #eef2ff 0%, #fdf4ff 45%, #ecfeff 100%);
-=======
 @theme {
   --color-slate-50: #F5F8FC;
   --color-slate-100: #F5F8FC;
@@ -547,13 +545,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
       radial-gradient(circle at 8% 12%, rgba(228, 236, 246, 0.12), transparent 30%),
       radial-gradient(circle at 90% 8%, rgba(197, 212, 232, 0.12), transparent 28%),
       radial-gradient(circle at 50% 100%, rgba(197, 212, 232, 0.10), transparent 35%);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
     background-attachment: fixed;
     color: var(--text-primary);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
-<<<<<<< HEAD
     letter-spacing: -0.01em;
   }
 }
@@ -565,7 +561,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(124, 58, 237, 0.16);
   box-shadow: 0 10px 30px -12px rgba(99, 102, 241, 0.25);
-=======
     letter-spacing: 0;
   }
 }
@@ -577,7 +572,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(197, 212, 232, 0.16);
   box-shadow: 0 10px 30px -12px rgba(197, 212, 232, 0.25);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
   border-radius: 18px;
 }
 
@@ -586,26 +580,21 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .glass-panel-hover:hover {
-<<<<<<< HEAD
   background: rgba(255, 255, 255, 0.98);
   border-color: rgba(124, 58, 237, 0.35);
   box-shadow: 0 16px 40px -12px rgba(99, 102, 241, 0.35);
-=======
   background: rgba(245, 248, 252, 0.98);
   border-color: rgba(197, 212, 232, 0.35);
   box-shadow: 0 16px 40px -12px rgba(197, 212, 232, 0.35);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
   transform: translateY(-6px) rotate(0.6deg);
 }
 
 .glow-emerald {
-<<<<<<< HEAD
   box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.35);
 }
 
 .glow-accent {
   box-shadow: 0 0 24px -6px rgba(124, 58, 237, 0.5);
-=======
   box-shadow: 0 0 20px -5px rgba(197, 212, 232, 0.35);
 }
 
@@ -628,7 +617,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   border-color: rgba(245, 248, 252, 0.92);
   background: rgba(245, 248, 252, 0.7);
   box-shadow: 0 24px 64px -34px rgba(130, 159, 198, 0.55), inset 0 1px 0 rgba(245, 248, 252, .9);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 }
 
 /* Light scrollbar */
@@ -640,19 +628,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-<<<<<<< HEAD
   background: rgba(124, 58, 237, 0.25);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(124, 58, 237, 0.4);
-=======
   background: rgba(197, 212, 232, 0.25);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(197, 212, 232, 0.4);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 }
 
 @keyframes online-pulse {
@@ -857,11 +842,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   content: "";
   position: absolute;
   inset: 0;
-<<<<<<< HEAD
   background: linear-gradient(110deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 48%, rgba(255,255,255,0) 100%);
-=======
   background: linear-gradient(110deg, rgba(245, 248, 252, 0) 0%, rgba(245, 248, 252, 0.5) 48%, rgba(245, 248, 252, 0) 100%);
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
   background-size: 220% 100%;
   animation: shimmer-sweep 4.5s ease-in-out infinite;
   opacity: 0;
@@ -877,17 +859,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* Slow color-pulsing border for attention-grabbing badges */
 @keyframes border-pulse {
-<<<<<<< HEAD
   0%, 100% { border-color: rgba(147,51,234,.25); }
   25% { border-color: rgba(236,72,153,.35); }
   50% { border-color: rgba(147,51,234,.25); }
   75% { border-color: rgba(236,72,153,.35); }
-=======
   0%, 100% { border-color: rgba(197, 212, 232, .25); }
   25% { border-color: rgba(197, 212, 232, .35); }
   50% { border-color: rgba(197, 212, 232, .25); }
   75% { border-color: rgba(197, 212, 232, .35); }
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
 }
 .animate-border-pulse { animation: border-pulse 3.5s ease-in-out infinite; }
 
@@ -897,8 +876,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   50% { transform: translateY(-12px) scale(1.03); }
 }
 .animate-gentle-bob { animation: gentle-bob 6s ease-in-out infinite; }
-<<<<<<< HEAD
-=======
 
 /* Reference-matched liquid glass finish, shared across every route. */
 :root {
@@ -1566,4 +1543,3 @@ body .assessment-progress-chip {
 body [class~="bg-white/8"] { background-color:rgba(255,255,255,.08) !important; }
 body [class~="bg-white/10"] { background-color:rgba(255,255,255,.10) !important; }
 body [class~="bg-white/15"] { background-color:rgba(255,255,255,.15) !important; }
->>>>>>> 2a62fa6b7a13aa05662930812d05cb32d53c64e0
