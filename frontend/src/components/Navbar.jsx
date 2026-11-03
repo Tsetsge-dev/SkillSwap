@@ -31,7 +31,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-40 mx-auto mt-4 w-[calc(100%-3rem)] max-w-[1740px] rounded-full border border-[#d1def0] bg-white/90 px-4 shadow-[0_8px_30px_-22px_#243b6355] backdrop-blur-xl sm:mt-5 sm:w-[calc(100%-6rem)] sm:px-6 lg:px-8">
+    <nav className="home-liquid-nav sticky top-0 z-40 mx-auto mt-4 w-[calc(100%-3rem)] max-w-[1740px] rounded-full px-4 sm:mt-5 sm:w-[calc(100%-6rem)] sm:px-6 lg:px-8">
       <div className="px-1">
         <div className="flex h-[68px] items-center justify-between sm:h-[76px]">
           
